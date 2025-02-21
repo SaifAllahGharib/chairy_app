@@ -97,3 +97,18 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/images/logo.jpg
+
+  android_12:
+    image: assets/images/logo.jpg
+    color: "#FFFFFF"
+
+  android: true
+  ios: true
+  web: false
+
+  android_gravity: fill
+  ios_content_mode: scaleAspectFill
