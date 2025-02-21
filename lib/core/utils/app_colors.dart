@@ -6,4 +6,5 @@ abstract class AppColors {
   static const Color black = Colors.black;
   static const Color midnightBlue = Color(0xff0D1B39);
   static const Color darkGray = Color(0xff1E1E1E);
+  static const Color bgNavigationBar = Color(0xffF8F8F8);
 }

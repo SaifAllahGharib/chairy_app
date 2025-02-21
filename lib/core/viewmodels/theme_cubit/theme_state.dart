@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ThemeCubitState {
+class ThemeState {
   final ThemeMode themeMode;
 
-  ThemeCubitState(this.themeMode);
+  ThemeState(this.themeMode);
 }

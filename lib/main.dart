@@ -4,8 +4,8 @@ import 'package:chairy_app/core/utils/app_themes.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit_cubit.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit_state.dart';
+import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
+import 'package:chairy_app/core/viewmodels/theme_cubit/theme_state.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ThemeCubitCubit(),
+          create: (context) => ThemeCubit(),
         ),
         BlocProvider(
           create: (context) => LocalCubit(getIt.get<MySharedPreferences>()),
         ),
       ],
-      child: BlocBuilder<ThemeCubitCubit, ThemeCubitState>(
+      child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           return BlocBuilder<LocalCubit, Locale>(
             builder: (context, local) {

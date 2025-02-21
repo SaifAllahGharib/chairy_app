@@ -48,8 +48,8 @@ dependencies:
   flutter_native_splash: ^2.4.4
   logger: ^2.5.0
   flutter_localization: ^0.3.1
+  google_fonts: ^6.2.1
 
-  flutter_localizations: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -103,17 +103,16 @@ flutter:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/images/logo.jpg
+  image: assets/images/splash.png
+  fullscreen: true
 
   android_12:
-    image: assets/images/logo.jpg
+    image: assets/images/splash.png
     color: "#FFFFFF"
+    fullscreen: true
 
   android: true
   ios: true
   web: false
-
-  android_gravity: fill
-  ios_content_mode: scaleAspectFill
 flutter_intl:
   enabled: true

@@ -1,3 +1,8 @@
+import 'package:chairy_app/core/utils/app_assets.dart';
+import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/features/home/presentation/views/widgets/custom_app_bar_home_view.dart';
+import 'package:chairy_app/features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
+import 'package:chairy_app/features/home/presentation/views/widgets/text_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -5,6 +10,35 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Stack(
+      children: [
+        Image.asset(
+          AppAssets.bgHome,
+          fit: BoxFit.cover,
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            top: Dimensions.height44,
+            right: Dimensions.height20,
+            left: Dimensions.height20,
+          ),
+          child: Column(
+            children: [
+              CustomAppBarHomeView(
+                onClickSearch: () {},
+                onClickMenu: () {},
+              ),
+              SizedBox(height: Dimensions.height132),
+              const TextSection(),
+            ],
+          ),
+        ),
+        CustomBottomNavBar(
+          onClickHome: () {},
+          onClickCategory: () {},
+          onClickCart: () {},
+        ),
+      ],
+    );
   }
 }

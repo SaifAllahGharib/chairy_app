@@ -7,7 +7,7 @@ class SplashViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Image.asset(AppAssets.logo),
+      child: Image.asset(AppAssets.splash),
     );
   }
 }
