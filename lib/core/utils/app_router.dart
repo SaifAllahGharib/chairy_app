@@ -1,4 +1,4 @@
-import 'package:chairy_app/features/home/presentation/views/home_view.dart';
+import 'package:chairy_app/features/main/presentation/view/main_view.dart';
 import 'package:chairy_app/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,8 +10,8 @@ abstract class AppRouter {
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
-        path: HomeView.id,
-        builder: (context, state) => const HomeView(),
+        path: MainView.id,
+        builder: (context, state) => const MainView(),
       ),
     ],
   );

@@ -1,7 +1,6 @@
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/custom_app_bar_home_view.dart';
-import 'package:chairy_app/features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/text_section.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,8 @@ class HomeViewBody extends StatelessWidget {
         Image.asset(
           AppAssets.bgHome,
           fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -32,11 +33,6 @@ class HomeViewBody extends StatelessWidget {
               const TextSection(),
             ],
           ),
-        ),
-        CustomBottomNavBar(
-          onClickHome: () {},
-          onClickCategory: () {},
-          onClickCart: () {},
         ),
       ],
     );

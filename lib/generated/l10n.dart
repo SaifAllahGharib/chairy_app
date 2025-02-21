@@ -74,6 +74,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Our\nCategories`
+  String get ourCategories {
+    return Intl.message(
+      'Our\\nCategories',
+      name: 'ourCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More Info`
+  String get moreInfo {
+    return Intl.message('More Info', name: 'moreInfo', desc: '', args: []);
+  }
+
+  /// `Living Room`
+  String get livingRoom {
+    return Intl.message('Living Room', name: 'livingRoom', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
