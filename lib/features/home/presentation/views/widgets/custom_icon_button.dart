@@ -15,6 +15,9 @@ class CustomIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onClick,
+      enableFeedback: false,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       child: Image.asset(
         icon,
         width: Dimensions.iconSize30,

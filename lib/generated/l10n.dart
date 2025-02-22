@@ -94,6 +94,66 @@ class S {
   String get livingRoom {
     return Intl.message('Living Room', name: 'livingRoom', desc: '', args: []);
   }
+
+  /// `Chic Furnishings Online Furniture Store`
+  String get chicStore {
+    return Intl.message(
+      'Chic Furnishings Online Furniture Store',
+      name: 'chicStore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discover Elegant Comfort for Every Room`
+  String get discoverRoom {
+    return Intl.message(
+      'Discover Elegant Comfort for Every Room',
+      name: 'discoverRoom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message('Search', name: 'search', desc: '', args: []);
+  }
+
+  /// `Menu`
+  String get menu {
+    return Intl.message('Menu', name: 'menu', desc: '', args: []);
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `Ar`
+  String get ar {
+    return Intl.message('Ar', name: 'ar', desc: '', args: []);
+  }
+
+  /// `En`
+  String get en {
+    return Intl.message('En', name: 'en', desc: '', args: []);
+  }
+
+  /// `Theme`
+  String get theme {
+    return Intl.message('Theme', name: 'theme', desc: '', args: []);
+  }
+
+  /// `Light Mode`
+  String get lightMode {
+    return Intl.message('Light Mode', name: 'lightMode', desc: '', args: []);
+  }
+
+  /// `Dark Mode`
+  String get darkMode {
+    return Intl.message('Dark Mode', name: 'darkMode', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

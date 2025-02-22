@@ -3,6 +3,12 @@ import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
 abstract class Styles {
+  static final TextStyle textStyle12 = TextStyle(
+    fontSize: Dimensions.fontSize12,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black,
+  );
+
   static final TextStyle textStyle14 = TextStyle(
     fontSize: Dimensions.fontSize14,
     fontWeight: FontWeight.w500,
@@ -20,19 +26,37 @@ abstract class Styles {
     color: AppColors.darkGray,
   );
 
+  static final TextStyle textStyle20 = TextStyle(
+    fontSize: Dimensions.fontSize20,
+    color: AppColors.black,
+    fontWeight: FontWeight.w400,
+  );
+
   static final TextStyle textStyle24 = TextStyle(
     fontSize: Dimensions.fontSize24,
     color: AppColors.darkGray,
     fontWeight: FontWeight.w800,
   );
 
+  static final TextStyle textStyle32 = TextStyle(
+    fontSize: Dimensions.fontSize32,
+    fontWeight: FontWeight.w800,
+    color: AppColors.black,
+  );
+
   static final TextStyle textStyle36 = TextStyle(
     fontSize: Dimensions.fontSize36,
     fontWeight: FontWeight.w800,
   );
+
   static final TextStyle textStyle42 = TextStyle(
     fontSize: Dimensions.fontSize42,
     color: AppColors.darkGray,
     fontWeight: FontWeight.w800,
+  );
+
+  static const TextStyle hintStyle = TextStyle(
+    fontWeight: FontWeight.w300,
+    color: AppColors.black,
   );
 }

@@ -7,9 +7,16 @@ abstract class AppThemes {
       GoogleFonts.roboto(color: Colors.white);
   static final TextStyle _textStyleColorBlack =
       GoogleFonts.roboto(color: Colors.black);
+  static const TextSelectionThemeData _textSelectionThemeData =
+      TextSelectionThemeData(
+    cursorColor: AppColors.primaryColor,
+    selectionColor: AppColors.primaryColor,
+    selectionHandleColor: AppColors.primaryColor,
+  );
 
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
+    textSelectionTheme: _textSelectionThemeData,
     scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
       bodyLarge: _textStyleColorWhite,
@@ -27,6 +34,7 @@ abstract class AppThemes {
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.black,
+    textSelectionTheme: _textSelectionThemeData,
     textTheme: TextTheme(
       bodyLarge: _textStyleColorBlack,
       bodyMedium: _textStyleColorBlack,

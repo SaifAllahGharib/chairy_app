@@ -22,6 +22,9 @@ abstract class Dimensions {
   static final double height66 = screenHeight / 12.72;
   static final double height73 = screenHeight / 11.5;
   static final double height132 = screenHeight / 6.39;
+  static final double height145 = screenHeight / 7.01;
+  static final double height239 = screenHeight / 3.76;
+  static final double height277 = screenHeight / 3.2;
   static final double height500 = screenHeight / 1.728;
 
   // Dynamic Width Padding and Margin
@@ -35,6 +38,7 @@ abstract class Dimensions {
   static final double width50 = screenWidth / 20;
   static final double width63 = screenWidth / 13.4;
   static final double width73 = screenWidth / 11.5;
+  static final double width277 = screenWidth / 3.61;
 
   // Dynamic Font Size
   static final double fontSize12 = screenHeight / 70;
@@ -45,6 +49,7 @@ abstract class Dimensions {
   static final double fontSize20 = screenHeight / 42.2;
   static final double fontSize24 = screenHeight / 35;
   static final double fontSize30 = screenHeight / 28.13;
+  static final double fontSize32 = screenHeight / 26.25;
   static final double fontSize36 = screenHeight / 23.44;
   static final double fontSize42 = screenHeight / 20;
 

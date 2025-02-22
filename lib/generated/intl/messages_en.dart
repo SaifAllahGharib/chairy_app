@@ -22,12 +22,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "ar": MessageLookupByLibrary.simpleMessage("Ar"),
+    "chicStore": MessageLookupByLibrary.simpleMessage(
+      "Chic Furnishings Online Furniture Store",
+    ),
+    "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "discoverRoom": MessageLookupByLibrary.simpleMessage(
+      "Discover Elegant Comfort for Every Room",
+    ),
+    "en": MessageLookupByLibrary.simpleMessage("En"),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "lightMode": MessageLookupByLibrary.simpleMessage("Light Mode"),
     "livingRoom": MessageLookupByLibrary.simpleMessage("Living Room"),
     "makeModern": MessageLookupByLibrary.simpleMessage(
       "Make your interior more minimalistic & modern",
     ),
+    "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "moreInfo": MessageLookupByLibrary.simpleMessage("More Info"),
     "ourCategories": MessageLookupByLibrary.simpleMessage("Our\\nCategories"),
+    "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "turnYourRoom": MessageLookupByLibrary.simpleMessage(
       "Turn your room with panto into a lot more minimalist and modern with ease and speed",
     ),

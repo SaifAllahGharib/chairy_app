@@ -1,6 +1,6 @@
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/features/home/presentation/views/widgets/custom_app_bar_home_view.dart';
+import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/text_section.dart';
 import 'package:flutter/material.dart';
 
@@ -25,10 +25,7 @@ class HomeViewBody extends StatelessWidget {
           ),
           child: Column(
             children: [
-              CustomAppBarHomeView(
-                onClickSearch: () {},
-                onClickMenu: () {},
-              ),
+              const CustomAppBar(),
               SizedBox(height: Dimensions.height132),
               const TextSection(),
             ],

@@ -3,8 +3,10 @@ abstract class AppAssets {
   static const String splash = "assets/images/splash.png";
   static const String bgHome = "assets/images/bg_home.png";
   static const String logo = "assets/images/logo.png";
+  static const String darkLogo = "assets/images/dark_logo.png";
   static const String menu = "assets/images/menu.png";
   static const String search = "assets/images/search.png";
+  static const String darkSearch = "assets/images/dark_search.png";
   static const String home = "assets/images/home.png";
   static const String activeHome = "assets/images/active_home.png";
   static const String category = "assets/images/category.png";
@@ -18,4 +20,11 @@ abstract class AppAssets {
   static const String bgImageCategories =
       "assets/images/bg_image_categories.png";
   static const String bgSlider = "assets/images/bg-slider.png";
+  static const String close = "assets/images/close.png";
+  static const String bgSearchView = "assets/images/bg_search_view.png";
+  static const String check = "assets/images/check.png";
+  static const String eg = "assets/images/eg.png";
+  static const String us = "assets/images/us.png";
+  static const String light = "assets/images/light.png";
+  static const String dark = "assets/images/dark.png";
 }
