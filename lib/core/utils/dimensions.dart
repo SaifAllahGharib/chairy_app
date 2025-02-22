@@ -18,6 +18,7 @@ abstract class Dimensions {
   static final double height36 = screenHeight / 23.44;
   static final double height44 = screenHeight / 19.09;
   static final double height50 = screenHeight / 16.88;
+  static final double height100 = height50 * 2;
   static final double height63 = screenHeight / 13.4;
   static final double height66 = screenHeight / 12.72;
   static final double height73 = screenHeight / 11.5;

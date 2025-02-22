@@ -10,11 +10,13 @@ import 'package:go_router/go_router.dart';
 class CustomAppBar extends StatelessWidget {
   final bool searchOrMenu;
   final bool darkLogo;
+  final double bottom;
 
   const CustomAppBar({
     super.key,
     this.searchOrMenu = false,
     this.darkLogo = false,
+    this.bottom = 0,
   });
 
   @override
@@ -24,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
         top: Dimensions.height50,
         left: Dimensions.height20,
         right: Dimensions.height20,
-        bottom: Dimensions.height50,
+        bottom: bottom,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,8 +1,8 @@
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
+import 'package:chairy_app/core/widgets/custom_category_icon_button.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/custom_button_share.dart';
-import 'package:chairy_app/features/categories/presentation/view/widgets/custom_category_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class CounterAndShareWidget extends StatelessWidget {

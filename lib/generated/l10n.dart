@@ -164,6 +164,21 @@ class S {
   String get addToCart {
     return Intl.message('Add To Cart', name: 'addToCart', desc: '', args: []);
   }
+
+  /// `Your Cart`
+  String get yourCart {
+    return Intl.message('Your Cart', name: 'yourCart', desc: '', args: []);
+  }
+
+  /// `Review Your Items`
+  String get reviewYourItems {
+    return Intl.message(
+      'Review Your Items',
+      name: 'reviewYourItems',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

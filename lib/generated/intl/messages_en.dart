@@ -42,10 +42,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "moreInfo": MessageLookupByLibrary.simpleMessage("More Info"),
     "ourCategories": MessageLookupByLibrary.simpleMessage("Our\\nCategories"),
+    "reviewYourItems": MessageLookupByLibrary.simpleMessage(
+      "Review Your Items",
+    ),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "turnYourRoom": MessageLookupByLibrary.simpleMessage(
       "Turn your room with panto into a lot more minimalist and modern with ease and speed",
     ),
+    "yourCart": MessageLookupByLibrary.simpleMessage("Your Cart"),
   };
 }

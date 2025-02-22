@@ -12,7 +12,10 @@ class TopSectionCategoryView extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Column(
         children: [
-          const CustomAppBar(darkLogo: true),
+          CustomAppBar(
+            darkLogo: true,
+            bottom: Dimensions.height50,
+          ),
           Container(
             height: Dimensions.height277 * 1.4,
             margin: EdgeInsets.symmetric(horizontal: Dimensions.width30),

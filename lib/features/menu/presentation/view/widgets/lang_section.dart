@@ -21,7 +21,10 @@ class LangSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomAppBar(searchOrMenu: true),
+          CustomAppBar(
+            searchOrMenu: true,
+            bottom: Dimensions.height50,
+          ),
           SizedBox(height: Dimensions.height50),
           Text(
             S.of(context).menu,

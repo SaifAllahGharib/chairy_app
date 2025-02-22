@@ -4,14 +4,14 @@ import 'package:chairy_app/features/categories/domain/repositories/category_repo
 import 'package:dartz/dartz.dart';
 
 class CategoryRepositoryImpl implements CategoryRepository {
-  final CategoryRemoteDataSource remoteDataSource;
+  final CategoryRemoteDataSource _remoteDataSource;
 
-  CategoryRepositoryImpl(this.remoteDataSource);
+  CategoryRepositoryImpl(this._remoteDataSource);
 
   @override
   Future<Either<String, List<Category>>> getCategories() async {
     try {
-      final categories = await remoteDataSource.getCategories();
+      final categories = await _remoteDataSource.getCategories();
       return Right(categories);
     } catch (e) {
       return Left(e.toString());

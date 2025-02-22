@@ -15,5 +15,7 @@
   "lightMode": "Light Mode",
   "darkMode": "Dark Mode",
   "categories": "Categories",
-  "addToCart": "Add To Cart"
+  "addToCart": "Add To Cart",
+  "yourCart": "Your Cart",
+  "reviewYourItems": "Review Your Items"
 }

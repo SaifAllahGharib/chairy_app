@@ -15,7 +15,10 @@ class ProductDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const CustomAppBar(darkLogo: true),
+        CustomAppBar(
+          darkLogo: true,
+          bottom: Dimensions.height50,
+        ),
         DirWidget(
           firstText: S.of(context).livingRoom,
           secText: "Chair",

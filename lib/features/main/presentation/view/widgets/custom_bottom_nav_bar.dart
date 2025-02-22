@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
+  final int index;
   final void Function(int index) onIndexChanged;
 
   const CustomBottomNavBar({
     super.key,
     required this.onIndexChanged,
+    required this.index,
   });
 
   @override
@@ -27,14 +29,16 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       ),
       decoration: BoxDecoration(
         color: AppColors.bgNavigationBar,
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0x8effffff),
-            spreadRadius: Dimensions.height50 * 3,
-            blurRadius: 50,
-            offset: const Offset(0, 5),
-          ),
-        ],
+        boxShadow: widget.index == 0
+            ? [
+                BoxShadow(
+                  color: const Color(0x8effffff),
+                  spreadRadius: Dimensions.height50 * 3,
+                  blurRadius: 50,
+                  offset: const Offset(0, 5),
+                ),
+              ]
+            : null,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

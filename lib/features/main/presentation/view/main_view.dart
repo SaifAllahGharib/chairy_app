@@ -19,6 +19,7 @@ class MainView extends StatelessWidget {
           return Scaffold(
             body: MainViewBody(index: context.read<MainCubit>().selectedIndex),
             bottomNavigationBar: CustomBottomNavBar(
+              index: context.read<MainCubit>().selectedIndex,
               onIndexChanged: (index) =>
                   context.read<MainCubit>().changeTab(index),
             ),
