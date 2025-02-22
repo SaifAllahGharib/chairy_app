@@ -13,5 +13,7 @@
   "en": "En",
   "theme": "Theme",
   "lightMode": "Light Mode",
-  "darkMode": "Dark Mode"
+  "darkMode": "Dark Mode",
+  "categories": "Categories",
+  "addToCart": "Add To Cart"
 }

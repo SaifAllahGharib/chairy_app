@@ -1,5 +1,5 @@
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/features/categories/presentation/view/widgets/category_list_view.dart';
+import 'package:chairy_app/features/categories/presentation/view/widgets/categories_list_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/mid_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/our_category_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/page_view_section.dart';
@@ -21,7 +21,7 @@ class _CategoriesViewBodyState extends State<CategoriesViewBody> {
       slivers: [
         const OurCategoryWidget(),
         SliverToBoxAdapter(child: SizedBox(height: Dimensions.height10)),
-        const CategoryListView(),
+        const CategoriesListView(),
         const MidWidget(),
         const PageViewSection(),
       ],

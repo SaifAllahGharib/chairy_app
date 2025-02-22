@@ -154,6 +154,16 @@ class S {
   String get darkMode {
     return Intl.message('Dark Mode', name: 'darkMode', desc: '', args: []);
   }
+
+  /// `Categories`
+  String get categories {
+    return Intl.message('Categories', name: 'categories', desc: '', args: []);
+  }
+
+  /// `Add To Cart`
+  String get addToCart {
+    return Intl.message('Add To Cart', name: 'addToCart', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

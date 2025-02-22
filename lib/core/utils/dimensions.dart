@@ -41,6 +41,7 @@ abstract class Dimensions {
   static final double width277 = screenWidth / 3.61;
 
   // Dynamic Font Size
+  static final double fontSize10 = screenHeight / 84;
   static final double fontSize12 = screenHeight / 70;
   static final double fontSize14 = screenHeight / 60.28;
   static final double fontSize15 = screenHeight / 56.27;

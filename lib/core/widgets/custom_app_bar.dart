@@ -9,34 +9,45 @@ import 'package:go_router/go_router.dart';
 
 class CustomAppBar extends StatelessWidget {
   final bool searchOrMenu;
+  final bool darkLogo;
 
   const CustomAppBar({
     super.key,
     this.searchOrMenu = false,
+    this.darkLogo = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Image.asset(searchOrMenu ? AppAssets.darkLogo : AppAssets.logo),
-        searchOrMenu
-            ? const CustomCloseButton()
-            : Row(
-                children: [
-                  CustomIconButton(
-                    onClick: () => GoRouter.of(context).push(SearchView.id),
-                    icon: AppAssets.search,
-                  ),
-                  SizedBox(width: Dimensions.width27),
-                  CustomIconButton(
-                    onClick: () => GoRouter.of(context).push(MenuView.id),
-                    icon: AppAssets.menu,
-                  ),
-                ],
-              ),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(
+        top: Dimensions.height50,
+        left: Dimensions.height20,
+        right: Dimensions.height20,
+        bottom: Dimensions.height50,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+              searchOrMenu || darkLogo ? AppAssets.darkLogo : AppAssets.logo),
+          searchOrMenu
+              ? const CustomCloseButton()
+              : Row(
+                  children: [
+                    CustomIconButton(
+                      onClick: () => GoRouter.of(context).push(SearchView.id),
+                      icon: AppAssets.search,
+                    ),
+                    SizedBox(width: Dimensions.width27),
+                    CustomIconButton(
+                      onClick: () => GoRouter.of(context).push(MenuView.id),
+                      icon: AppAssets.menu,
+                    ),
+                  ],
+                ),
+        ],
+      ),
     );
   }
 }

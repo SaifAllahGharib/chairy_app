@@ -17,19 +17,12 @@ class HomeViewBody extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            top: Dimensions.height44,
-            right: Dimensions.height20,
-            left: Dimensions.height20,
-          ),
-          child: Column(
-            children: [
-              const CustomAppBar(),
-              SizedBox(height: Dimensions.height132),
-              const TextSection(),
-            ],
-          ),
+        Column(
+          children: [
+            const CustomAppBar(),
+            SizedBox(height: Dimensions.height132),
+            const TextSection(),
+          ],
         ),
       ],
     );

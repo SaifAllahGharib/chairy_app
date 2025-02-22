@@ -6,8 +6,8 @@ import 'package:chairy_app/features/categories/presentation/view/widgets/more_in
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
-class CategoryItemListView extends StatelessWidget {
-  const CategoryItemListView({super.key});
+class CategoriesItemListView extends StatelessWidget {
+  const CategoriesItemListView({super.key});
 
   @override
   Widget build(BuildContext context) {
