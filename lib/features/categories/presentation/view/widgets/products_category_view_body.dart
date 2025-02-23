@@ -1,4 +1,5 @@
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_error_widget.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/dir_widget.dart';
@@ -23,6 +24,8 @@ class ProductsProductsCategoryViewBody extends StatefulWidget {
 
 class _ProductsProductsCategoryViewBodyState
     extends State<ProductsProductsCategoryViewBody> {
+  bool get _isDark => context.watch<ThemeCubit>().isDark;
+
   @override
   void initState() {
     _fetchProductsCategory();
@@ -40,14 +43,17 @@ class _ProductsProductsCategoryViewBodyState
         if (state is ProductsCategorySuccessState) {
           return CustomScrollView(
             slivers: [
-              const TopSectionProductsCategoryView(),
+              TopSectionProductsCategoryView(isDark: _isDark),
               SliverToBoxAdapter(
                 child: DirWidget(firstText: S.of(context).livingRoom),
               ),
               SliverToBoxAdapter(child: SizedBox(height: Dimensions.height12)),
-              const MidCategorySection(),
+              MidCategorySection(isDark: _isDark),
               SliverToBoxAdapter(child: SizedBox(height: Dimensions.height36)),
-              ProductsGridView(products: state.products),
+              ProductsGridView(
+                products: state.products,
+                isDark: _isDark,
+              ),
             ],
           );
         } else if (state is ProductsCategoryFailureState) {

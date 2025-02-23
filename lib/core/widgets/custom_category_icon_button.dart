@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class CustomCategoryIconButton extends StatelessWidget {
   final IconData icon;
   final Color color;
+  final bool isDark;
   final void Function() onClick;
 
   const CustomCategoryIconButton({
@@ -12,6 +13,7 @@ class CustomCategoryIconButton extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.onClick,
+    this.isDark = false,
   });
 
   @override
@@ -25,7 +27,7 @@ class CustomCategoryIconButton extends StatelessWidget {
         onPressed: onClick,
         icon: Icon(
           icon,
-          color: AppColors.white,
+          color: isDark ? AppColors.black : AppColors.white,
           size: Dimensions.iconSize30,
         ),
       ),

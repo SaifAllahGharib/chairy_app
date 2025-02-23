@@ -2,6 +2,8 @@ import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
+import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
+import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/core/widgets/custom_button.dart';
 import 'package:chairy_app/features/cart/presentation/view/widgets/custom_cart_icon_button.dart';
@@ -9,9 +11,19 @@ import 'package:chairy_app/features/categories/presentation/view/widgets/price_w
 import 'package:chairy_app/features/home/presentation/views/widgets/custom_icon_button.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CartViewBody extends StatelessWidget {
+class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key});
+
+  @override
+  State<CartViewBody> createState() => _CartViewBodyState();
+}
+
+class _CartViewBodyState extends State<CartViewBody> {
+  bool get _isDark => context.watch<ThemeCubit>().isDark;
+
+  bool get _isArabic => context.watch<LocalCubit>().isArabic;
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +41,15 @@ class CartViewBody extends StatelessWidget {
                     SizedBox(height: Dimensions.height100),
                     Text(
                       S.of(context).yourCart,
-                      style:
-                          Styles.textStyle36.copyWith(color: AppColors.black),
+                      style: Styles.textStyle36.copyWith(
+                        color: _isDark ? AppColors.white : AppColors.black,
+                      ),
                     ),
                     Text(
                       S.of(context).reviewYourItems,
                       style: Styles.textStyle16.copyWith(
                         fontWeight: FontWeight.w400,
-                        color: AppColors.lightBlack,
+                        color: _isDark ? AppColors.white : AppColors.lightBlack,
                       ),
                     ),
                   ],
@@ -52,7 +65,12 @@ class CartViewBody extends StatelessWidget {
             itemBuilder: (context, index) {
               return Row(
                 children: [
-                  Image.asset(AppAssets.chair),
+                  Image.asset(
+                    AppAssets.chair,
+                    width: Dimensions.height132,
+                    height: Dimensions.height132,
+                  ),
+                  SizedBox(width: Dimensions.width20),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,10 +81,14 @@ class CartViewBody extends StatelessWidget {
                             Text(
                               "Baltsar Chair",
                               style: Styles.textStyle16.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.lightBlack),
+                                fontWeight: FontWeight.w500,
+                                color: _isDark
+                                    ? AppColors.white
+                                    : AppColors.lightBlack,
+                              ),
                             ),
                             PriceWidget(
+                              isDark: _isDark,
                               fontSizeIcon: Dimensions.fontSize14,
                               fontSizePrice: Dimensions.fontSize20,
                             ),
@@ -76,7 +98,9 @@ class CartViewBody extends StatelessWidget {
                           "About the Chair",
                           style: Styles.textStyle10.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: AppColors.lightBlack,
+                            color: _isDark
+                                ? AppColors.white
+                                : AppColors.lightBlack,
                           ),
                         ),
                         Row(
@@ -93,7 +117,10 @@ class CartViewBody extends StatelessWidget {
                             SizedBox(width: Dimensions.width20),
                             Text(
                               "1",
-                              style: Styles.textStyle12,
+                              style: Styles.textStyle12.copyWith(
+                                color:
+                                    _isDark ? AppColors.white : AppColors.black,
+                              ),
                             ),
                             SizedBox(width: Dimensions.width20),
                             CustomCartIconButton(
@@ -125,13 +152,14 @@ class CartViewBody extends StatelessWidget {
                       "Total",
                       style: Styles.textStyle16.copyWith(
                         fontWeight: FontWeight.w400,
-                        color: AppColors.semiDarkBlack,
+                        color:
+                            _isDark ? AppColors.white : AppColors.semiDarkBlack,
                       ),
                     ),
                     Text(
                       "43,96 €",
                       style: Styles.textStyle20.copyWith(
-                        color: AppColors.darkBlue,
+                        color: _isDark ? AppColors.white : AppColors.darkBlue,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

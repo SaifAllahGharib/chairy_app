@@ -1,4 +1,6 @@
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
+import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_error_widget.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/categories_list_view.dart';
@@ -18,6 +20,10 @@ class CategoriesViewBody extends StatefulWidget {
 }
 
 class _CategoriesViewBodyState extends State<CategoriesViewBody> {
+  bool get _isDark => context.watch<ThemeCubit>().isDark;
+
+  bool get _isArabic => context.watch<LocalCubit>().isArabic;
+
   @override
   void initState() {
     _fetchCategories();
@@ -35,11 +41,17 @@ class _CategoriesViewBodyState extends State<CategoriesViewBody> {
         if (state is CategoriesSuccessState) {
           return CustomScrollView(
             slivers: [
-              const OurCategoryWidget(),
+              OurCategoryWidget(
+                isDark: _isDark,
+                isArabic: _isArabic,
+              ),
               SliverToBoxAdapter(child: SizedBox(height: Dimensions.height10)),
-              CategoriesListView(categories: state.categories),
-              const MidWidget(),
-              const PageViewSection(),
+              CategoriesListView(
+                categories: state.categories,
+                isDark: _isDark,
+              ),
+              MidWidget(isDark: _isDark),
+              PageViewSection(isDark: _isDark),
             ],
           );
         } else if (state is CategoriesFailureState) {

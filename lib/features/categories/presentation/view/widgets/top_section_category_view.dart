@@ -5,7 +5,9 @@ import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class TopSectionProductsCategoryView extends StatelessWidget {
-  const TopSectionProductsCategoryView({super.key});
+  final bool isDark;
+
+  const TopSectionProductsCategoryView({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,8 @@ class TopSectionProductsCategoryView extends StatelessWidget {
                     width: Dimensions.height277,
                     height: Dimensions.height277,
                     decoration: BoxDecoration(
-                      color: AppColors.lightColor,
+                      color:
+                          isDark ? AppColors.darkColor : AppColors.lightColor,
                       borderRadius: BorderRadius.circular(Dimensions.radius10),
                     ),
                   ),
@@ -40,7 +43,8 @@ class TopSectionProductsCategoryView extends StatelessWidget {
                     width: Dimensions.height277,
                     height: Dimensions.height145 * 1.3,
                     decoration: BoxDecoration(
-                      color: AppColors.lightColor,
+                      color:
+                          isDark ? AppColors.darkColor : AppColors.lightColor,
                       borderRadius: BorderRadius.circular(Dimensions.radius10),
                     ),
                   ),

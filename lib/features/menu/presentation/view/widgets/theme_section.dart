@@ -1,4 +1,5 @@
 import 'package:chairy_app/core/utils/app_assets.dart';
+import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
@@ -35,7 +36,9 @@ class _ThemeSectionState extends State<ThemeSection> {
         children: [
           Text(
             S.of(context).theme,
-            style: Styles.textStyle32,
+            style: Styles.textStyle20.copyWith(
+              color: _isDark ? AppColors.white : AppColors.black,
+            ),
           ),
           SizedBox(height: Dimensions.height20),
           Column(

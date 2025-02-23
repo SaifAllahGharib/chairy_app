@@ -75,14 +75,14 @@ class S {
     );
   }
 
-  /// `Our\nCategories`
-  String get ourCategories {
-    return Intl.message(
-      'Our\\nCategories',
-      name: 'ourCategories',
-      desc: '',
-      args: [],
-    );
+  /// `Our`
+  String get our {
+    return Intl.message('Our', name: 'our', desc: '', args: []);
+  }
+
+  /// `Categories`
+  String get categories {
+    return Intl.message('Categories', name: 'categories', desc: '', args: []);
   }
 
   /// `More Info`
@@ -155,11 +155,6 @@ class S {
     return Intl.message('Dark Mode', name: 'darkMode', desc: '', args: []);
   }
 
-  /// `Categories`
-  String get categories {
-    return Intl.message('Categories', name: 'categories', desc: '', args: []);
-  }
-
   /// `Add To Cart`
   String get addToCart {
     return Intl.message('Add To Cart', name: 'addToCart', desc: '', args: []);
@@ -175,6 +170,46 @@ class S {
     return Intl.message(
       'Review Your Items',
       name: 'reviewYourItems',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Furnish Your Dreams, Choose Wisely`
+  String get furnishYourDreamsChooseWisely {
+    return Intl.message(
+      'Furnish Your Dreams, Choose Wisely',
+      name: 'furnishYourDreamsChooseWisely',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discover quality furniture, curated styles, and exceptional service at Our Store. We make furnishing your home easy and enjoyable.`
+  String get discoverQuality {
+    return Intl.message(
+      'Discover quality furniture, curated styles, and exceptional service at Our Store. We make furnishing your home easy and enjoyable.',
+      name: 'discoverQuality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Living Room`
+  String get allLivingRoom {
+    return Intl.message(
+      'All Living Room',
+      name: 'allLivingRoom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.`
+  String get sofasArmchairs {
+    return Intl.message(
+      'Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.',
+      name: 'sofasArmchairs',
       desc: '',
       args: [],
     );

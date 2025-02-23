@@ -6,10 +6,12 @@ import 'package:go_router/go_router.dart';
 
 class CategoriesListView extends StatelessWidget {
   final List<Category> categories;
+  final bool isDark;
 
   const CategoriesListView({
     super.key,
     required this.categories,
+    required this.isDark,
   });
 
   @override
@@ -20,7 +22,10 @@ class CategoriesListView extends StatelessWidget {
         return GestureDetector(
           onTap: () => GoRouter.of(context)
               .push(ProductsCategoryView.id, extra: categories[index].id),
-          child: CategoriesItemListView(category: categories[index]),
+          child: CategoriesItemListView(
+            category: categories[index],
+            isDark: isDark,
+          ),
         );
       },
     );

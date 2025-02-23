@@ -3,10 +3,13 @@ import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/more_info_widget.dart';
+import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class MidWidget extends StatelessWidget {
-  const MidWidget({super.key});
+  final bool isDark;
+
+  const MidWidget({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +19,17 @@ class MidWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(AppAssets.ourCategory2),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Image.asset(AppAssets.ourCategory2),
+            ),
             Align(
               alignment: Alignment.center,
-              child: Image.asset(AppAssets.bgImageCategories),
+              child: Image.asset(
+                isDark
+                    ? AppAssets.bgDarkImageCategories
+                    : AppAssets.bgImageCategories,
+              ),
             ),
             SizedBox(
               height: Dimensions.height500,
@@ -32,18 +42,20 @@ class MidWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Furnish Your Dreams, Choose Wisely",
+                          S.of(context).furnishYourDreamsChooseWisely,
                           style: Styles.textStyle36.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: AppColors.darkGray,
+                            color:
+                                isDark ? AppColors.white : AppColors.darkGray,
                           ),
                         ),
                         SizedBox(height: Dimensions.height10 * 0.4),
                         Text(
-                          "Discover quality furniture, curated styles, and exceptional service at Our Store. We make furnishing your home easy and enjoyable.",
+                          S.of(context).discoverQuality,
                           style: Styles.textStyle16.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: AppColors.darkGray,
+                            color:
+                                isDark ? AppColors.white : AppColors.darkGray,
                           ),
                         ),
                         SizedBox(height: Dimensions.height10),

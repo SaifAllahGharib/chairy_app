@@ -2,10 +2,13 @@ import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
+import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class MidCategorySection extends StatelessWidget {
-  const MidCategorySection({super.key});
+  final bool isDark;
+
+  const MidCategorySection({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +30,15 @@ class MidCategorySection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "All Living Room",
-                    style: Styles.textStyle36.copyWith(color: AppColors.black),
+                    S.of(context).allLivingRoom,
+                    style: Styles.textStyle36.copyWith(
+                        color: isDark ? AppColors.white : AppColors.black),
                   ),
                   Text(
-                    " Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.",
+                    S.of(context).sofasArmchairs,
                     style: Styles.textStyle16.copyWith(
                       fontWeight: FontWeight.w400,
-                      color: AppColors.lightBlack,
+                      color: isDark ? AppColors.white : AppColors.lightBlack,
                     ),
                   ),
                 ],

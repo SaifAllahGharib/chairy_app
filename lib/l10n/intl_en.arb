@@ -1,7 +1,8 @@
 {
   "makeModern": "Make your interior more minimalistic & modern",
   "turnYourRoom": "Turn your room with panto into a lot more minimalist and modern with ease and speed",
-  "ourCategories": "Our\\nCategories",
+  "our": "Our",
+  "categories": "Categories",
   "moreInfo": "More Info",
   "livingRoom": "Living Room",
   "chicStore": "Chic Furnishings Online Furniture Store",
@@ -14,8 +15,11 @@
   "theme": "Theme",
   "lightMode": "Light Mode",
   "darkMode": "Dark Mode",
-  "categories": "Categories",
   "addToCart": "Add To Cart",
   "yourCart": "Your Cart",
-  "reviewYourItems": "Review Your Items"
+  "reviewYourItems": "Review Your Items",
+  "furnishYourDreamsChooseWisely": "Furnish Your Dreams, Choose Wisely",
+  "discoverQuality": "Discover quality furniture, curated styles, and exceptional service at Our Store. We make furnishing your home easy and enjoyable.",
+  "allLivingRoom": "All Living Room",
+  "sofasArmchairs": "Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves."
 }

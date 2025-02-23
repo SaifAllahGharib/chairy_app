@@ -23,16 +23,23 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addToCart": MessageLookupByLibrary.simpleMessage("Add To Cart"),
+    "allLivingRoom": MessageLookupByLibrary.simpleMessage("All Living Room"),
     "ar": MessageLookupByLibrary.simpleMessage("Ar"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "chicStore": MessageLookupByLibrary.simpleMessage(
       "Chic Furnishings Online Furniture Store",
     ),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "discoverQuality": MessageLookupByLibrary.simpleMessage(
+      "Discover quality furniture, curated styles, and exceptional service at Our Store. We make furnishing your home easy and enjoyable.",
+    ),
     "discoverRoom": MessageLookupByLibrary.simpleMessage(
       "Discover Elegant Comfort for Every Room",
     ),
     "en": MessageLookupByLibrary.simpleMessage("En"),
+    "furnishYourDreamsChooseWisely": MessageLookupByLibrary.simpleMessage(
+      "Furnish Your Dreams, Choose Wisely",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lightMode": MessageLookupByLibrary.simpleMessage("Light Mode"),
     "livingRoom": MessageLookupByLibrary.simpleMessage("Living Room"),
@@ -41,11 +48,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "moreInfo": MessageLookupByLibrary.simpleMessage("More Info"),
-    "ourCategories": MessageLookupByLibrary.simpleMessage("Our\\nCategories"),
+    "our": MessageLookupByLibrary.simpleMessage("Our"),
     "reviewYourItems": MessageLookupByLibrary.simpleMessage(
       "Review Your Items",
     ),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "sofasArmchairs": MessageLookupByLibrary.simpleMessage(
+      "Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.",
+    ),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "turnYourRoom": MessageLookupByLibrary.simpleMessage(
       "Turn your room with panto into a lot more minimalist and modern with ease and speed",

@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 
 class CategoriesItemListView extends StatelessWidget {
   final Category category;
+  final bool isDark;
 
-  const CategoriesItemListView({super.key, required this.category});
+  const CategoriesItemListView(
+      {super.key, required this.category, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +30,16 @@ class CategoriesItemListView extends StatelessWidget {
               Text(
                 category.title,
                 softWrap: true,
-                style: Styles.textStyle24,
+                style: Styles.textStyle24.copyWith(
+                  color: isDark ? AppColors.white : AppColors.darkGray,
+                ),
               ),
               SizedBox(height: Dimensions.height20),
               Text(
                 category.description,
                 style: Styles.textStyle16.copyWith(
                   fontWeight: FontWeight.w300,
-                  color: AppColors.darkGray,
+                  color: isDark ? AppColors.white : AppColors.darkGray,
                 ),
               ),
               SizedBox(height: Dimensions.height14),

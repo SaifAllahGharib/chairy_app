@@ -5,13 +5,15 @@ import 'package:chairy_app/features/categories/presentation/view/widgets/custom_
 import 'package:flutter/material.dart';
 
 class PageViewSection extends StatelessWidget {
-  const PageViewSection({super.key});
+  final bool isDark;
+
+  const PageViewSection({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        color: AppColors.lightColor,
+        color: isDark ? AppColors.darkColor : AppColors.lightColor,
         padding: EdgeInsets.symmetric(
           vertical: Dimensions.height30,
           horizontal: Dimensions.width34,
@@ -33,7 +35,7 @@ class PageViewSection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Styles.textStyle36.copyWith(
                   fontWeight: FontWeight.w400,
-                  color: AppColors.darkGray,
+                  color: isDark ? AppColors.white : AppColors.darkGray,
                 ),
               ),
             ),

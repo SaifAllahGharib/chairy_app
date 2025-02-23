@@ -5,7 +5,9 @@ import 'package:chairy_app/features/categories/presentation/view/widgets/price_w
 import 'package:flutter/material.dart';
 
 class TitlePriceDescProductWidget extends StatelessWidget {
-  const TitlePriceDescProductWidget({super.key});
+  final bool isDark;
+
+  const TitlePriceDescProductWidget({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,11 @@ class TitlePriceDescProductWidget extends StatelessWidget {
           children: [
             Text(
               "Baltsar Chair",
-              style: Styles.textStyle36.copyWith(color: AppColors.midnightBlue),
+              style: Styles.textStyle36.copyWith(
+                  color: isDark ? AppColors.white : AppColors.midnightBlue),
             ),
             PriceWidget(
+              isDark: isDark,
               fontSizeIcon: Dimensions.fontSize20,
               fontSizePrice: Dimensions.fontSize30,
             ),
@@ -28,7 +32,7 @@ class TitlePriceDescProductWidget extends StatelessWidget {
           "As the name suggests it, this is the ‘jack of all trades’ of chairs; it goes in any room, with any design and serves multiple purposes that go with all upholstery options. L45 x D47 x H90 cm ",
           style: Styles.textStyle16.copyWith(
             fontWeight: FontWeight.w400,
-            color: AppColors.lightBlack,
+            color: isDark ? AppColors.white : AppColors.lightBlack,
           ),
         ),
       ],

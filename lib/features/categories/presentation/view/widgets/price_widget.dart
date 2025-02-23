@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class PriceWidget extends StatelessWidget {
   final double? fontSizePrice;
   final double? fontSizeIcon;
+  final bool isDark;
 
   const PriceWidget({
     super.key,
     this.fontSizePrice,
     this.fontSizeIcon,
+    this.isDark = false,
   });
 
   @override
@@ -20,7 +22,7 @@ class PriceWidget extends StatelessWidget {
         Text(
           "€",
           style: Styles.textStyle10.copyWith(
-            color: AppColors.midnightBlue,
+            color: isDark ? AppColors.white : AppColors.midnightBlue,
             fontWeight: FontWeight.bold,
             fontSize: fontSizeIcon,
           ),
@@ -29,7 +31,7 @@ class PriceWidget extends StatelessWidget {
           "325",
           style: Styles.textStyle14.copyWith(
             fontWeight: FontWeight.w600,
-            color: AppColors.midnightBlue,
+            color: isDark ? AppColors.white : AppColors.midnightBlue,
             fontSize: fontSizePrice,
           ),
         ),

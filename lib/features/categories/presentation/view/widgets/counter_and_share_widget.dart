@@ -6,7 +6,9 @@ import 'package:chairy_app/features/categories/presentation/view/widgets/custom_
 import 'package:flutter/material.dart';
 
 class CounterAndShareWidget extends StatelessWidget {
-  const CounterAndShareWidget({super.key});
+  final bool isDark;
+
+  const CounterAndShareWidget({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +20,22 @@ class CounterAndShareWidget extends StatelessWidget {
             Row(
               children: [
                 CustomCategoryIconButton(
-                  color: AppColors.gray,
+                  isDark: isDark,
+                  color: isDark ? AppColors.white : AppColors.gray,
                   icon: Icons.add,
                   onClick: () {},
                 ),
                 SizedBox(width: Dimensions.width30),
                 Text(
                   "1",
-                  style: Styles.textStyle36
-                      .copyWith(color: AppColors.midnightBlue),
+                  style: Styles.textStyle36.copyWith(
+                    color: isDark ? AppColors.white : AppColors.midnightBlue,
+                  ),
                 ),
                 SizedBox(width: Dimensions.width30),
                 CustomCategoryIconButton(
-                  color: AppColors.gray,
+                  isDark: isDark,
+                  color: isDark ? AppColors.white : AppColors.gray,
                   icon: Icons.remove,
                   onClick: () {},
                 ),

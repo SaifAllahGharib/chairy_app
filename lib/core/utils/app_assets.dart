@@ -20,6 +20,8 @@ abstract class AppAssets {
   static const String vector = "assets/images/vector.png";
   static const String bgImageCategories =
       "assets/images/bg_image_categories.png";
+  static const String bgDarkImageCategories =
+      "assets/images/bg_dark_image_categories.png";
   static const String bgSlider = "assets/images/bg-slider.png";
   static const String close = "assets/images/close.png";
   static const String bgSearchView = "assets/images/bg_search_view.png";

@@ -7,13 +7,22 @@ import 'package:go_router/go_router.dart';
 
 class ProductsGridView extends StatelessWidget {
   final List<Product> products;
+  final bool isDark;
 
-  const ProductsGridView({super.key, required this.products});
+  const ProductsGridView({
+    super.key,
+    required this.products,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: Dimensions.height20),
+      padding: EdgeInsets.only(
+        left: Dimensions.height20,
+        right: Dimensions.height20,
+        bottom: Dimensions.height44,
+      ),
       sliver: SliverGrid.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -28,6 +37,7 @@ class ProductsGridView extends StatelessWidget {
             child: ProductsItemGridView(
               products: products,
               index: index,
+              isDark: isDark,
             ),
           );
         },

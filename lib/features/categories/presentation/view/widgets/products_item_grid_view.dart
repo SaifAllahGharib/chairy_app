@@ -10,9 +10,14 @@ import 'package:flutter/material.dart';
 class ProductsItemGridView extends StatelessWidget {
   final List<Product> products;
   final int index;
+  final bool isDark;
 
-  const ProductsItemGridView(
-      {super.key, required this.products, required this.index});
+  const ProductsItemGridView({
+    super.key,
+    required this.products,
+    required this.index,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +37,17 @@ class ProductsItemGridView extends StatelessWidget {
           products[index].title,
           style: Styles.textStyle14.copyWith(
             fontWeight: FontWeight.w600,
-            color: AppColors.midnightBlue,
+            color: isDark ? AppColors.white : AppColors.midnightBlue,
           ),
         ),
         SizedBox(height: Dimensions.height44),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const PriceWidget(),
+            PriceWidget(isDark: isDark),
             CustomCategoryIconButton(
-              color: AppColors.midnightBlue,
+              isDark: isDark,
+              color: isDark ? AppColors.white : AppColors.midnightBlue,
               icon: Icons.add,
               onClick: () {},
             ),
