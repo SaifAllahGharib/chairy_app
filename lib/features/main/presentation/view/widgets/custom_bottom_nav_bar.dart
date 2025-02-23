@@ -1,6 +1,7 @@
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/features/main/presentation/viewmodel/main/main_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         vertical: Dimensions.height14,
       ),
       decoration: BoxDecoration(
-        color: AppColors.bgNavigationBar,
+        color: context.watch<ThemeCubit>().isDark
+            ? AppColors.bgDarkNavigationBar
+            : AppColors.bgNavigationBar,
         boxShadow: widget.index == 0
             ? [
                 BoxShadow(

@@ -1,7 +1,9 @@
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
+import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChooseWidget extends StatelessWidget {
   final String text;
@@ -38,6 +40,9 @@ class ChooseWidget extends StatelessWidget {
               fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
               fontSize:
                   selected ? Dimensions.fontSize14 : Dimensions.fontSize12,
+              color: context.watch<ThemeCubit>().isDark
+                  ? Colors.white
+                  : Colors.black,
             ),
           )
         ],

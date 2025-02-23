@@ -29,6 +29,7 @@ abstract class Styles {
 
   static final TextStyle textStyle16 = TextStyle(
     fontSize: Dimensions.fontSize16,
+    color: AppColors.white,
     fontWeight: FontWeight.w800,
   );
 
@@ -58,6 +59,7 @@ abstract class Styles {
 
   static final TextStyle textStyle36 = TextStyle(
     fontSize: Dimensions.fontSize36,
+    color: AppColors.white,
     fontWeight: FontWeight.w800,
   );
 

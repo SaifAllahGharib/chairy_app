@@ -1,6 +1,7 @@
 abstract class AppAssets {
   static const String test = "assets/images/test.png";
   static const String splash = "assets/images/splash.png";
+  static const String darkSplash = "assets/images/dark_splash.png";
   static const String bgHome = "assets/images/bg_home.png";
   static const String logo = "assets/images/logo.png";
   static const String darkLogo = "assets/images/dark_logo.png";
