@@ -7,18 +7,20 @@ class ChooseWidget extends StatelessWidget {
   final String text;
   final String icon;
   final bool selected;
+  final void Function() onClick;
 
   const ChooseWidget({
     super.key,
     required this.text,
     required this.icon,
     required this.selected,
+    required this.onClick,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onClick,
       child: Row(
         children: [
           SizedBox(

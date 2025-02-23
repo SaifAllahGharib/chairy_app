@@ -1,13 +1,26 @@
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
+import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/features/menu/presentation/view/widgets/choose_widget.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LangSection extends StatelessWidget {
+class LangSection extends StatefulWidget {
   const LangSection({super.key});
+
+  @override
+  State<LangSection> createState() => _LangSectionState();
+}
+
+class _LangSectionState extends State<LangSection> {
+  bool get _isArabic => context.watch<LocalCubit>().isArabic;
+
+  void _changeLang(String lang) {
+    context.read<LocalCubit>().changeLanguage(lang);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +52,19 @@ class LangSection extends StatelessWidget {
           Column(
             children: [
               ChooseWidget(
-                selected: false,
+                selected: _isArabic,
                 text: S.of(context).ar,
                 icon: AppAssets.eg,
+                onClick: () => _changeLang("ar"),
               ),
               SizedBox(height: Dimensions.height10 * 0.8),
               const Divider(),
               SizedBox(height: Dimensions.height10 * 0.7),
               ChooseWidget(
-                selected: true,
+                selected: !_isArabic,
                 text: S.of(context).en,
                 icon: AppAssets.us,
+                onClick: () => _changeLang("en"),
               ),
             ],
           ),

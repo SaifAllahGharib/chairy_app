@@ -19,4 +19,6 @@ class ThemeCubit extends Cubit<ThemeMode> {
     await _sharedPreferences.storeString("theme", themeString);
     emit(mode);
   }
+
+  bool get isDark => state == ThemeMode.dark;
 }
