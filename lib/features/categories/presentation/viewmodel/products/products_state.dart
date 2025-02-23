@@ -1,5 +1,5 @@
 import 'package:chairy_app/core/errors/failure.dart';
-import 'package:chairy_app/features/categories/domain/entities/product.dart';
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 
 abstract class ProductsCategoryState {}
 
@@ -8,7 +8,7 @@ class ProductsCategoryInitState extends ProductsCategoryState {}
 class ProductsCategoryLoadingState extends ProductsCategoryState {}
 
 class ProductsCategorySuccessState extends ProductsCategoryState {
-  final List<Product> products;
+  final List<ProductEntity> products;
 
   ProductsCategorySuccessState(this.products);
 }

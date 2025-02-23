@@ -1,6 +1,6 @@
-import 'package:chairy_app/features/categories/domain/entities/category.dart';
+import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 
-class CategoryModel extends Category {
+class CategoryModel extends CategoryEntity {
   const CategoryModel({
     required super.id,
     required super.title,

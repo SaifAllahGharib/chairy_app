@@ -3,12 +3,12 @@ import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/core/widgets/custom_cached_network_image.dart';
 import 'package:chairy_app/core/widgets/custom_category_icon_button.dart';
-import 'package:chairy_app/features/categories/domain/entities/product.dart';
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/price_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductsItemGridView extends StatelessWidget {
-  final List<Product> products;
+  final List<ProductEntity> products;
   final int index;
   final bool isDark;
 

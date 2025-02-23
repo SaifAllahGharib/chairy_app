@@ -1,12 +1,12 @@
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/features/categories/domain/entities/product.dart';
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/product_details_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/products_item_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductsGridView extends StatelessWidget {
-  final List<Product> products;
+  final List<ProductEntity> products;
   final bool isDark;
 
   const ProductsGridView({

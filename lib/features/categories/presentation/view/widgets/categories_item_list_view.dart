@@ -2,12 +2,12 @@ import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/core/widgets/custom_cached_network_image.dart';
-import 'package:chairy_app/features/categories/domain/entities/category.dart';
+import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/more_info_widget.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesItemListView extends StatelessWidget {
-  final Category category;
+  final CategoryEntity category;
   final bool isDark;
 
   const CategoriesItemListView(

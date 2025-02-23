@@ -77,6 +77,6 @@ abstract class Styles {
   static final TextStyle errorStyle = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: Dimensions.fontSize30,
-    color: Colors.red,
+    color: AppColors.primaryColor,
   );
 }
