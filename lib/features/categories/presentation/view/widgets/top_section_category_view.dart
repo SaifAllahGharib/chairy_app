@@ -4,8 +4,8 @@ import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
-class TopSectionCategoryView extends StatelessWidget {
-  const TopSectionCategoryView({super.key});
+class TopSectionProductsCategoryView extends StatelessWidget {
+  const TopSectionProductsCategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {

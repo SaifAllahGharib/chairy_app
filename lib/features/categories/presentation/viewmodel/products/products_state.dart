@@ -1,19 +1,20 @@
+import 'package:chairy_app/core/errors/failure.dart';
 import 'package:chairy_app/features/categories/domain/entities/product.dart';
 
-abstract class ProductsState {}
+abstract class ProductsCategoryState {}
 
-class ProductsInitState extends ProductsState {}
+class ProductsCategoryInitState extends ProductsCategoryState {}
 
-class ProductsLoadingState extends ProductsState {}
+class ProductsCategoryLoadingState extends ProductsCategoryState {}
 
-class ProductsSuccessState extends ProductsState {
+class ProductsCategorySuccessState extends ProductsCategoryState {
   final List<Product> products;
 
-  ProductsSuccessState(this.products);
+  ProductsCategorySuccessState(this.products);
 }
 
-class ProductsFailureState extends ProductsState {
-  final String errorMessage;
+class ProductsCategoryFailureState extends ProductsCategoryState {
+  final Failure failure;
 
-  ProductsFailureState(this.errorMessage);
+  ProductsCategoryFailureState(this.failure);
 }

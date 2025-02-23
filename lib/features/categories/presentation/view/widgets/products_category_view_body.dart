@@ -1,4 +1,6 @@
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/widgets/custom_error_widget.dart';
+import 'package:chairy_app/core/widgets/loading.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/dir_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/mid_category_section.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/products_grid_view.dart';
@@ -9,30 +11,36 @@ import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CategoryViewBody extends StatefulWidget {
+class ProductsProductsCategoryViewBody extends StatefulWidget {
   final int categoryId;
 
-  const CategoryViewBody({super.key, required this.categoryId});
+  const ProductsProductsCategoryViewBody({super.key, required this.categoryId});
 
   @override
-  State<CategoryViewBody> createState() => _CategoryViewBodyState();
+  State<ProductsProductsCategoryViewBody> createState() =>
+      _ProductsProductsCategoryViewBodyState();
 }
 
-class _CategoryViewBodyState extends State<CategoryViewBody> {
+class _ProductsProductsCategoryViewBodyState
+    extends State<ProductsProductsCategoryViewBody> {
   @override
   void initState() {
-    context.read<ProductsCubit>().fetchProducts(widget.categoryId);
+    _fetchProductsCategory();
     super.initState();
+  }
+
+  void _fetchProductsCategory() {
+    context.read<ProductsCategoryCubit>().fetchProducts(widget.categoryId);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsCubit, ProductsState>(
+    return BlocBuilder<ProductsCategoryCubit, ProductsCategoryState>(
       builder: (context, state) {
-        if (state is ProductsSuccessState) {
+        if (state is ProductsCategorySuccessState) {
           return CustomScrollView(
             slivers: [
-              const TopSectionCategoryView(),
+              const TopSectionProductsCategoryView(),
               SliverToBoxAdapter(
                 child: DirWidget(firstText: S.of(context).livingRoom),
               ),
@@ -42,15 +50,11 @@ class _CategoryViewBodyState extends State<CategoryViewBody> {
               ProductsGridView(products: state.products),
             ],
           );
+        } else if (state is ProductsCategoryFailureState) {
+          return CustomErrorWidget(error: state.failure.message);
+        } else {
+          return const Loading();
         }
-
-        if (state is ProductsFailureState) {
-          return Center(
-            child: Text(state.errorMessage),
-          );
-        }
-
-        return const Center(child: CircularProgressIndicator());
       },
     );
   }

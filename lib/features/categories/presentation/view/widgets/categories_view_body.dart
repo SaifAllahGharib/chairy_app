@@ -1,5 +1,6 @@
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/core/utils/styles.dart';
+import 'package:chairy_app/core/widgets/custom_error_widget.dart';
+import 'package:chairy_app/core/widgets/loading.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/categories_list_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/mid_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/our_category_widget.dart';
@@ -17,22 +18,20 @@ class CategoriesViewBody extends StatefulWidget {
 }
 
 class _CategoriesViewBodyState extends State<CategoriesViewBody> {
-  final PageController pageController = PageController();
-
   @override
   void initState() {
-    context.read<CategoriesCubit>().fetchCategories();
+    _fetchCategories();
     super.initState();
+  }
+
+  void _fetchCategories() {
+    context.read<CategoriesCubit>().fetchCategories();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
-        if (state is CategoriesLoadingState) {
-          return const CircularProgressIndicator();
-        }
-
         if (state is CategoriesSuccessState) {
           return CustomScrollView(
             slivers: [
@@ -43,27 +42,11 @@ class _CategoriesViewBodyState extends State<CategoriesViewBody> {
               const PageViewSection(),
             ],
           );
-
-          return Center(
-            child: Image.network(
-                "http://test-ecomerce.xn--hrt-w-ova.de/${state.categories[0].image}"),
-          );
-          return Center(
-            child: Text(
-              'RESPONSE: ${state.categories[0].image}',
-              style: Styles.textStyle20.copyWith(color: Colors.black),
-            ),
-          );
+        } else if (state is CategoriesFailureState) {
+          return CustomErrorWidget(error: state.failure.message);
+        } else {
+          return const Loading();
         }
-
-        // print(state.errorMessage);
-        return Center(
-            child: Text(
-          'ERROR: ',
-          style: Styles.textStyle20.copyWith(color: Colors.black),
-        ));
-        // if (state is CategoriesFailureState) {
-        // }
       },
     );
   }

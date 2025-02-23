@@ -21,9 +21,12 @@ class ApiService {
       return await _dio.get(
         endpoint,
         queryParameters: queryParameters,
-        options: Options(headers: {
-          'Accept-Language': getIt.get<MySharedPreferences>().getString("lang")
-        }),
+        options: Options(
+          headers: {
+            'Accept-Language':
+                getIt.get<MySharedPreferences>().getString("lang") ?? "en"
+          },
+        ),
       );
     } catch (e) {
       throw Exception('Error in GET: $e');

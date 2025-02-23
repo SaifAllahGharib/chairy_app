@@ -2,18 +2,19 @@ import 'package:chairy_app/features/categories/domain/usecases/get_products_by_c
 import 'package:chairy_app/features/categories/presentation/viewmodel/products/products_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductsCubit extends Cubit<ProductsState> {
+class ProductsCategoryCubit extends Cubit<ProductsCategoryState> {
   final GetProductsByCategoryId _getProductsByCategoryId;
 
-  ProductsCubit(this._getProductsByCategoryId) : super(ProductsInitState());
+  ProductsCategoryCubit(this._getProductsByCategoryId)
+      : super(ProductsCategoryInitState());
 
   void fetchProducts(int categoryId) async {
-    emit(ProductsLoadingState());
+    emit(ProductsCategoryLoadingState());
     final result = await _getProductsByCategoryId.call(categoryId);
 
     result.fold(
-      (error) => emit(ProductsFailureState(error)),
-      (categories) => emit(ProductsSuccessState(categories)),
+      (error) => emit(ProductsCategoryFailureState(error)),
+      (categories) => emit(ProductsCategorySuccessState(categories)),
     );
   }
 }

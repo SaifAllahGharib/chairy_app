@@ -1,3 +1,5 @@
+import 'package:chairy_app/core/errors/errore_handler.dart';
+import 'package:chairy_app/core/errors/failure.dart';
 import 'package:chairy_app/features/categories/data/data_sources/product_remote_data_source.dart';
 import 'package:chairy_app/features/categories/domain/entities/product.dart';
 import 'package:chairy_app/features/categories/domain/repositories/product_repository.dart';
@@ -9,19 +11,18 @@ class ProductRepositoryImpl implements ProductRepository {
   ProductRepositoryImpl(this._productRemoteDataSource);
 
   @override
-  Future<Either<String, List<Product>>> getProductsByCategoryId(
+  Future<Either<Failure, List<Product>>> getProductsByCategoryId(
       int categoryId) async {
     try {
       return right(
           await _productRemoteDataSource.getProductsByCategory(categoryId));
     } catch (e) {
-      return left(e.toString());
+      return left(ErrorHandler.handleError(e));
     }
   }
 
   @override
-  Future<Either<String, Product>> getProductDetail(int productId) {
-    // TODO: implement getProductDetail
+  Future<Either<Failure, Product>> getProductDetail(int productId) {
     throw UnimplementedError();
   }
 }

@@ -1,5 +1,5 @@
-import 'package:chairy_app/features/categories/presentation/view/category_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/product_details_view.dart';
+import 'package:chairy_app/features/categories/presentation/view/products_category_view.dart';
 import 'package:chairy_app/features/main/presentation/view/main_view.dart';
 import 'package:chairy_app/features/menu/presentation/view/menu_view.dart';
 import 'package:chairy_app/features/search/presentation/view/search_view.dart';
@@ -26,9 +26,9 @@ abstract class AppRouter {
         builder: (context, state) => const MenuView(),
       ),
       GoRoute(
-        path: CategoryView.id,
+        path: ProductsCategoryView.id,
         builder: (context, state) =>
-            CategoryView(categoryId: state.extra as int),
+            ProductsCategoryView(categoryId: state.extra as int),
       ),
       GoRoute(
         path: ProductDetailsView.id,

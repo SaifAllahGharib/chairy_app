@@ -1,3 +1,4 @@
+import 'package:chairy_app/core/errors/failure.dart';
 import 'package:chairy_app/features/categories/domain/entities/category.dart';
 
 abstract class CategoriesState {}
@@ -13,7 +14,7 @@ class CategoriesSuccessState extends CategoriesState {
 }
 
 class CategoriesFailureState extends CategoriesState {
-  final String errorMessage;
+  final Failure failure;
 
-  CategoriesFailureState(this.errorMessage);
+  CategoriesFailureState(this.failure);
 }
