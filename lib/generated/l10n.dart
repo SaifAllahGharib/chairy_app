@@ -195,14 +195,9 @@ class S {
     );
   }
 
-  /// `All Living Room`
-  String get allLivingRoom {
-    return Intl.message(
-      'All Living Room',
-      name: 'allLivingRoom',
-      desc: '',
-      args: [],
-    );
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
   }
 
   /// `Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.`
@@ -213,6 +208,51 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `SOME OF OUR`
+  String get someOfOUR {
+    return Intl.message('SOME OF OUR', name: 'someOfOUR', desc: '', args: []);
+  }
+
+  /// `Featuers We Offer To You`
+  String get featuersWeOfferToYou {
+    return Intl.message(
+      'Featuers We Offer To You',
+      name: 'featuersWeOfferToYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extensive Catalog`
+  String get extensiveCatalog {
+    return Intl.message(
+      'Extensive Catalog',
+      name: 'extensiveCatalog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A wide selection of furniture styles, categories, and price points.`
+  String get wideSelection {
+    return Intl.message(
+      'A wide selection of furniture styles, categories, and price points.',
+      name: 'wideSelection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message('Total', name: 'total', desc: '', args: []);
+  }
+
+  /// `Place order`
+  String get placeOrder {
+    return Intl.message('Place order', name: 'placeOrder', desc: '', args: []);
   }
 }
 

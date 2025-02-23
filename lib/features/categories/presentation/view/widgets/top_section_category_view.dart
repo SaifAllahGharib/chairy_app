@@ -1,13 +1,15 @@
-import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
+import 'package:chairy_app/core/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class TopSectionProductsCategoryView extends StatelessWidget {
   final bool isDark;
+  final String image;
 
-  const TopSectionProductsCategoryView({super.key, required this.isDark});
+  const TopSectionProductsCategoryView(
+      {super.key, required this.isDark, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +60,7 @@ class TopSectionProductsCategoryView extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(Dimensions.radius23),
-                      child: Image.asset(
-                        AppAssets.test,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
+                      child: CustomCachedNetworkImage(image: image),
                     ),
                   ),
                 ),

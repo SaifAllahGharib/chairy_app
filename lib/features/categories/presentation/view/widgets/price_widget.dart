@@ -6,12 +6,14 @@ class PriceWidget extends StatelessWidget {
   final double? fontSizePrice;
   final double? fontSizeIcon;
   final bool isDark;
+  final num price;
 
   const PriceWidget({
     super.key,
     this.fontSizePrice,
     this.fontSizeIcon,
     this.isDark = false,
+    required this.price,
   });
 
   @override
@@ -28,7 +30,7 @@ class PriceWidget extends StatelessWidget {
           ),
         ),
         Text(
-          "325",
+          "$price",
           style: Styles.textStyle14.copyWith(
             fontWeight: FontWeight.w600,
             color: isDark ? AppColors.white : AppColors.midnightBlue,

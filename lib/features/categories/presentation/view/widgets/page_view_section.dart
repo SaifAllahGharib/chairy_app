@@ -2,6 +2,7 @@ import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/custom_page_view.dart';
+import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class PageViewSection extends StatelessWidget {
@@ -21,7 +22,7 @@ class PageViewSection extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "SOME OF OUR",
+              S.of(context).someOfOUR,
               style: Styles.textStyle16.copyWith(
                 fontWeight: FontWeight.w400,
                 color: AppColors.primaryColor,
@@ -31,7 +32,7 @@ class PageViewSection extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Dimensions.width63),
               child: Text(
-                "Featuers We Offer To You",
+                S.of(context).featuersWeOfferToYou,
                 textAlign: TextAlign.center,
                 style: Styles.textStyle36.copyWith(
                   fontWeight: FontWeight.w400,

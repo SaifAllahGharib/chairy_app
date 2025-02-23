@@ -89,6 +89,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                             ),
                             PriceWidget(
                               isDark: _isDark,
+                              price: 50,
                               fontSizeIcon: Dimensions.fontSize14,
                               fontSizePrice: Dimensions.fontSize20,
                             ),
@@ -149,7 +150,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Total",
+                      S.of(context).total,
                       style: Styles.textStyle16.copyWith(
                         fontWeight: FontWeight.w400,
                         color:
@@ -167,7 +168,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                 ),
                 SizedBox(height: Dimensions.height15),
                 CustomButton(
-                  text: "Place order",
+                  text: S.of(context).placeOrder,
                   onclick: () {},
                 ),
                 SizedBox(height: Dimensions.height15),

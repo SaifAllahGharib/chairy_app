@@ -21,7 +21,7 @@ class CategoriesListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () => GoRouter.of(context)
-              .push(ProductsCategoryView.id, extra: categories[index].id),
+              .push(ProductsCategoryView.id, extra: categories[index]),
           child: CategoriesItemListView(
             category: categories[index],
             isDark: isDark,

@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addToCart": MessageLookupByLibrary.simpleMessage("Add To Cart"),
-    "allLivingRoom": MessageLookupByLibrary.simpleMessage("All Living Room"),
+    "all": MessageLookupByLibrary.simpleMessage("All"),
     "ar": MessageLookupByLibrary.simpleMessage("Ar"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "chicStore": MessageLookupByLibrary.simpleMessage(
@@ -37,6 +37,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Discover Elegant Comfort for Every Room",
     ),
     "en": MessageLookupByLibrary.simpleMessage("En"),
+    "extensiveCatalog": MessageLookupByLibrary.simpleMessage(
+      "Extensive Catalog",
+    ),
+    "featuersWeOfferToYou": MessageLookupByLibrary.simpleMessage(
+      "Featuers We Offer To You",
+    ),
     "furnishYourDreamsChooseWisely": MessageLookupByLibrary.simpleMessage(
       "Furnish Your Dreams, Choose Wisely",
     ),
@@ -49,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "moreInfo": MessageLookupByLibrary.simpleMessage("More Info"),
     "our": MessageLookupByLibrary.simpleMessage("Our"),
+    "placeOrder": MessageLookupByLibrary.simpleMessage("Place order"),
     "reviewYourItems": MessageLookupByLibrary.simpleMessage(
       "Review Your Items",
     ),
@@ -56,9 +63,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "sofasArmchairs": MessageLookupByLibrary.simpleMessage(
       "Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.",
     ),
+    "someOfOUR": MessageLookupByLibrary.simpleMessage("SOME OF OUR"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+    "total": MessageLookupByLibrary.simpleMessage("Total"),
     "turnYourRoom": MessageLookupByLibrary.simpleMessage(
       "Turn your room with panto into a lot more minimalist and modern with ease and speed",
+    ),
+    "wideSelection": MessageLookupByLibrary.simpleMessage(
+      "A wide selection of furniture styles, categories, and price points.",
     ),
     "yourCart": MessageLookupByLibrary.simpleMessage("Your Cart"),
   };

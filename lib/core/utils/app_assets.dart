@@ -8,6 +8,7 @@ abstract class AppAssets {
   static const String menu = "assets/images/menu.png";
   static const String search = "assets/images/search.png";
   static const String darkSearch = "assets/images/dark_search.png";
+  static const String lightSearch = "assets/images/light_search.png";
   static const String home = "assets/images/home.png";
   static const String activeHome = "assets/images/active_home.png";
   static const String category = "assets/images/category.png";
@@ -24,7 +25,9 @@ abstract class AppAssets {
       "assets/images/bg_dark_image_categories.png";
   static const String bgSlider = "assets/images/bg-slider.png";
   static const String close = "assets/images/close.png";
-  static const String bgSearchView = "assets/images/bg_search_view.png";
+  static const String bgDarkSearchView = "assets/images/bg_search_view.png";
+  static const String bgLightSearchView =
+      "assets/images/bg_light_search_view.png";
   static const String check = "assets/images/check.png";
   static const String eg = "assets/images/eg.png";
   static const String us = "assets/images/us.png";
@@ -35,4 +38,5 @@ abstract class AppAssets {
   static const String bgCart = "assets/images/bg_cart.png";
   static const String delete = "assets/images/delete.png";
   static const String connection = "assets/images/connection.png";
+  static const String arrowBack = "assets/images/arrow_back.png";
 }

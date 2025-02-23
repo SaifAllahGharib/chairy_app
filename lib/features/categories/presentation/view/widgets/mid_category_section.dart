@@ -7,8 +7,13 @@ import 'package:flutter/material.dart';
 
 class MidCategorySection extends StatelessWidget {
   final bool isDark;
+  final String title;
 
-  const MidCategorySection({super.key, required this.isDark});
+  const MidCategorySection({
+    super.key,
+    required this.isDark,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class MidCategorySection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    S.of(context).allLivingRoom,
+                    "${S.of(context).all} $title",
                     style: Styles.textStyle36.copyWith(
                         color: isDark ? AppColors.white : AppColors.black),
                   ),

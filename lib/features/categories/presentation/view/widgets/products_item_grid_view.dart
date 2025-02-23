@@ -44,7 +44,10 @@ class ProductsItemGridView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PriceWidget(isDark: isDark),
+            PriceWidget(
+              isDark: isDark,
+              price: products[index].price,
+            ),
             CustomCategoryIconButton(
               isDark: isDark,
               color: isDark ? AppColors.white : AppColors.midnightBlue,

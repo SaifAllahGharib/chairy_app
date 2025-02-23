@@ -33,7 +33,10 @@ class ProductsGridView extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () => GoRouter.of(context).push(ProductDetailsView.id),
+            onTap: () => GoRouter.of(context).push(
+              ProductDetailsView.id,
+              extra: products[index],
+            ),
             child: ProductsItemGridView(
               products: products,
               index: index,

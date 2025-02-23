@@ -2,20 +2,20 @@ import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_error_widget.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
+import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/dir_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/mid_category_section.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/products_grid_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/top_section_category_view.dart';
 import 'package:chairy_app/features/categories/presentation/viewmodel/products/products_cubit.dart';
 import 'package:chairy_app/features/categories/presentation/viewmodel/products/products_state.dart';
-import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsProductsCategoryViewBody extends StatefulWidget {
-  final int categoryId;
+  final CategoryEntity category;
 
-  const ProductsProductsCategoryViewBody({super.key, required this.categoryId});
+  const ProductsProductsCategoryViewBody({super.key, required this.category});
 
   @override
   State<ProductsProductsCategoryViewBody> createState() =>
@@ -33,7 +33,7 @@ class _ProductsProductsCategoryViewBodyState
   }
 
   void _fetchProductsCategory() {
-    context.read<ProductsCategoryCubit>().fetchProducts(widget.categoryId);
+    context.read<ProductsCategoryCubit>().fetchProducts(widget.category.id);
   }
 
   @override
@@ -43,12 +43,18 @@ class _ProductsProductsCategoryViewBodyState
         if (state is ProductsCategorySuccessState) {
           return CustomScrollView(
             slivers: [
-              TopSectionProductsCategoryView(isDark: _isDark),
+              TopSectionProductsCategoryView(
+                isDark: _isDark,
+                image: widget.category.image,
+              ),
               SliverToBoxAdapter(
-                child: DirWidget(firstText: S.of(context).livingRoom),
+                child: DirWidget(firstText: widget.category.title),
               ),
               SliverToBoxAdapter(child: SizedBox(height: Dimensions.height12)),
-              MidCategorySection(isDark: _isDark),
+              MidCategorySection(
+                isDark: _isDark,
+                title: widget.category.title,
+              ),
               SliverToBoxAdapter(child: SizedBox(height: Dimensions.height36)),
               ProductsGridView(
                 products: state.products,

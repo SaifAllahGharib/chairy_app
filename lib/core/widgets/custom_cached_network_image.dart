@@ -18,7 +18,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
       width: double.infinity,
       fit: BoxFit.cover,
       placeholder: (context, url) {
-        return Loading();
+        return const Loading();
       },
     );
   }

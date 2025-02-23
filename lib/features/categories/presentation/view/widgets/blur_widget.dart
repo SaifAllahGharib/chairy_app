@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
+import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class BlurWidget extends StatelessWidget {
@@ -57,13 +58,13 @@ class BlurWidget extends StatelessWidget {
                           children: [
                             SizedBox(height: Dimensions.height44),
                             Text(
-                              "Extensive Catalog",
+                              S.of(context).extensiveCatalog,
                               textAlign: TextAlign.center,
                               style: Styles.textStyle18,
                             ),
                             SizedBox(height: Dimensions.height30),
                             Text(
-                              "A wide selection of furniture styles, categories, and price points.",
+                              S.of(context).wideSelection,
                               textAlign: TextAlign.center,
                               style: Styles.textStyle14.copyWith(
                                 fontWeight: FontWeight.w400,
