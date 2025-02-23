@@ -5,7 +5,6 @@ import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
 import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_state.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -32,21 +31,21 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ThemeCubit(),
+          create: (context) => ThemeCubit(getIt.get<MySharedPreferences>()),
         ),
         BlocProvider(
           create: (context) => LocalCubit(getIt.get<MySharedPreferences>()),
         ),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, themeMode) {
           return BlocBuilder<LocalCubit, Locale>(
             builder: (context, local) {
               return MaterialApp.router(
                 debugShowCheckedModeBanner: false,
                 theme: AppThemes.lightTheme,
                 darkTheme: AppThemes.darkTheme,
-                themeMode: state.themeMode,
+                themeMode: themeMode,
                 locale: local,
                 localizationsDelegates: const [
                   S.delegate,
