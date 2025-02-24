@@ -39,4 +39,10 @@ abstract class AppAssets {
   static const String delete = "assets/images/delete.png";
   static const String connection = "assets/images/connection.png";
   static const String arrowBack = "assets/images/arrow_back.png";
+  static const String email = "assets/images/email.png";
+  static const String eye = "assets/images/eye.png";
+  static const String lock = "assets/images/lock.png";
+  static const String name = "assets/images/name.png";
+  static const String wrong = "assets/images/wrong.png";
+  static const String google = "assets/images/google.png";
 }

@@ -20,7 +20,7 @@ class ErrorHandler {
         return const NetworkFailure();
 
       case DioExceptionType.badResponse:
-        return ServerFailure(_extractErrorMessage(error));
+        return _handleBadResponse(error);
 
       case DioExceptionType.cancel:
         return const ServerFailure("Request was cancelled");
@@ -28,6 +28,14 @@ class ErrorHandler {
       default:
         return const UnknownFailure();
     }
+  }
+
+  static Failure _handleBadResponse(DioException error) {
+    final statusCode = error.response?.statusCode ?? 500;
+    if (statusCode == 401 || statusCode == 403) {
+      return const AuthFailure();
+    }
+    return ServerFailure(_extractErrorMessage(error));
   }
 
   static String _extractErrorMessage(DioException error) {

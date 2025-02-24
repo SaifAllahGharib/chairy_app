@@ -6,12 +6,14 @@ import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
 import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/core/widgets/custom_button.dart';
+import 'package:chairy_app/features/auth/presentaion/view/auth_view.dart';
 import 'package:chairy_app/features/cart/presentation/view/widgets/custom_cart_icon_button.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/price_widget.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/custom_icon_button.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key});
@@ -169,7 +171,9 @@ class _CartViewBodyState extends State<CartViewBody> {
                 SizedBox(height: Dimensions.height15),
                 CustomButton(
                   text: S.of(context).placeOrder,
-                  onclick: () {},
+                  onclick: () {
+                    GoRouter.of(context).push(AuthView.id);
+                  },
                 ),
                 SizedBox(height: Dimensions.height15),
               ],

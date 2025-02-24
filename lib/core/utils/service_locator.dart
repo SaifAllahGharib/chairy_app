@@ -1,6 +1,11 @@
+import 'package:chairy_app/core/services/api_auth_services.dart';
 import 'package:chairy_app/core/services/api_db-services.dart';
 import 'package:chairy_app/core/services/api_services.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
+import 'package:chairy_app/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:chairy_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:chairy_app/features/auth/domain/usecases/login.dart';
+import 'package:chairy_app/features/auth/domain/usecases/register.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_local_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_remote_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/product_local_data_source.dart';
@@ -56,4 +61,17 @@ void setupServiceLocator() {
   getIt.registerSingleton<GetProductsByCategoryId>(
     GetProductsByCategoryId(getIt.get<ProductRepositoryImpl>()),
   );
+
+  getIt.registerSingleton<ApiAuthServices>(
+      ApiAuthServices(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<AuthRemoteDataSourceImpl>(
+      AuthRemoteDataSourceImpl(getIt.get<ApiAuthServices>()));
+
+  getIt.registerSingleton<AuthRepositoryImpl>(
+      AuthRepositoryImpl(getIt.get<AuthRemoteDataSourceImpl>()));
+
+  getIt.registerSingleton<Register>(Register(getIt.get<AuthRepositoryImpl>()));
+  
+  getIt.registerSingleton<Login>(Login(getIt.get<AuthRepositoryImpl>()));
 }

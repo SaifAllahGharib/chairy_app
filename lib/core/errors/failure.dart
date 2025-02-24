@@ -15,3 +15,7 @@ class NetworkFailure extends Failure {
 class UnknownFailure extends Failure {
   const UnknownFailure() : super("An unexpected error occurred");
 }
+
+class AuthFailure extends Failure {
+  const AuthFailure() : super("Authentication failed. Please log in again.");
+}

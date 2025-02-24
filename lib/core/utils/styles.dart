@@ -79,4 +79,10 @@ abstract class Styles {
     fontSize: Dimensions.fontSize30,
     color: AppColors.primaryColor,
   );
+
+  static final TextStyle errorTextFormStyle = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: Dimensions.fontSize10,
+    color: AppColors.red,
+  );
 }

@@ -254,6 +254,153 @@ class S {
   String get placeOrder {
     return Intl.message('Place order', name: 'placeOrder', desc: '', args: []);
   }
+
+  /// `Welcome to Our store`
+  String get welcomeToOurStore {
+    return Intl.message(
+      'Welcome to Our store',
+      name: 'welcomeToOurStore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bringing Your Style Home`
+  String get bringingYourStyleHome {
+    return Intl.message(
+      'Bringing Your Style Home',
+      name: 'bringingYourStyleHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I AM ALREADY A CUSTOMER`
+  String get iAmAlreadyACustomer {
+    return Intl.message(
+      'I AM ALREADY A CUSTOMER',
+      name: 'iAmAlreadyACustomer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First name`
+  String get firstName {
+    return Intl.message('First name', name: 'firstName', desc: '', args: []);
+  }
+
+  /// `Last name`
+  String get lastName {
+    return Intl.message('Last name', name: 'lastName', desc: '', args: []);
+  }
+
+  /// `E-mail Address`
+  String get emailAddress {
+    return Intl.message(
+      'E-mail Address',
+      name: 'emailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message('Password', name: 'password', desc: '', args: []);
+  }
+
+  // skipped getter for the '*' key
+
+  /// `I AM NEW TO THIS STORE`
+  String get iAmNewToThisStore {
+    return Intl.message(
+      'I AM NEW TO THIS STORE',
+      name: 'iAmNewToThisStore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy exclusive discounts & offers`
+  String get enjoyEexclusive {
+    return Intl.message(
+      'Enjoy exclusive discounts & offers',
+      name: 'enjoyEexclusive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or`
+  String get or {
+    return Intl.message('Or', name: 'or', desc: '', args: []);
+  }
+
+  /// `Sign in`
+  String get signIn {
+    return Intl.message('Sign in', name: 'signIn', desc: '', args: []);
+  }
+
+  /// `Sign up`
+  String get signUp {
+    return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
+  }
+
+  /// `Sign Up With Google`
+  String get signUpWithGoogle {
+    return Intl.message(
+      'Sign Up With Google',
+      name: 'signUpWithGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REGISTER`
+  String get register {
+    return Intl.message('REGISTER', name: 'register', desc: '', args: []);
+  }
+
+  /// `DATA`
+  String get data {
+    return Intl.message('DATA', name: 'data', desc: '', args: []);
+  }
+
+  /// `PAYMENT`
+  String get payment {
+    return Intl.message('PAYMENT', name: 'payment', desc: '', args: []);
+  }
+
+  /// `REVIEW`
+  String get review {
+    return Intl.message('REVIEW', name: 'review', desc: '', args: []);
+  }
+
+  /// `*  Required`
+  String get required {
+    return Intl.message('*  Required', name: 'required', desc: '', args: []);
+  }
+
+  /// `Invalid Email`
+  String get invalidEmail {
+    return Intl.message(
+      'Invalid Email',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register success`
+  String get registerSuccess {
+    return Intl.message(
+      'Register success',
+      name: 'registerSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

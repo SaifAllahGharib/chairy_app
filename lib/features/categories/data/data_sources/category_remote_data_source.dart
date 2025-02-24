@@ -1,4 +1,4 @@
-import 'package:chairy_app/core/services/api_db-services.dart';
+import 'package:chairy_app/core/services/db_services.dart';
 import 'package:chairy_app/features/categories/data/models/category_model.dart';
 
 sealed class CategoryRemoteDataSource {
@@ -6,7 +6,7 @@ sealed class CategoryRemoteDataSource {
 }
 
 class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
-  final ApiDBServices _dbServices;
+  final DBServices _dbServices;
 
   CategoryRemoteDataSourceImpl(this._dbServices);
 

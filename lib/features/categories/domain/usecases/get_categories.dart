@@ -4,11 +4,11 @@ import 'package:chairy_app/features/categories/domain/repositories/category_repo
 import 'package:dartz/dartz.dart';
 
 class GetCategories {
-  final CategoryRepository repository;
+  final CategoryRepository _repository;
 
-  GetCategories(this.repository);
+  GetCategories(this._repository);
 
   Future<Either<Failure, List<CategoryEntity>>> call() async {
-    return await repository.getCategories();
+    return await _repository.getCategories();
   }
 }
