@@ -1,7 +1,7 @@
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
-import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/price_widget.dart';
 import 'package:flutter/material.dart';
 

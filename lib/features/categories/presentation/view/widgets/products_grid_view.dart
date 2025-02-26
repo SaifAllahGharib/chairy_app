@@ -1,5 +1,5 @@
-import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
+import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/features/categories/presentation/view/product_details_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/products_item_grid_view.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +38,7 @@ class ProductsGridView extends StatelessWidget {
               extra: products[index],
             ),
             child: ProductsItemGridView(
-              products: products,
-              index: index,
+              product: products[index],
               isDark: isDark,
             ),
           );

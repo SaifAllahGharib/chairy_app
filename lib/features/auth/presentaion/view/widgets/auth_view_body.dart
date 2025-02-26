@@ -1,5 +1,5 @@
+import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/data_view.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/register_view.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/top_section_auth_view.dart';

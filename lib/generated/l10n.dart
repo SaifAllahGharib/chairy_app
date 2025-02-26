@@ -401,6 +401,41 @@ class S {
       args: [],
     );
   }
+
+  /// `This Quantity Is Only Available`
+  String get thisQuantityIsOnlyAvailable {
+    return Intl.message(
+      'This Quantity Is Only Available',
+      name: 'thisQuantityIsOnlyAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Out Of Stock`
+  String get outOfStock {
+    return Intl.message('Out Of Stock', name: 'outOfStock', desc: '', args: []);
+  }
+
+  /// `You Must Provide The Number Of The Product`
+  String get youMustProvideTheNumberOfTheProduct {
+    return Intl.message(
+      'You Must Provide The Number Of The Product',
+      name: 'youMustProvideTheNumberOfTheProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Product Was Successfully Added`
+  String get theProductWasSuccessfullyAdded {
+    return Intl.message(
+      'The Product Was Successfully Added',
+      name: 'theProductWasSuccessfullyAdded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

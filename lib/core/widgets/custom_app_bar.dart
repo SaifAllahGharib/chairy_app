@@ -1,6 +1,6 @@
+import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_close_button.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/custom_icon_button.dart';
 import 'package:chairy_app/features/menu/presentation/view/menu_view.dart';

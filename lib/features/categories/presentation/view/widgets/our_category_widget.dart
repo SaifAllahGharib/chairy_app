@@ -1,8 +1,8 @@
+import 'package:chairy_app/core/shared/cubits/local_cubit/local.dart';
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
-import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

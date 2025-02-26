@@ -18,41 +18,45 @@ class DirWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Dimensions.width50),
-      child: Row(
-        children: [
-          Text(
-            S.of(context).categories,
-            style: Styles.textStyle15,
-          ),
-          SizedBox(width: Dimensions.width15),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: Dimensions.width30,
-            color: AppColors.primaryColor,
-          ),
-          SizedBox(width: Dimensions.width15),
-          Text(
-            firstText,
-            style: Styles.textStyle15,
-          ),
-          SizedBox(width: Dimensions.width15),
-          secText != null
-              ? Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: Dimensions.width30,
-                  color: AppColors.primaryColor,
-                )
-              : const SizedBox.shrink(),
-          secText != null
-              ? SizedBox(width: Dimensions.width15)
-              : const SizedBox.shrink(),
-          secText != null
-              ? Text(
-                  "$secText",
-                  style: Styles.textStyle15,
-                )
-              : const SizedBox.shrink(),
-        ],
+      child: SizedBox(
+        width: double.infinity,
+        child: Wrap(
+          runSpacing: Dimensions.height10 * 0.3,
+          children: [
+            Text(
+              S.of(context).categories,
+              style: Styles.textStyle15,
+            ),
+            SizedBox(width: Dimensions.width15),
+            Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: Dimensions.width30,
+              color: AppColors.primaryColor,
+            ),
+            SizedBox(width: Dimensions.width15),
+            Text(
+              firstText,
+              style: Styles.textStyle15,
+            ),
+            SizedBox(width: Dimensions.width15),
+            secText != null
+                ? Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: Dimensions.width30,
+                    color: AppColors.primaryColor,
+                  )
+                : const SizedBox.shrink(),
+            secText != null
+                ? SizedBox(width: Dimensions.width15)
+                : const SizedBox.shrink(),
+            secText != null
+                ? Text(
+                    "$secText",
+                    style: Styles.textStyle15,
+                  )
+                : const SizedBox.shrink(),
+          ],
+        ),
       ),
     );
   }

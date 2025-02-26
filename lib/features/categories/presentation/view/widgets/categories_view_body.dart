@@ -1,6 +1,6 @@
+import 'package:chairy_app/core/shared/cubits/local_cubit/local.dart';
+import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_error_widget.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/categories_list_view.dart';

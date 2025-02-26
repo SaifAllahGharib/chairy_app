@@ -6,7 +6,7 @@ class PriceWidget extends StatelessWidget {
   final double? fontSizePrice;
   final double? fontSizeIcon;
   final bool isDark;
-  final num price;
+  final num? price;
 
   const PriceWidget({
     super.key,

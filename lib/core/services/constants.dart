@@ -4,3 +4,5 @@ const String getProductsCategoryById = "${BASEURL}api/product/category";
 const String getProductDetailsById = "${BASEURL}api/product/find/";
 const String register = "${BASEURL}api/register";
 const String login = "${BASEURL}api/login";
+const String addItemToTheCart = "${BASEURL}api/cart/add-item";
+const String getItemsFromCart = "${BASEURL}api/cart/items";

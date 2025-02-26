@@ -20,11 +20,13 @@ class CategoryRepositoryImpl implements CategoryRepository {
 
     try {
       if (!isConnected) {
-        return right(await _localDataSource.getCachedCategories());
+        return right(_localDataSource.getCachedCategories());
       }
 
       final categories = await _remoteDataSource.getCategories();
+
       await _localDataSource.cacheCategories(categories);
+
       return Right(categories);
     } catch (e) {
       return Left(ErrorHandler.handleError(e));

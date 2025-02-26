@@ -1,25 +1,22 @@
 import 'package:chairy_app/core/helper_functions/init_app.dart';
+import 'package:chairy_app/core/shared/cubits/local_cubit/local.dart';
+import 'package:chairy_app/core/shared/cubits/product_count/product_count_cubit.dart';
+import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/utils/app_router.dart';
 import 'package:chairy_app/core/utils/app_themes.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
-import 'package:chairy_app/core/viewmodels/local_cubit/local.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
-import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
-import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
+import 'package:chairy_app/features/cart/domain/usecases/add_item_to_cart.dart';
+import 'package:chairy_app/features/cart/domain/usecases/get_items_from_cart.dart';
+import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive_flutter/adapters.dart';
 
 void main() async {
   await initApp();
-
-  await Hive.initFlutter();
-  Hive.registerAdapter(CategoryEntityAdapter());
-  Hive.registerAdapter(ProductEntityAdapter());
 
   runApp(
     DevicePreview(
@@ -42,6 +39,15 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LocalCubit(getIt.get<MySharedPreferences>()),
+        ),
+        BlocProvider(
+          create: (context) => ProductCountCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CartCubit(
+            getIt.get<AddItemToCart>(),
+            getIt.get<GetItemsFromCart>(),
+          ),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(

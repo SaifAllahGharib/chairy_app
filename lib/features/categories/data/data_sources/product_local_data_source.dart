@@ -1,25 +1,28 @@
 import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
-import 'package:hive/hive.dart';
+import 'package:chairy_app/core/utils/hive_service.dart';
 
 sealed class ProductLocalDataSource {
   Future<void> cacheProducts(List<ProductEntity> products);
 
-  Future<List<ProductEntity>> getCachedProducts();
+  List<ProductEntity> getCachedProducts();
 }
 
 class ProductLocalDataSourceImpl implements ProductLocalDataSource {
-  static const String boxName = "products_box";
+  final HiveService _hiveService;
+  final String _boxName = "products_box";
+
+  ProductLocalDataSourceImpl(this._hiveService);
 
   @override
   Future<void> cacheProducts(List<ProductEntity> products) async {
-    final box = await Hive.openBox<ProductEntity>(boxName);
-    await box.clear();
-    await box.addAll(products);
+    await Future.wait([
+      _hiveService.clearBox<ProductEntity>(_boxName),
+      _hiveService.addAllData<ProductEntity>(_boxName, products),
+    ]);
   }
 
   @override
-  Future<List<ProductEntity>> getCachedProducts() async {
-    final box = await Hive.openBox<ProductEntity>(boxName);
-    return box.values.toList();
+  List<ProductEntity> getCachedProducts() {
+    return _hiveService.getAllValues<ProductEntity>(_boxName);
   }
 }

@@ -21,6 +21,8 @@ class MySharedPreferences {
     }
   }
 
+  String? getUserToken() => getString('token');
+
   String? getIdUser() => getString('uid');
 
   String? getNameUser() => getString('name');
@@ -30,6 +32,11 @@ class MySharedPreferences {
   String? getPhoneUser() => getString('phone');
 
   String? getRoleUser() => getString('role');
+
+  bool userIsLogin() =>
+      getUserToken() != null &&
+      getUserToken()!.isNotEmpty &&
+      getUserToken() != "null";
 
   Future<bool> storeString(String key, String value) async {
     return await _safeWrite(
@@ -41,13 +48,6 @@ class MySharedPreferences {
   Future<bool> clearAllData() async {
     return await _safeWrite(() => _prefs.clear(), 'Error clearing data');
   }
-
-  // String getInitRoute() {
-  //   final lang = getString('lang');
-  //   final id = getIdUser();
-  //   if (lang == null) return '/';
-  //   return id == null ? LoginView.id : HomeView.id;
-  // }
 
   Future<bool> _safeWrite(
       Future<bool> Function() operation, String errorMessage) async {

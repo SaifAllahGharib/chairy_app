@@ -14,14 +14,14 @@ class ApiAuthServices extends AuthServices {
       String name, String lastName, String email, String password) async {
     try {
       final response = await _apiService.post(
-        constants.register,
-        FormData.fromMap({
+        endpoint: constants.register,
+        data: FormData.fromMap({
           "name": name,
           "lastname": lastName,
           "email": email,
           "password": password,
         }),
-        {"User-Type": "personal"},
+        queryParameters: {"User-Type": "personal"},
       );
 
       return UserResponseModel.fromJson(response.data);
@@ -34,12 +34,12 @@ class ApiAuthServices extends AuthServices {
   Future<UserResponseModel> login(String email, String password) async {
     try {
       final response = await _apiService.post(
-        constants.login,
-        FormData.fromMap({
+        endpoint: constants.login,
+        data: FormData.fromMap({
           "email": email,
           "password": password,
         }),
-        {"User-Type": "personal"},
+        queryParameters: {"User-Type": "personal"},
       );
 
       return UserResponseModel.fromJson(response.data);

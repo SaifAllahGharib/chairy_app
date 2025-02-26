@@ -15,8 +15,11 @@ class ApiService {
           ),
         );
 
-  Future<Response> get(String endpoint,
-      [Map<String, dynamic>? queryParameters]) async {
+  Future<Response> get({
+    required String endpoint,
+    String? token,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       return await _dio.get(
         endpoint,
@@ -24,7 +27,8 @@ class ApiService {
         options: Options(
           headers: {
             'Accept-Language':
-                getIt.get<MySharedPreferences>().getString("lang") ?? "en"
+                getIt.get<MySharedPreferences>().getString("lang") ?? "en",
+            "Authorization": "Bearer $token"
           },
         ),
       );
@@ -33,13 +37,21 @@ class ApiService {
     }
   }
 
-  Future<Response> post(String endpoint, dynamic data,
-      [Map<String, dynamic>? queryParameters]) async {
+  Future<Response> post({
+    required String endpoint,
+    dynamic data,
+    String? token,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       return await _dio.post(
         endpoint,
         data: data,
         queryParameters: queryParameters,
+        options: Options(
+          headers: {"Authorization": "Bearer $token"},
+        ),
       );
     } catch (e) {
       throw Exception('Error in POST: $e');

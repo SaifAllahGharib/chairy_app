@@ -48,5 +48,9 @@
   "review": "REVIEW",
   "required": "*  Required",
   "invalidEmail": "Invalid Email",
-  "registerSuccess": "Register success"
+  "registerSuccess": "Register success",
+  "thisQuantityIsOnlyAvailable": "This Quantity Is Only Available",
+  "outOfStock": "Out Of Stock",
+  "youMustProvideTheNumberOfTheProduct": "You Must Provide The Number Of The Product",
+  "theProductWasSuccessfullyAdded": "The Product Was Successfully Added"
 }

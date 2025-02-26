@@ -1,8 +1,8 @@
+import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
-import 'package:chairy_app/core/viewmodels/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/custom_icon_button.dart';
 import 'package:chairy_app/generated/l10n.dart';

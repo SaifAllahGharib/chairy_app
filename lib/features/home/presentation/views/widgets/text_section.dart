@@ -8,23 +8,26 @@ class TextSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          S.of(context).makeModern,
-          textAlign: TextAlign.center,
-          style: Styles.textStyle36,
-        ),
-        SizedBox(height: Dimensions.height12),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: Dimensions.width63),
-          child: Text(
-            S.of(context).turnYourRoom,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: Dimensions.width50),
+      child: Column(
+        children: [
+          Text(
+            S.of(context).makeModern,
             textAlign: TextAlign.center,
-            style: Styles.textStyle16,
+            style: Styles.textStyle36,
           ),
-        ),
-      ],
+          SizedBox(height: Dimensions.height12),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.width63),
+            child: Text(
+              S.of(context).turnYourRoom,
+              textAlign: TextAlign.center,
+              style: Styles.textStyle16,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -18,3 +18,9 @@ class ProductsCategoryFailureState extends ProductsCategoryState {
 
   ProductsCategoryFailureState(this.failure);
 }
+
+class ProductsCategoryIncrementState extends ProductsCategoryState {
+  final int count;
+
+  ProductsCategoryIncrementState(this.count);
+}

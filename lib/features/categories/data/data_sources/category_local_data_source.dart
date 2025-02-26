@@ -1,26 +1,29 @@
-import 'package:hive/hive.dart';
+import 'package:chairy_app/core/utils/hive_service.dart';
 
 import '../../domain/entities/category_entity.dart';
 
 sealed class CategoryLocalDataSource {
   Future<void> cacheCategories(List<CategoryEntity> categories);
 
-  Future<List<CategoryEntity>> getCachedCategories();
+  List<CategoryEntity> getCachedCategories();
 }
 
 class CategoryLocalDataSourceImpl implements CategoryLocalDataSource {
-  static const String boxName = "categories_box";
+  final HiveService _hiveService;
+  final String _boxName = "categories_box";
+
+  CategoryLocalDataSourceImpl(this._hiveService);
 
   @override
   Future<void> cacheCategories(List<CategoryEntity> categories) async {
-    final box = await Hive.openBox<CategoryEntity>(boxName);
-    await box.clear();
-    await box.addAll(categories);
+    await Future.wait([
+      _hiveService.clearBox<CategoryEntity>(_boxName),
+      _hiveService.addAllData<CategoryEntity>(_boxName, categories),
+    ]);
   }
 
   @override
-  Future<List<CategoryEntity>> getCachedCategories() async {
-    final box = await Hive.openBox<CategoryEntity>(boxName);
-    return box.values.toList();
+  List<CategoryEntity> getCachedCategories() {
+    return _hiveService.getAllValues<CategoryEntity>(_boxName);
   }
 }

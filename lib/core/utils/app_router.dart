@@ -1,6 +1,6 @@
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/auth/presentaion/view/auth_view.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
-import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/product_details_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/products_category_view.dart';
 import 'package:chairy_app/features/main/presentation/view/main_view.dart';

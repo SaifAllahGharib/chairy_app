@@ -73,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "moreInfo": MessageLookupByLibrary.simpleMessage("More Info"),
     "or": MessageLookupByLibrary.simpleMessage("Or"),
     "our": MessageLookupByLibrary.simpleMessage("Our"),
+    "outOfStock": MessageLookupByLibrary.simpleMessage("Out Of Stock"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "payment": MessageLookupByLibrary.simpleMessage("PAYMENT"),
     "placeOrder": MessageLookupByLibrary.simpleMessage("Place order"),
@@ -93,7 +94,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.",
     ),
     "someOfOUR": MessageLookupByLibrary.simpleMessage("SOME OF OUR"),
+    "theProductWasSuccessfullyAdded": MessageLookupByLibrary.simpleMessage(
+      "The Product Was Successfully Added",
+    ),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+    "thisQuantityIsOnlyAvailable": MessageLookupByLibrary.simpleMessage(
+      "This Quantity Is Only Available",
+    ),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "turnYourRoom": MessageLookupByLibrary.simpleMessage(
       "Turn your room with panto into a lot more minimalist and modern with ease and speed",
@@ -103,6 +110,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "wideSelection": MessageLookupByLibrary.simpleMessage(
       "A wide selection of furniture styles, categories, and price points.",
+    ),
+    "youMustProvideTheNumberOfTheProduct": MessageLookupByLibrary.simpleMessage(
+      "You Must Provide The Number Of The Product",
     ),
     "yourCart": MessageLookupByLibrary.simpleMessage("Your Cart"),
   };
