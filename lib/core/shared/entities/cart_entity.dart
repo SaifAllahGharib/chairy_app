@@ -22,4 +22,13 @@ class CartEntity {
     this.price,
     this.subTotal,
   });
+
+  CartEntity copyWith({int? id, int? quantity, String? name, num? subTotal}) {
+    return CartEntity(
+      id: id ?? this.id,
+      quantity: quantity ?? this.quantity,
+      name: name ?? this.name,
+      subTotal: subTotal ?? this.subTotal,
+    );
+  }
 }

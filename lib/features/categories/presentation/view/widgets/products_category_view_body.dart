@@ -1,10 +1,7 @@
 import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/core/utils/my_shared_preferences.dart';
-import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/widgets/custom_error_widget.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
-import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/dir_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/mid_category_section.dart';
@@ -33,13 +30,6 @@ class _ProductsProductsCategoryViewBodyState
   void initState() {
     _fetchProductsCategory();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    BlocProvider.of<CartCubit>(context)
-        .getItemsFromCart(getIt.get<MySharedPreferences>().getUserToken());
-    super.dispose();
   }
 
   void _fetchProductsCategory() {

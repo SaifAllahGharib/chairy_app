@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
           padding: EdgeInsets.only(
             top: Dimensions.height36 * 1.4,
             left: Dimensions.height20,
-            bottom: Dimensions.height73,
+            bottom: Dimensions.height63,
             right: Dimensions.height20,
           ),
           child: Container(
@@ -127,7 +127,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 Text(
-                  S.of(context).enjoyEexclusive,
+                  "Enjoy exclusive discounts & offers",
                   style: Styles.textStyle10.copyWith(
                     fontWeight: FontWeight.w400,
                     color: widget.isDark ? AppColors.white : AppColors.black,
@@ -136,85 +136,136 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(height: Dimensions.height50),
                 Form(
                   key: _formState,
-                  child: Expanded(
-                    child: Column(
-                      children: [
-                        CustomTextFormField(
-                          controller: _firstName,
-                          isDark: widget.isDark,
-                          hint: S.of(context).firstName,
-                          icon: AppAssets.name,
-                          hasError: authCubit.hasFirstNameError,
-                          onSaved: (newValue) {},
-                          validator: (String? newValue) => _setError(
-                            TypeField.firstName,
-                            S.of(context).required,
-                            newValue,
-                          ),
+                  child: Column(
+                    children: [
+                      CustomTextFormField(
+                        controller: _firstName,
+                        isDark: widget.isDark,
+                        onSaved: (newValue) {},
+                        hint: S.of(context).firstName,
+                        icon: AppAssets.name,
+                        hasError: context.watch<AuthCubit>().hasEmailError,
+                        validator: (String? newValue) => _setError(
+                          TypeField.firstName,
+                          S.of(context).required,
+                          newValue,
                         ),
-                        SizedBox(height: Dimensions.height10),
-                        CustomTextFormField(
-                          controller: _lastName,
-                          isDark: widget.isDark,
-                          onSaved: (newValue) {},
-                          hint: S.of(context).lastName,
-                          icon: AppAssets.name,
-                          hasError: authCubit.hasLastNameError,
-                          validator: (String? newValue) => _setError(
-                            TypeField.lastName,
-                            S.of(context).required,
-                            newValue,
-                          ),
+                      ),
+                      SizedBox(height: Dimensions.height15),
+                      CustomTextFormField(
+                        controller: _lastName,
+                        isDark: widget.isDark,
+                        onSaved: (newValue) {},
+                        hint: S.of(context).lastName,
+                        icon: AppAssets.name,
+                        hasError: context.watch<AuthCubit>().hasEmailError,
+                        validator: (String? newValue) => _setError(
+                          TypeField.lastName,
+                          S.of(context).required,
+                          newValue,
                         ),
-                        SizedBox(height: Dimensions.height10),
-                        CustomTextFormField(
-                          controller: _email,
-                          isDark: widget.isDark,
-                          onSaved: (newValue) {},
-                          hint: S.of(context).emailAddress,
-                          hasError: authCubit.hasEmailError,
-                          icon: AppAssets.email,
-                          validator: (String? newValue) => _setError(
-                            TypeField.email,
-                            S.of(context).required,
-                            newValue,
-                            S.of(context).invalidEmail,
-                          ),
+                      ),
+                      SizedBox(height: Dimensions.height15),
+                      CustomTextFormField(
+                        controller: _email,
+                        isDark: widget.isDark,
+                        onSaved: (newValue) {},
+                        hint: S.of(context).emailAddress,
+                        icon: AppAssets.email,
+                        hasError: context.watch<AuthCubit>().hasEmailError,
+                        validator: (String? newValue) => _setError(
+                          TypeField.email,
+                          S.of(context).required,
+                          newValue,
+                          S.of(context).invalidEmail,
                         ),
-                        SizedBox(height: Dimensions.height10),
-                        CustomTextFormField(
-                          controller: _password,
-                          isDark: widget.isDark,
-                          onSaved: (newValue) {},
-                          isPassword: true,
-                          hasError: authCubit.hasPasswordError,
-                          hint: S.of(context).password,
-                          icon: AppAssets.lock,
-                          validator: (String? newValue) => _setError(
-                            TypeField.password,
-                            S.of(context).required,
-                            newValue,
-                          ),
+                      ),
+                      SizedBox(height: Dimensions.height15),
+                      CustomTextFormField(
+                        controller: _password,
+                        isDark: widget.isDark,
+                        isPassword: true,
+                        showPassword: context.watch<AuthCubit>().showPassword,
+                        hasError: context.watch<AuthCubit>().hasPasswordError,
+                        hint: S.of(context).password,
+                        icon: AppAssets.lock,
+                        onSaved: (newValue) {},
+                        validator: (String? newValue) => _setError(
+                          TypeField.password,
+                          S.of(context).required,
+                          newValue,
                         ),
-                        const Spacer(),
-                        CustomButton(
-                          text: S.of(context).signUp,
-                          onclick: () => _register(),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: Dimensions.height10),
+                Row(
+                  children: [
+                    Container(
+                      width: Dimensions.height20,
+                      height: Dimensions.height20,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius30),
+                        color: AppColors.gray,
+                      ),
+                      child: Checkbox(
+                        value: false,
+                        activeColor: AppColors.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius30),
                         ),
-                      ],
+                        side: const BorderSide(
+                          width: 0,
+                          color: Colors.transparent,
+                        ),
+                        onChanged: (value) {},
+                      ),
                     ),
+                    SizedBox(width: Dimensions.width15),
+                    Expanded(
+                      child: Text(
+                        "Yes, I would like to receive personalized offers, tips and tricks, and other information from Store.",
+                        style: Styles.textStyle10.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color:
+                              widget.isDark ? AppColors.white : AppColors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: Dimensions.height20),
+                RichText(
+                  text: TextSpan(
+                    text:
+                        "The terms and conditions for Dubai Perfumes apply. Here you can find our ",
+                    style: Styles.textStyle10.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: widget.isDark ? AppColors.white : AppColors.black,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: "privacy information.",
+                        style: Styles.textStyle10.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color:
+                              widget.isDark ? AppColors.white : AppColors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: Dimensions.height10),
+                const Spacer(),
+                CustomButton(
+                  text: S.of(context).signUp,
+                  onclick: () {},
+                ),
+                SizedBox(height: Dimensions.height15),
                 OrWidget(isDark: widget.isDark),
-                SizedBox(height: Dimensions.height10),
-                Text(
-                  S.of(context).signUpWithGoogle,
-                  style: Styles.textStyle10.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: widget.isDark ? AppColors.white : AppColors.black,
-                  ),
-                ),
                 SizedBox(height: Dimensions.height15),
                 CustomIconButton(
                   onClick: () {},

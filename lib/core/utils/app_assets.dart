@@ -46,4 +46,7 @@ abstract class AppAssets {
   static const String wrong = "assets/images/wrong.png";
   static const String google = "assets/images/google.png";
   static const String emptyCart = "assets/images/empty_cart.png";
+  static const String masterCard = "assets/images/master_card.png";
+  static const String visa = "assets/images/visa.png";
+  static const String paypal = "assets/images/paypal.png";
 }

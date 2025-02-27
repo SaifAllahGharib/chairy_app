@@ -1,44 +1,44 @@
-import 'package:chairy_app/core/helper_functions/snack_bar.dart';
 import 'package:chairy_app/core/shared/cubits/product_count/product_count_cubit.dart';
-import 'package:chairy_app/core/shared/cubits/product_count/product_count_state.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/core/widgets/custom_category_icon_button.dart';
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/custom_button_share.dart';
-import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterAndShareWidget extends StatelessWidget {
+class CounterAndShareWidget extends StatefulWidget {
   final bool isDark;
-  final int productId;
-  final int productQuantity;
+  final ProductEntity product;
 
   const CounterAndShareWidget({
     super.key,
     required this.isDark,
-    required this.productId,
-    required this.productQuantity,
+    required this.product,
   });
 
-  void _incrementCount(BuildContext context) {
-    final String? msg = context.read<ProductCountCubit>().increment(
-      productId,
-      productQuantity,
-      [
-        S.of(context).thisQuantityIsOnlyAvailable,
-        S.of(context).outOfStock,
-      ],
-    );
+  @override
+  State<CounterAndShareWidget> createState() => _CounterAndShareWidgetState();
+}
 
-    if (msg != null) {
-      snackBar(context: context, text: msg);
-    }
+class _CounterAndShareWidgetState extends State<CounterAndShareWidget> {
+  int get countOfProducts =>
+      context.watch<ProductCountCubit>().getCount(widget.product.id!);
+
+  void _incrementCount(BuildContext context) {
+    context.read<ProductCountCubit>().increment(
+          widget.product.id!,
+          widget.product.price!,
+          widget.product.quantity!,
+        );
   }
 
   void _decrementCount(BuildContext context) {
-    context.read<ProductCountCubit>().decrement(productId);
+    context.read<ProductCountCubit>().decrement(
+          widget.product.id!,
+          widget.product.price!,
+        );
   }
 
   @override
@@ -48,37 +48,31 @@ class CounterAndShareWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            BlocBuilder<ProductCountCubit, ProductCountState>(
-              builder: (context, state) {
-                final count =
-                    context.watch<ProductCountCubit>().getCount(productId);
-
-                return Row(
-                  children: [
-                    CustomCategoryIconButton(
-                      isDark: isDark,
-                      color: isDark ? AppColors.white : AppColors.gray,
-                      icon: Icons.add,
-                      onClick: () => _incrementCount(context),
-                    ),
-                    SizedBox(width: Dimensions.width30),
-                    Text(
-                      "$count",
-                      style: Styles.textStyle36.copyWith(
-                        color:
-                            isDark ? AppColors.white : AppColors.midnightBlue,
-                      ),
-                    ),
-                    SizedBox(width: Dimensions.width30),
-                    CustomCategoryIconButton(
-                      isDark: isDark,
-                      color: isDark ? AppColors.white : AppColors.gray,
-                      icon: Icons.remove,
-                      onClick: () => _decrementCount(context),
-                    ),
-                  ],
-                );
-              },
+            Row(
+              children: [
+                CustomCategoryIconButton(
+                  isDark: widget.isDark,
+                  color: widget.isDark ? AppColors.white : AppColors.gray,
+                  icon: Icons.add,
+                  onClick: () => _incrementCount(context),
+                ),
+                SizedBox(width: Dimensions.width30),
+                Text(
+                  "$countOfProducts",
+                  style: Styles.textStyle36.copyWith(
+                    color: widget.isDark
+                        ? AppColors.white
+                        : AppColors.midnightBlue,
+                  ),
+                ),
+                SizedBox(width: Dimensions.width30),
+                CustomCategoryIconButton(
+                  isDark: widget.isDark,
+                  color: widget.isDark ? AppColors.white : AppColors.gray,
+                  icon: Icons.remove,
+                  onClick: () => _decrementCount(context),
+                ),
+              ],
             ),
             const CustomButtonShare(),
           ],

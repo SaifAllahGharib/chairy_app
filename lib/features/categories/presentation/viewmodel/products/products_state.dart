@@ -24,3 +24,11 @@ class ProductsCategoryIncrementState extends ProductsCategoryState {
 
   ProductsCategoryIncrementState(this.count);
 }
+
+class ProductsCategoryAddItemToCartState extends ProductsCategoryState {}
+
+class ProductCategoryItemIsExistToCartState extends ProductsCategoryState {
+  final String msg;
+
+  ProductCategoryItemIsExistToCartState(this.msg);
+}

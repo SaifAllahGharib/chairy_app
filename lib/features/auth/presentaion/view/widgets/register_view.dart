@@ -22,35 +22,37 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimensions.width50),
-            child: Column(
-              children: [
-                Text(
-                  S.of(context).welcomeToOurStore,
-                  textAlign: TextAlign.center,
-                  style: Styles.textStyle36.copyWith(
-                    color: isDark ? AppColors.white : AppColors.black,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: Dimensions.width50),
+              child: Column(
+                children: [
+                  Text(
+                    S.of(context).welcomeToOurStore,
+                    textAlign: TextAlign.center,
+                    style: Styles.textStyle36.copyWith(
+                      color: isDark ? AppColors.white : AppColors.black,
+                    ),
                   ),
-                ),
-                BringingText(isDark: isDark),
-              ],
+                  BringingText(isDark: isDark),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: Dimensions.height20),
-          CustomTabBar(isDark: isDark),
-          SizedBox(
-            height: Dimensions.height500 * 1.5,
-            child: TabBarView(
-              children: [
-                SignIn(isDark: isDark, index: index),
-                SignUp(isDark: isDark, index: index),
-              ],
+            SizedBox(height: Dimensions.height20),
+            CustomTabBar(isDark: isDark),
+            SizedBox(
+              height: Dimensions.height500 * 1.4,
+              child: TabBarView(
+                children: [
+                  SignIn(isDark: isDark, index: index),
+                  SignUp(isDark: isDark, index: index),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

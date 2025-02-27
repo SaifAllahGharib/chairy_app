@@ -12,7 +12,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool isDark;
   final bool isPassword;
   final bool showPassword;
-  final String icon;
+  final String? icon;
   final String hint;
   final bool hasError;
   final bool isCompleted;
@@ -24,7 +24,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.controller,
     required this.onSaved,
     required this.hint,
-    required this.icon,
+    this.icon,
     this.isPassword = false,
     this.showPassword = false,
     this.hasError = false,
@@ -39,51 +39,55 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: showPassword,
-      onSaved: onSaved,
-      maxLines: 1,
-      validator: validator,
-      style: Styles.textStyle16
-          .copyWith(color: isDark ? AppColors.white : AppColors.black),
-      decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: Styles.hintStyle
+    return SizedBox(
+      height: Dimensions.height30,
+      child: TextFormField(
+        controller: controller,
+        obscureText: showPassword,
+        onSaved: onSaved,
+        maxLines: 1,
+        validator: validator,
+        style: Styles.textStyle16
             .copyWith(color: isDark ? AppColors.white : AppColors.black),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: isDark ? AppColors.white : AppColors.black,
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: Styles.hintStyle
+              .copyWith(color: isDark ? AppColors.white : AppColors.black),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: isDark ? AppColors.white : AppColors.black,
+            ),
           ),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: isDark ? AppColors.white : AppColors.black,
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: isDark ? AppColors.white : AppColors.black,
+            ),
           ),
-        ),
-        errorBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: AppColors.red,
+          errorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.red,
+            ),
           ),
+          suffix: isPassword
+              ? IconButton(
+                  onPressed: () => _showPassword(context),
+                  icon: Icon(
+                    Icons.remove_red_eye_outlined,
+                    size: Dimensions.iconSize20,
+                  ),
+                )
+              : hasError
+                  ? Image.asset(AppAssets.wrong)
+                  : isCompleted
+                      ? Icon(
+                          Icons.check,
+                          size: Dimensions.height30,
+                          color: AppColors.green,
+                        )
+                      : null,
+          // suffixIcon: ,
+          icon: icon == null ? null : Image.asset(icon!),
         ),
-        suffixIcon: isPassword
-            ? IconButton(
-                onPressed: () => _showPassword(context),
-                icon: Icon(
-                  Icons.remove_red_eye_outlined,
-                  size: Dimensions.iconSize20,
-                ),
-              )
-            : hasError
-                ? Image.asset(AppAssets.wrong)
-                : isCompleted
-                    ? Icon(
-                        Icons.check,
-                        size: Dimensions.height30,
-                        color: AppColors.green,
-                      )
-                    : null,
-        icon: Image.asset(icon),
       ),
     );
   }

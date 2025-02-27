@@ -1,11 +1,12 @@
 import 'package:chairy_app/core/helper_functions/snack_bar.dart';
 import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
+import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/core/widgets/empty_widget.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
-import 'package:chairy_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:chairy_app/features/cart/presentation/view/widgets/bottom_sec_cart_view.dart';
 import 'package:chairy_app/features/cart/presentation/view/widgets/cart_list_view.dart';
 import 'package:chairy_app/features/cart/presentation/view/widgets/top_section_cart_view.dart';
@@ -27,7 +28,6 @@ class _CartViewBodyState extends State<CartViewBody> {
 
   @override
   void initState() {
-    // products ;
     _getItems();
 
     super.initState();
@@ -43,6 +43,14 @@ class _CartViewBodyState extends State<CartViewBody> {
     if (state is CartGetItemsFromState) {
       products.clear();
       products = state.cart;
+    } else if (state is CartRemoveItemFromCartState) {
+      snackBar(
+        context: context,
+        text: "Remove item successfully",
+        color: AppColors.primaryColor,
+      );
+
+      _getItems();
     } else if (state is CartFailureState) {
       snackBar(
         context: context,
@@ -63,7 +71,10 @@ class _CartViewBodyState extends State<CartViewBody> {
             const SliverToBoxAdapter(child: CustomAppBar(darkLogo: true)),
             TopSectionCartView(isDark: _isDark),
             if (products.isNotEmpty)
-              CartListView(isDark: _isDark, products: products)
+              CartListView(
+                isDark: _isDark,
+                products: products,
+              )
             else
               const SliverToBoxAdapter(child: EmptyWidget()),
             if (products.isNotEmpty) BottomSecCartView(isDark: _isDark)

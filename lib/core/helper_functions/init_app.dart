@@ -1,7 +1,7 @@
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/hive_service.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
-import 'package:chairy_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';

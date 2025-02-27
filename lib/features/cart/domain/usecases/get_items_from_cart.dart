@@ -1,5 +1,5 @@
 import 'package:chairy_app/core/errors/failure.dart';
-import 'package:chairy_app/features/cart/domain/entities/cart_entity.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/features/cart/domain/repositories/cart_repository.dart';
 import 'package:dartz/dartz.dart';
 

@@ -436,6 +436,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Your Customer Data For The Order`
+  String get yourCustomerDataForTheOrder {
+    return Intl.message(
+      'Your Customer Data For The Order',
+      name: 'yourCustomerDataForTheOrder',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

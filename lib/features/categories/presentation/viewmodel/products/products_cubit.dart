@@ -5,10 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProductsCategoryCubit extends Cubit<ProductsCategoryState> {
   final GetProductsByCategoryId _getProductsByCategoryId;
 
-  int _countOfProduct = 0;
-
-  ProductsCategoryCubit(this._getProductsByCategoryId)
-      : super(ProductsCategoryInitState());
+  ProductsCategoryCubit(
+    this._getProductsByCategoryId,
+  ) : super(ProductsCategoryInitState());
 
   void fetchProducts(int categoryId) async {
     emit(ProductsCategoryLoadingState());
@@ -19,11 +18,4 @@ class ProductsCategoryCubit extends Cubit<ProductsCategoryState> {
       (categories) => emit(ProductsCategorySuccessState(categories)),
     );
   }
-
-  void incrementCountOfProduct() {
-    _countOfProduct++;
-    emit(ProductsCategoryIncrementState(_countOfProduct));
-  }
-
-  int get countOfProduct => _countOfProduct;
 }

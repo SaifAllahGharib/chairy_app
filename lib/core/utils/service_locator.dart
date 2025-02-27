@@ -10,16 +10,20 @@ import 'package:chairy_app/features/auth/domain/usecases/register.dart';
 import 'package:chairy_app/features/cart/data/data_sources/cart_local_data_source.dart';
 import 'package:chairy_app/features/cart/data/data_sources/cart_remote_data_source.dart';
 import 'package:chairy_app/features/cart/data/repositories/cart_repository_impl.dart';
-import 'package:chairy_app/features/cart/domain/usecases/add_item_to_cart.dart';
 import 'package:chairy_app/features/cart/domain/usecases/get_items_from_cart.dart';
+import 'package:chairy_app/features/cart/domain/usecases/remove_item_from_cart.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_local_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_remote_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/product_local_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/product_remote_data_source.dart';
 import 'package:chairy_app/features/categories/data/repositories/category_repository_impl.dart';
 import 'package:chairy_app/features/categories/data/repositories/product_repository_impl.dart';
+import 'package:chairy_app/features/categories/domain/usecases/add_item_to_cart.dart';
+import 'package:chairy_app/features/categories/domain/usecases/decrease_item_to_cart.dart';
 import 'package:chairy_app/features/categories/domain/usecases/get_categories.dart';
 import 'package:chairy_app/features/categories/domain/usecases/get_products_by_category_id.dart';
+import 'package:chairy_app/features/categories/domain/usecases/increase_item_to_cart.dart';
+import 'package:chairy_app/features/categories/domain/usecases/is_item_exist_to_cart.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -60,16 +64,36 @@ void setupServiceLocator() {
   );
 
   getIt.registerSingleton<ProductRepositoryImpl>(
-    ProductRepositoryImpl(getIt.get<ProductRemoteDataSourceImpl>(),
-        getIt.get<ProductLocalDataSourceImpl>()),
+    ProductRepositoryImpl(
+      getIt.get<ProductRemoteDataSourceImpl>(),
+      getIt.get<ProductLocalDataSourceImpl>(),
+      getIt.get<MySharedPreferences>(),
+    ),
+  );
+
+  getIt.registerSingleton<AddItemToCart>(
+    AddItemToCart(getIt.get<ProductRepositoryImpl>()),
   );
 
   getIt.registerSingleton<GetProductsByCategoryId>(
     GetProductsByCategoryId(getIt.get<ProductRepositoryImpl>()),
   );
 
+  getIt.registerSingleton<IsItemExistToCart>(
+    IsItemExistToCart(getIt.get<ProductRepositoryImpl>()),
+  );
+
+  getIt.registerSingleton<IncreaseItemToCart>(
+    IncreaseItemToCart(getIt.get<ProductRepositoryImpl>()),
+  );
+
+  getIt.registerSingleton<DecreaseItemToCart>(
+    DecreaseItemToCart(getIt.get<ProductRepositoryImpl>()),
+  );
+
   getIt.registerSingleton<ApiAuthServices>(
-      ApiAuthServices(getIt.get<ApiService>()));
+    ApiAuthServices(getIt.get<ApiService>()),
+  );
 
   getIt.registerSingleton<AuthRemoteDataSourceImpl>(
       AuthRemoteDataSourceImpl(getIt.get<ApiAuthServices>()));
@@ -97,11 +121,11 @@ void setupServiceLocator() {
     ),
   );
 
-  getIt.registerSingleton<AddItemToCart>(
-    AddItemToCart(getIt.get<CartRepositoryImpl>()),
-  );
-
   getIt.registerSingleton<GetItemsFromCart>(
     GetItemsFromCart(getIt.get<CartRepositoryImpl>()),
+  );
+
+  getIt.registerSingleton<RemoveItemFromCart>(
+    RemoveItemFromCart(getIt.get<CartRepositoryImpl>()),
   );
 }

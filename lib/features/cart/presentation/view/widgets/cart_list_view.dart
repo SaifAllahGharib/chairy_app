@@ -1,5 +1,5 @@
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
-import 'package:chairy_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:chairy_app/features/cart/presentation/view/widgets/custom_item_cart_list_view.dart';
 import 'package:flutter/material.dart';
 

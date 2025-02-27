@@ -1,9 +1,9 @@
 import 'package:chairy_app/core/errors/errore_handler.dart';
 import 'package:chairy_app/core/errors/failure.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/features/cart/data/data_sources/cart_local_data_source.dart';
 import 'package:chairy_app/features/cart/data/data_sources/cart_remote_data_source.dart';
-import 'package:chairy_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:chairy_app/features/cart/domain/repositories/cart_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -19,21 +19,6 @@ class CartRepositoryImpl extends CartRepository {
   );
 
   @override
-  Future<Either<Failure, void>> addItemToCart(
-      CartEntity item, String? token) async {
-    try {
-      if (_mySharedPreferences.userIsLogin()) {
-        return right(await _cartRemoteDataSource.addToCart(item, token));
-      } else {
-        return right(await _cartLocalDataSource.cacheItemToCart(item));
-      }
-    } catch (e) {
-      print("ERROR CART REPOSITORY: $e");
-      return left(ErrorHandler.handleError(e));
-    }
-  }
-
-  @override
   Future<Either<Failure, List<CartEntity>>> getCartItems(String? token) async {
     try {
       if (_mySharedPreferences.userIsLogin()) {
@@ -43,6 +28,20 @@ class CartRepositoryImpl extends CartRepository {
       }
     } catch (e) {
       print("Error: $e");
+      return left(ErrorHandler.handleError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> removeItemFromCart(int itemId) async {
+    try {
+      final response = await _cartLocalDataSource.removeItemFromCart(itemId);
+
+      print("RESPONSE SUCCESS REMOVE LOCAL");
+
+      return right(response);
+    } catch (e) {
+      print("RESPONSE FAILURE REMOVE LOCAL: $e");
       return left(ErrorHandler.handleError(e));
     }
   }

@@ -43,7 +43,26 @@ class MySharedPreferences {
         () => _prefs.setString(key, value), 'Error storing string');
   }
 
+  Future<bool> storeInt(String key, int value) async {
+    return await _safeWrite(
+        () => _prefs.setInt(key, value), 'Error storing int');
+  }
+
+  Future<bool> storeDouble(String key, double value) async {
+    return await _safeWrite(
+        () => _prefs.setDouble(key, value), 'Error storing int');
+  }
+
+  Future<bool> removeKey(String key) async {
+    return await _safeWrite(
+        () => _prefs.remove(key), 'Error removing key: $key');
+  }
+
   String? getString(String key) => _prefs.getString(key);
+
+  int? getInt(String key) => _prefs.getInt(key);
+
+  double? getDouble(String key) => _prefs.getDouble(key);
 
   Future<bool> clearAllData() async {
     return await _safeWrite(() => _prefs.clear(), 'Error clearing data');

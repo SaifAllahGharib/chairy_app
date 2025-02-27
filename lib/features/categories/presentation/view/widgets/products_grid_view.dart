@@ -1,5 +1,7 @@
-import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/utils/my_shared_preferences.dart';
+import 'package:chairy_app/core/utils/service_locator.dart';
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/product_details_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/products_item_grid_view.dart';
 import 'package:flutter/material.dart';
@@ -33,10 +35,17 @@ class ProductsGridView extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () => GoRouter.of(context).push(
-              ProductDetailsView.id,
-              extra: products[index],
-            ),
+            onTap: () {
+              GoRouter.of(context).push(
+                ProductDetailsView.id,
+                extra: products[index],
+              );
+
+              getIt.get<MySharedPreferences>().storeDouble(
+                    "productPrice${products[index].id}",
+                    products[index].price ?? 0,
+                  );
+            },
             child: ProductsItemGridView(
               product: products[index],
               isDark: isDark,

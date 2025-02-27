@@ -105,7 +105,7 @@ class _SignInState extends State<SignIn> {
           padding: EdgeInsets.only(
             top: Dimensions.height36 * 1.4,
             left: Dimensions.height20,
-            bottom: Dimensions.height73,
+            bottom: Dimensions.height63,
             right: Dimensions.height20,
           ),
           child: Container(
@@ -125,50 +125,47 @@ class _SignInState extends State<SignIn> {
                 ),
                 SizedBox(height: Dimensions.height50),
                 Form(
-                    key: _formState,
-                    child: Expanded(
-                      child: Column(
-                        children: [
-                          CustomTextFormField(
-                            controller: _email,
-                            isDark: widget.isDark,
-                            onSaved: (newValue) {},
-                            hint: S.of(context).emailAddress,
-                            icon: AppAssets.email,
-                            hasError: context.watch<AuthCubit>().hasEmailError,
-                            validator: (String? newValue) => _setError(
-                              TypeField.email,
-                              S.of(context).required,
-                              newValue,
-                              S.of(context).invalidEmail,
-                            ),
-                          ),
-                          SizedBox(height: Dimensions.height10),
-                          CustomTextFormField(
-                            controller: _password,
-                            isDark: widget.isDark,
-                            isPassword: true,
-                            showPassword:
-                                context.watch<AuthCubit>().showPassword,
-                            hasError:
-                                context.watch<AuthCubit>().hasPasswordError,
-                            hint: S.of(context).password,
-                            icon: AppAssets.lock,
-                            onSaved: (newValue) {},
-                            validator: (String? newValue) => _setError(
-                              TypeField.password,
-                              S.of(context).required,
-                              newValue,
-                            ),
-                          ),
-                          const Spacer(),
-                          CustomButton(
-                            text: S.of(context).signIn,
-                            onclick: () => _login(),
-                          ),
-                        ],
+                  key: _formState,
+                  child: Column(
+                    children: [
+                      CustomTextFormField(
+                        controller: _email,
+                        isDark: widget.isDark,
+                        onSaved: (newValue) {},
+                        hint: S.of(context).emailAddress,
+                        icon: AppAssets.email,
+                        hasError: context.watch<AuthCubit>().hasEmailError,
+                        validator: (String? newValue) => _setError(
+                          TypeField.email,
+                          S.of(context).required,
+                          newValue,
+                          S.of(context).invalidEmail,
+                        ),
                       ),
-                    )),
+                      SizedBox(height: Dimensions.height10),
+                      CustomTextFormField(
+                        controller: _password,
+                        isDark: widget.isDark,
+                        isPassword: true,
+                        showPassword: context.watch<AuthCubit>().showPassword,
+                        hasError: context.watch<AuthCubit>().hasPasswordError,
+                        hint: S.of(context).password,
+                        icon: AppAssets.lock,
+                        onSaved: (newValue) {},
+                        validator: (String? newValue) => _setError(
+                          TypeField.password,
+                          S.of(context).required,
+                          newValue,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                CustomButton(
+                  text: S.of(context).signIn,
+                  onclick: () => _login(),
+                ),
               ],
             ),
           ),

@@ -1,8 +1,8 @@
 import 'package:chairy_app/core/services/api_services.dart';
 import 'package:chairy_app/core/services/constants.dart';
 import 'package:chairy_app/core/services/db_services.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/features/cart/data/models/cart_model.dart';
-import 'package:chairy_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:chairy_app/features/categories/data/models/category_model.dart';
 import 'package:chairy_app/features/categories/data/models/product_model.dart';
 
@@ -49,13 +49,13 @@ class ApiDBServices extends DBServices {
   }
 
   @override
-  Future<void> addItemToCart(CartEntity item, String? token) async {
+  Future<void> addItemToCart(CartEntity cart, String? token) async {
     try {
       final response = await _apiService.post(
         endpoint: addItemToTheCart,
         data: {
-          "item_id": item.id,
-          "qty": item.quantity,
+          "item_id": cart.id,
+          "qty": cart.quantity,
         },
         token: token,
       );

@@ -115,5 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "You Must Provide The Number Of The Product",
     ),
     "yourCart": MessageLookupByLibrary.simpleMessage("Your Cart"),
+    "yourCustomerDataForTheOrder": MessageLookupByLibrary.simpleMessage(
+      "Your Customer Data For The Order",
+    ),
   };
 }

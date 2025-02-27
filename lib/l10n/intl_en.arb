@@ -52,5 +52,6 @@
   "thisQuantityIsOnlyAvailable": "This Quantity Is Only Available",
   "outOfStock": "Out Of Stock",
   "youMustProvideTheNumberOfTheProduct": "You Must Provide The Number Of The Product",
-  "theProductWasSuccessfullyAdded": "The Product Was Successfully Added"
+  "theProductWasSuccessfullyAdded": "The Product Was Successfully Added",
+  "yourCustomerDataForTheOrder": "Your Customer Data For The Order"
 }

@@ -35,4 +35,23 @@ class HiveService {
     var box = getBox<T>(boxName);
     return box.isEmpty;
   }
+
+  bool containsData<T>(String boxName, bool Function(T) condition) {
+    var box = getBox<T>(boxName);
+    return box.values.any(condition);
+  }
+
+  Future<void> updateData<T>(String boxName, int index, T newValue) async {
+    var box = getBox<T>(boxName);
+    if (index >= 0 && index < box.length) {
+      await box.putAt(index, newValue);
+    }
+  }
+
+  Future<void> deleteData<T>(String boxName, int index) async {
+    var box = getBox<T>(boxName);
+    if (index >= 0 && index < box.length) {
+      await box.deleteAt(index);
+    }
+  }
 }

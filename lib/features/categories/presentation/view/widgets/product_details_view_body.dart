@@ -1,6 +1,7 @@
 import 'package:chairy_app/core/helper_functions/snack_bar.dart';
 import 'package:chairy_app/core/shared/cubits/product_count/product_count_cubit.dart';
 import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
@@ -9,13 +10,12 @@ import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/core/widgets/custom_button.dart';
 import 'package:chairy_app/core/widgets/custom_cached_network_image.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
-import 'package:chairy_app/features/cart/domain/entities/cart_entity.dart';
-import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
-import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_state.dart';
 import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/counter_and_share_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/dir_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/title_price_desc_product_widget.dart';
+import 'package:chairy_app/features/categories/presentation/viewmodel/product_details/product_details_cubit.dart';
+import 'package:chairy_app/features/categories/presentation/viewmodel/product_details/product_details_state.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,17 +33,17 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
   bool get _isDark => context.watch<ThemeCubit>().isDark;
 
   int get _countOfProducts =>
-      BlocProvider.of<ProductCountCubit>(context).getCount(widget.product.id);
+      BlocProvider.of<ProductCountCubit>(context).getCount(widget.product.id!);
 
   void _addToCart() {
     if (_countOfProducts > 0) {
-      context.read<CartCubit>().addItemToCart(
+      context.read<ProductDetailsCubit>().addItemToCart(
             CartEntity(
-              id: widget.product.id,
+              id: widget.product.id!,
               name: widget.product.title,
               price: widget.product.price,
-              quantity: widget.product.quantity,
-              subTotal: widget.product.price * _countOfProducts,
+              quantity: _countOfProducts,
+              subTotal: widget.product.price! * _countOfProducts,
             ),
             getIt.get<MySharedPreferences>().getUserToken(),
           );
@@ -56,13 +56,18 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
   }
 
   void _handleState(state) {
-    if (state is CartAddItemToCartState) {
+    if (state is ProductDetailsAddItemToCartState) {
       snackBar(
         context: context,
         text: S.of(context).theProductWasSuccessfullyAdded,
         color: AppColors.primaryColor,
       );
-    } else if (state is CartFailureState) {
+    } else if (state is ProductDetailsItemIsExistToCartState) {
+      snackBar(
+        context: context,
+        text: "Item is already in the cart",
+      );
+    } else if (state is ProductDetailsFailureState) {
       snackBar(
         context: context,
         text: state.failure.message,
@@ -72,10 +77,10 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CartCubit, CartState>(
+    return BlocConsumer<ProductDetailsCubit, ProductDetailsState>(
       listener: (context, state) => _handleState(state),
       builder: (context, state) {
-        if (state is CartLoadingState) {
+        if (state is ProductDetailsLoadingState) {
           return const Loading();
         }
 
@@ -94,7 +99,8 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
               SizedBox(
                 width: Dimensions.height132 * 1.5,
                 height: Dimensions.height132 * 1.5,
-                child: CustomCachedNetworkImage(image: widget.product.imageUrl),
+                child:
+                    CustomCachedNetworkImage(image: widget.product.imageUrl!),
               ),
               SizedBox(height: Dimensions.height30),
               Padding(
@@ -108,8 +114,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
                     SizedBox(height: Dimensions.height20),
                     CounterAndShareWidget(
                       isDark: _isDark,
-                      productId: widget.product.id,
-                      productQuantity: widget.product.quantity,
+                      product: widget.product,
                     ),
                     SizedBox(height: Dimensions.height30),
                     CustomButton(
