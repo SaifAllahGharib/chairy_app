@@ -11,6 +11,7 @@ import 'package:chairy_app/features/cart/presentation/view/widgets/cart_list_vie
 import 'package:chairy_app/features/cart/presentation/view/widgets/top_section_cart_view.dart';
 import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
 import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_state.dart';
+import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,7 +55,7 @@ class _CartViewBodyState extends State<CartViewBody> {
     } else if (state is CartFailureState) {
       snackBar(
         context: context,
-        text: "Failed to get cashed items",
+        text: S.of(context).failedToGetCashedItems,
       );
     }
   }

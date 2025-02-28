@@ -8,6 +8,8 @@ import 'package:chairy_app/core/utils/app_router.dart';
 import 'package:chairy_app/core/utils/app_themes.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
+import 'package:chairy_app/features/categories/domain/usecases/get_categories.dart';
+import 'package:chairy_app/features/categories/presentation/viewmodel/categories/categories_cubit.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +40,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LocalCubit(getIt.get<MySharedPreferences>()),
+        ),
+        BlocProvider(
+          create: (context) => CategoriesCubit(getIt.get<GetCategories>()),
         ),
         BlocProvider(
           create: (context) => CounterCubit(

@@ -7,7 +7,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   CategoriesCubit(this._getCategories) : super(CategoriesInitState());
 
-  void fetchCategories() async {
+  Future<void> fetchCategories() async {
     emit(CategoriesLoadingState());
     final result = await _getCategories.call();
 

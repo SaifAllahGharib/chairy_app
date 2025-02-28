@@ -71,5 +71,11 @@
   "deliveryaddress": "Delivery address",
   "edit": "Edit",
   "yourShoppingCart": "Your Shopping Cart",
-  "aboutTheChair": "About The Chair"
+  "aboutTheChair": "About The Chair",
+  "pleaseCheckYourNetwork": "Please Check Your Network",
+  "createOrderSuccessfully": "Create Order Successfully",
+  "failedToGetCashedItems": "Failed To Get Cashed Items",
+  "pleaseProvideTheNumberOfTheProduct": "Please Provide The Number Of The Product",
+  "itemIsAlreadyInTheCart": "Item Is Already In The Cart",
+  "iWantToBuy": "I Want To Buy"
 }

@@ -36,6 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Chic Furnishings Online Furniture Store",
     ),
     "city": MessageLookupByLibrary.simpleMessage("City"),
+    "createOrderSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Create Order Successfully",
+    ),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
     "data": MessageLookupByLibrary.simpleMessage("DATA"),
     "dearCustomerPleaseCheckYourInformationForAccuracy":
@@ -62,6 +65,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "extensiveCatalog": MessageLookupByLibrary.simpleMessage(
       "Extensive Catalog",
     ),
+    "failedToGetCashedItems": MessageLookupByLibrary.simpleMessage(
+      "Failed To Get Cashed Items",
+    ),
     "featuersWeOfferToYou": MessageLookupByLibrary.simpleMessage(
       "Featuers We Offer To You",
     ),
@@ -76,7 +82,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "iAmNewToThisStore": MessageLookupByLibrary.simpleMessage(
       "I AM NEW TO THIS STORE",
     ),
+    "iWantToBuy": MessageLookupByLibrary.simpleMessage("I Want To Buy"),
     "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid Email"),
+    "itemIsAlreadyInTheCart": MessageLookupByLibrary.simpleMessage(
+      "Item Is Already In The Cart",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
     "lightMode": MessageLookupByLibrary.simpleMessage("Light Mode"),
@@ -94,6 +104,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "payment": MessageLookupByLibrary.simpleMessage("PAYMENT"),
     "paypal": MessageLookupByLibrary.simpleMessage("Paypal"),
     "placeOrder": MessageLookupByLibrary.simpleMessage("Place order"),
+    "pleaseCheckYourNetwork": MessageLookupByLibrary.simpleMessage(
+      "Please Check Your Network",
+    ),
+    "pleaseProvideTheNumberOfTheProduct": MessageLookupByLibrary.simpleMessage(
+      "Please Provide The Number Of The Product",
+    ),
     "register": MessageLookupByLibrary.simpleMessage("REGISTER"),
     "registerSuccess": MessageLookupByLibrary.simpleMessage("Register success"),
     "required": MessageLookupByLibrary.simpleMessage("*  Required"),

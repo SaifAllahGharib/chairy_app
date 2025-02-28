@@ -11,3 +11,5 @@ class CounterDecrementState extends CounterState {}
 class CounterProductOutOfStockState extends CounterState {}
 
 class CounterThisCountIsOnlyAvailableState extends CounterState {}
+
+class CounterFailureState extends CounterState {}

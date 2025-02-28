@@ -6,6 +6,7 @@ import 'package:chairy_app/core/shared/usecases/increase_item.dart';
 import 'package:chairy_app/core/shared/usecases/is_item_exist.dart';
 import 'package:chairy_app/core/utils/hive_service.dart';
 import 'package:chairy_app/core/utils/internet_connectivity.dart';
+import 'package:chairy_app/core/utils/local_notification_service.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:chairy_app/features/auth/data/repositories/auth_repository_impl.dart';
@@ -35,6 +36,10 @@ import 'package:get_it/get_it.dart';
 final GetIt getIt = GetIt.instance;
 
 void setupServiceLocator() {
+  getIt.registerLazySingleton<LocalNotificationService>(
+    () => LocalNotificationService(),
+  );
+
   getIt.registerSingleton<InternetConnectivity>(InternetConnectivity());
 
   getIt.registerSingleton<MySharedPreferences>(MySharedPreferences());

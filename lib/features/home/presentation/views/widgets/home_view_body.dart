@@ -19,7 +19,10 @@ class HomeViewBody extends StatelessWidget {
         ),
         Column(
           children: [
-            CustomAppBar(bottom: Dimensions.height50),
+            CustomAppBar(
+              bottom: Dimensions.height50,
+              searchOrMenu: true,
+            ),
             SizedBox(height: Dimensions.height132),
             const TextSection(),
           ],

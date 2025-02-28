@@ -1,5 +1,6 @@
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/hive_service.dart';
+import 'package:chairy_app/core/utils/local_notification_service.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
@@ -19,6 +20,7 @@ Future<void> initApp() async {
 
   await Future.wait([
     getIt.get<MySharedPreferences>().init(),
+    getIt.get<LocalNotificationService>().initNotifications(),
     getIt.get<HiveService>().initBox<CategoryEntity>("categories_box"),
     getIt.get<HiveService>().initBox<ProductEntity>("products_box"),
     getIt.get<HiveService>().initBox<CartEntity>("cartBox"),

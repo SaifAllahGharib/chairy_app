@@ -41,13 +41,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset(
-            widget.searchOrMenu || widget.darkLogo
+            widget.darkLogo
                 ? _isDark
                     ? AppAssets.logo
                     : AppAssets.darkLogo
                 : AppAssets.logo,
           ),
-          widget.searchOrMenu
+          !widget.searchOrMenu
               ? const CustomCloseButton()
               : Row(
                   children: [

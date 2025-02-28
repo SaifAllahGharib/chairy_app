@@ -32,9 +32,7 @@ class CounterCubit extends Cubit<CounterState> {
           final response = await _increaseItem.call(token, productId);
 
           response.fold(
-            (l) {
-              print("FAILURE TO INC DB STATE");
-            },
+            (l) => emit(CounterFailureState()),
             (r) {
               _count[productId] = (_count[productId] ?? countInDB) + 1;
 
@@ -69,9 +67,7 @@ class CounterCubit extends Cubit<CounterState> {
         final response = await _decreaseItem.call(token, productId);
 
         response.fold(
-          (l) {
-            print("FAILURE TO DEC DB STATE");
-          },
+          (l) => emit(CounterFailureState()),
           (r) {
             _count[productId] = (_count[productId] ?? countInDB) - 1;
 

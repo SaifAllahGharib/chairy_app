@@ -35,7 +35,7 @@ class DetailsOrderView extends StatelessWidget {
 
       snackBar(
         context: context,
-        text: "Create order success",
+        text: S.of(context).createOrderSuccessfully,
         color: AppColors.primaryColor,
       );
 

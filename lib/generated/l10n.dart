@@ -596,6 +596,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Please Check Your Network`
+  String get pleaseCheckYourNetwork {
+    return Intl.message(
+      'Please Check Your Network',
+      name: 'pleaseCheckYourNetwork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Order Successfully`
+  String get createOrderSuccessfully {
+    return Intl.message(
+      'Create Order Successfully',
+      name: 'createOrderSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed To Get Cashed Items`
+  String get failedToGetCashedItems {
+    return Intl.message(
+      'Failed To Get Cashed Items',
+      name: 'failedToGetCashedItems',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Provide The Number Of The Product`
+  String get pleaseProvideTheNumberOfTheProduct {
+    return Intl.message(
+      'Please Provide The Number Of The Product',
+      name: 'pleaseProvideTheNumberOfTheProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item Is Already In The Cart`
+  String get itemIsAlreadyInTheCart {
+    return Intl.message(
+      'Item Is Already In The Cart',
+      name: 'itemIsAlreadyInTheCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I Want To Buy`
+  String get iWantToBuy {
+    return Intl.message(
+      'I Want To Buy',
+      name: 'iWantToBuy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

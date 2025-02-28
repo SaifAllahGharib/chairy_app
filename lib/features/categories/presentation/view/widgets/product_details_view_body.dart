@@ -52,7 +52,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
     } else {
       snackBar(
         context: context,
-        text: "Please increment count of the product",
+        text: S.of(context).pleaseProvideTheNumberOfTheProduct,
       );
     }
   }
@@ -72,7 +72,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
     } else if (state is ProductDetailsItemIsExistToCartState) {
       snackBar(
         context: context,
-        text: "Item is already in the cart",
+        text: S.of(context).itemIsAlreadyInTheCart,
       );
     } else if (state is ProductDetailsFailureState) {
       snackBar(

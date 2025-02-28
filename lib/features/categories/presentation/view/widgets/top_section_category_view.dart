@@ -18,6 +18,7 @@ class TopSectionProductsCategoryView extends StatelessWidget {
         children: [
           CustomAppBar(
             darkLogo: true,
+            searchOrMenu: true,
             bottom: Dimensions.height50,
           ),
           Container(
