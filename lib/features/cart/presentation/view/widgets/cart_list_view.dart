@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 class CartListView extends StatelessWidget {
   final bool isDark;
-  final List<CartEntity> products;
+  final List<CartEntity> items;
 
   const CartListView({
     super.key,
     required this.isDark,
-    required this.products,
+    required this.items,
   });
 
   @override
@@ -18,11 +18,11 @@ class CartListView extends StatelessWidget {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: Dimensions.height20),
       sliver: SliverList.builder(
-        itemCount: products.length,
+        itemCount: items.length,
         itemBuilder: (context, index) {
           return CustomItemCartListView(
-            product: products[index],
             isDark: isDark,
+            item: items[index],
           );
         },
       ),

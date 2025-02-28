@@ -1,35 +1,34 @@
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
+import 'package:chairy_app/core/shared/usecases/is_item_exist.dart';
 import 'package:chairy_app/features/categories/domain/usecases/add_item_to_cart.dart';
-import 'package:chairy_app/features/categories/domain/usecases/is_item_exist_to_cart.dart';
 import 'package:chairy_app/features/categories/presentation/viewmodel/product_details/product_details_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
-  final IsItemExistToCart _isItemExistToCart;
-  final AddItemToCart _addItemToCart;
+  final AddItemToCart _cashedItemToCart;
+  final IsItemExist _isItemExist;
 
   ProductDetailsCubit(
-    this._isItemExistToCart,
-    this._addItemToCart,
+    this._cashedItemToCart,
+    this._isItemExist,
   ) : super(ProductDetailsInitState());
 
-  Future<void> addItemToCart(CartEntity cart, String? token) async {
+  Future<void> addItemToCart(CartEntity item, String? token) async {
     emit(ProductDetailsLoadingState());
+    final response = await _isItemExist.call(token, item.id);
 
-    final product = await _isItemExistToCart.call(cart.id);
-
-    product.fold(
+    response.fold(
       (error) => emit(ProductDetailsFailureState(error)),
-      (r) async {
-        if (r) {
-          emit(ProductDetailsItemIsExistToCartState());
-        } else {
-          final result = await _addItemToCart.call(cart, token);
+      (exist) async {
+        if (!exist) {
+          final response = await _cashedItemToCart.call(item, token);
 
-          result.fold(
+          response.fold(
             (error) => emit(ProductDetailsFailureState(error)),
             (r) => emit(ProductDetailsAddItemToCartState()),
           );
+        } else {
+          emit(ProductDetailsItemIsExistToCartState());
         }
       },
     );

@@ -21,6 +21,6 @@ Future<void> initApp() async {
     getIt.get<MySharedPreferences>().init(),
     getIt.get<HiveService>().initBox<CategoryEntity>("categories_box"),
     getIt.get<HiveService>().initBox<ProductEntity>("products_box"),
-    getIt.get<HiveService>().initBox<CartEntity>("cart_box"),
+    getIt.get<HiveService>().initBox<CartEntity>("cartBox"),
   ]);
 }

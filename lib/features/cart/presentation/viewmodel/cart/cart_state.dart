@@ -7,10 +7,10 @@ class CartInitState extends CartState {}
 
 class CartLoadingState extends CartState {}
 
-class CartGetItemsFromState extends CartState {
-  final List<CartEntity> cart;
+class CartGetItemsFromCartState extends CartState {
+  final List<CartEntity> items;
 
-  CartGetItemsFromState(this.cart);
+  CartGetItemsFromCartState(this.items);
 }
 
 class CartRemoveItemFromCartState extends CartState {}

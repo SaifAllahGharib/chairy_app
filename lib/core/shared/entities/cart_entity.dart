@@ -7,28 +7,19 @@ class CartEntity {
   @HiveField(0)
   final int id;
   @HiveField(1)
-  final String? name;
+  final String title;
   @HiveField(2)
-  final int quantity;
+  final num price;
   @HiveField(3)
-  final num? price;
+  final int quantity;
   @HiveField(4)
-  final num? subTotal;
+  final num subTotal;
 
   CartEntity({
     required this.id,
-    this.name,
+    required this.title,
+    required this.price,
     required this.quantity,
-    this.price,
-    this.subTotal,
+    required this.subTotal,
   });
-
-  CartEntity copyWith({int? id, int? quantity, String? name, num? subTotal}) {
-    return CartEntity(
-      id: id ?? this.id,
-      quantity: quantity ?? this.quantity,
-      name: name ?? this.name,
-      subTotal: subTotal ?? this.subTotal,
-    );
-  }
 }

@@ -1,14 +1,14 @@
 import 'package:chairy_app/core/errors/failure.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
-import 'package:chairy_app/features/categories/domain/repositories/product_repository.dart';
+import 'package:chairy_app/features/categories/domain/repositories/product_details_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class AddItemToCart {
-  final ProductRepository _productRepository;
+  final ProductDetailsRepository _productDetailsRepository;
 
-  AddItemToCart(this._productRepository);
+  AddItemToCart(this._productDetailsRepository);
 
-  Future<Either<Failure, void>> call(CartEntity cart, String? token) async {
-    return await _productRepository.addItemToCart(cart, token);
+  Future<Either<Failure, void>> call(CartEntity item, String? token) async {
+    return _productDetailsRepository.addItemToCart(item, token);
   }
 }

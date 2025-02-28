@@ -1,4 +1,5 @@
 import 'package:chairy_app/core/errors/failure.dart';
+import 'package:chairy_app/features/auth/domain/entities/order_entity.dart';
 import 'package:chairy_app/features/auth/domain/entities/user_entity.dart';
 
 abstract class AuthState {}
@@ -26,3 +27,19 @@ class AuthErrorFieldState extends AuthState {}
 class AuthChangeStepState extends AuthState {}
 
 class AuthChangeViewState extends AuthState {}
+
+class AuthSyncCartSuccessState extends AuthState {}
+
+class AuthSelectPaymentMethodState extends AuthState {}
+
+class AuthCreateOrderState extends AuthState {
+  final OrderEntity order;
+
+  AuthCreateOrderState(this.order);
+}
+
+class AuthCreateOrderFailureState extends AuthState {
+  final Failure failure;
+
+  AuthCreateOrderFailureState(this.failure);
+}

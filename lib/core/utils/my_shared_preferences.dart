@@ -58,6 +58,20 @@ class MySharedPreferences {
         () => _prefs.remove(key), 'Error removing key: $key');
   }
 
+  Future<void> removeKeysContaining(String keyword) async {
+    try {
+      final keys = _prefs.getKeys();
+      for (String key in keys) {
+        if (key.contains(keyword)) {
+          await _prefs.remove(key);
+        }
+      }
+    } catch (e, stacktrace) {
+      _logger.e('Error removing keys containing: $keyword',
+          error: e, stackTrace: stacktrace);
+    }
+  }
+
   String? getString(String key) => _prefs.getString(key);
 
   int? getInt(String key) => _prefs.getInt(key);

@@ -446,6 +446,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Next`
+  String get next {
+    return Intl.message('Next', name: 'next', desc: '', args: []);
+  }
+
+  /// `Go To Home`
+  String get goToHome {
+    return Intl.message('Go To Home', name: 'goToHome', desc: '', args: []);
+  }
+
+  /// `Thank You For Your Purchase!`
+  String get thankYouForYourPurchase {
+    return Intl.message(
+      'Thank You For Your Purchase!',
+      name: 'thankYouForYourPurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're doing a little happy dance over here.`
+  String get weAreDoingALittleHappyDanceOverHere {
+    return Intl.message(
+      'We\'re doing a little happy dance over here.',
+      name: 'weAreDoingALittleHappyDanceOverHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy exclusive discounts & offers`
+  String get enjoyExclusiveDiscountsOffers {
+    return Intl.message(
+      'Enjoy exclusive discounts & offers',
+      name: 'enjoyExclusiveDiscountsOffers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DELIVERY ADDRESS`
+  String get deliveryAddress {
+    return Intl.message(
+      'DELIVERY ADDRESS',
+      name: 'deliveryAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get city {
+    return Intl.message('City', name: 'city', desc: '', args: []);
+  }
+
+  /// `Street Name`
+  String get streetName {
+    return Intl.message('Street Name', name: 'streetName', desc: '', args: []);
+  }
+
+  /// `Building Number`
+  String get buildingNumber {
+    return Intl.message(
+      'Building Number',
+      name: 'buildingNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SELECT PAYMENT METHOD`
+  String get selectPaymentMethod {
+    return Intl.message(
+      'SELECT PAYMENT METHOD',
+      name: 'selectPaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Payment`
+  String get cardPayment {
+    return Intl.message(
+      'Card Payment',
+      name: 'cardPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paypal`
+  String get paypal {
+    return Intl.message('Paypal', name: 'paypal', desc: '', args: []);
+  }
+
+  /// `REVIEW ORDER`
+  String get reviewOrder {
+    return Intl.message(
+      'REVIEW ORDER',
+      name: 'reviewOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dear Customer, Please Check Your Information For Accuracy.`
+  String get dearCustomerPleaseCheckYourInformationForAccuracy {
+    return Intl.message(
+      'Dear Customer, Please Check Your Information For Accuracy.',
+      name: 'dearCustomerPleaseCheckYourInformationForAccuracy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery address`
+  String get deliveryaddress {
+    return Intl.message(
+      'Delivery address',
+      name: 'deliveryaddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message('Edit', name: 'edit', desc: '', args: []);
+  }
+
+  /// `Your Shopping Cart`
+  String get yourShoppingCart {
+    return Intl.message(
+      'Your Shopping Cart',
+      name: 'yourShoppingCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About The Chair`
+  String get aboutTheChair {
+    return Intl.message(
+      'About The Chair',
+      name: 'aboutTheChair',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

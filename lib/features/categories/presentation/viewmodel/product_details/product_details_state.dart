@@ -6,10 +6,6 @@ class ProductDetailsInitState extends ProductDetailsState {}
 
 class ProductDetailsLoadingState extends ProductDetailsState {}
 
-// class ProductDetailsIncrementState extends ProductDetailsState {}
-//
-// class ProductDetailsDecrementState extends ProductDetailsState {}
-
 class ProductDetailsAddItemToCartState extends ProductDetailsState {}
 
 class ProductDetailsItemIsExistToCartState extends ProductDetailsState {}

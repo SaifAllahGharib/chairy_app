@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 
 class BringingText extends StatelessWidget {
   final bool isDark;
+  final String? text;
 
-  const BringingText({super.key, required this.isDark});
+  const BringingText({super.key, required this.isDark, this.text});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      S.of(context).bringingYourStyleHome,
+      text ?? S.of(context).bringingYourStyleHome,
       textAlign: TextAlign.center,
       style: Styles.textStyle16.copyWith(
         color: isDark ? AppColors.white : AppColors.black,

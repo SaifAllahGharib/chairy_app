@@ -1,3 +1,4 @@
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
@@ -9,8 +10,10 @@ import 'package:go_router/go_router.dart';
 
 class BottomSecCartView extends StatelessWidget {
   final bool isDark;
+  final List<CartEntity> cart;
 
-  const BottomSecCartView({super.key, required this.isDark});
+  const BottomSecCartView(
+      {super.key, required this.isDark, required this.cart});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,10 @@ class BottomSecCartView extends StatelessWidget {
             CustomButton(
               text: S.of(context).placeOrder,
               onclick: () {
-                GoRouter.of(context).push(AuthView.id);
+                GoRouter.of(context).push(
+                  AuthView.id,
+                  extra: cart,
+                );
               },
             ),
             SizedBox(height: Dimensions.height15),

@@ -1,6 +1,7 @@
-import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/features/auth/presentaion/view/auth_view.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
+import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/product_details_view.dart';
 import 'package:chairy_app/features/categories/presentation/view/products_category_view.dart';
 import 'package:chairy_app/features/main/presentation/view/main_view.dart';
@@ -38,7 +39,11 @@ abstract class AppRouter {
         builder: (context, state) =>
             ProductDetailsView(product: state.extra as ProductEntity),
       ),
-      GoRoute(path: AuthView.id, builder: (context, state) => const AuthView()),
+      GoRoute(
+        path: AuthView.id,
+        builder: (context, state) =>
+            AuthView(cart: state.extra as List<CartEntity>? ?? []),
+      ),
     ],
   );
 }

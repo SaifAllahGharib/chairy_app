@@ -17,13 +17,13 @@ class ProductEntityAdapter extends TypeAdapter<ProductEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProductEntity(
-      id: fields[0] as int,
-      title: fields[1] as String,
-      description: fields[2] as String,
-      price: fields[3] as double,
-      discountPrice: fields[4] as double,
-      quantity: fields[5] as int,
-      imageUrl: fields[6] as String,
+      id: fields[0] as int?,
+      title: fields[1] as String?,
+      description: fields[2] as String?,
+      price: fields[3] as double?,
+      discountPrice: fields[4] as double?,
+      quantity: fields[5] as int?,
+      imageUrl: fields[6] as String?,
     );
   }
 

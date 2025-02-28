@@ -3,4 +3,5 @@ enum TypeField {
   firstName,
   lastName,
   password,
+  address,
 }

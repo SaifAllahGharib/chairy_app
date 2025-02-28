@@ -1,6 +1,8 @@
-import 'package:chairy_app/core/shared/cubits/product_count/product_count_cubit.dart';
+import 'package:chairy_app/core/shared/cubits/counter/counter_cubit.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/utils/my_shared_preferences.dart';
+import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/core/widgets/custom_cached_network_image.dart';
 import 'package:chairy_app/core/widgets/custom_category_icon_button.dart';
@@ -24,13 +26,12 @@ class ProductsItemGridView extends StatefulWidget {
 }
 
 class _ProductsItemGridViewState extends State<ProductsItemGridView> {
-  int get count =>
-      context.watch<ProductCountCubit>().getCount(widget.product.id!);
+  String get _token => getIt.get<MySharedPreferences>().getUserToken() ?? "";
 
-  void _incrementCount(BuildContext context) {
-    context.read<ProductCountCubit>().increment(
+  void _increment() {
+    context.read<CounterCubit>().increment(
+          _token,
           widget.product.id!,
-          widget.product.price!,
           widget.product.quantity!,
         );
   }
@@ -64,14 +65,14 @@ class _ProductsItemGridViewState extends State<ProductsItemGridView> {
               isDark: widget.isDark,
               price: widget.product.price,
             ),
-            count == 0
+            context.watch<CounterCubit>().getCount(widget.product.id!) == 0
                 ? CustomCategoryIconButton(
                     isDark: widget.isDark,
                     color: widget.isDark
                         ? AppColors.white
                         : AppColors.midnightBlue,
                     icon: Icons.add,
-                    onClick: () => _incrementCount(context),
+                    onClick: () => _increment(),
                   )
                 : Container(
                     padding: EdgeInsets.all(Dimensions.height15 * 0.8),
@@ -82,7 +83,7 @@ class _ProductsItemGridViewState extends State<ProductsItemGridView> {
                       shape: BoxShape.circle,
                     ),
                     child: Text(
-                      "$count",
+                      "${context.watch<CounterCubit>().getCount(widget.product.id!)}",
                       style: Styles.textStyle20.copyWith(
                         color:
                             widget.isDark ? AppColors.black : AppColors.white,

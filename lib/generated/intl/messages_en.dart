@@ -22,27 +22,41 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutTheChair": MessageLookupByLibrary.simpleMessage("About The Chair"),
     "addToCart": MessageLookupByLibrary.simpleMessage("Add To Cart"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "ar": MessageLookupByLibrary.simpleMessage("Ar"),
     "bringingYourStyleHome": MessageLookupByLibrary.simpleMessage(
       "Bringing Your Style Home",
     ),
+    "buildingNumber": MessageLookupByLibrary.simpleMessage("Building Number"),
+    "cardPayment": MessageLookupByLibrary.simpleMessage("Card Payment"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "chicStore": MessageLookupByLibrary.simpleMessage(
       "Chic Furnishings Online Furniture Store",
     ),
+    "city": MessageLookupByLibrary.simpleMessage("City"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
     "data": MessageLookupByLibrary.simpleMessage("DATA"),
+    "dearCustomerPleaseCheckYourInformationForAccuracy":
+        MessageLookupByLibrary.simpleMessage(
+          "Dear Customer, Please Check Your Information For Accuracy.",
+        ),
+    "deliveryAddress": MessageLookupByLibrary.simpleMessage("DELIVERY ADDRESS"),
+    "deliveryaddress": MessageLookupByLibrary.simpleMessage("Delivery address"),
     "discoverQuality": MessageLookupByLibrary.simpleMessage(
       "Discover quality furniture, curated styles, and exceptional service at Our Store. We make furnishing your home easy and enjoyable.",
     ),
     "discoverRoom": MessageLookupByLibrary.simpleMessage(
       "Discover Elegant Comfort for Every Room",
     ),
+    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "emailAddress": MessageLookupByLibrary.simpleMessage("E-mail Address"),
     "en": MessageLookupByLibrary.simpleMessage("En"),
     "enjoyEexclusive": MessageLookupByLibrary.simpleMessage(
+      "Enjoy exclusive discounts & offers",
+    ),
+    "enjoyExclusiveDiscountsOffers": MessageLookupByLibrary.simpleMessage(
       "Enjoy exclusive discounts & offers",
     ),
     "extensiveCatalog": MessageLookupByLibrary.simpleMessage(
@@ -55,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "furnishYourDreamsChooseWisely": MessageLookupByLibrary.simpleMessage(
       "Furnish Your Dreams, Choose Wisely",
     ),
+    "goToHome": MessageLookupByLibrary.simpleMessage("Go To Home"),
     "iAmAlreadyACustomer": MessageLookupByLibrary.simpleMessage(
       "I AM ALREADY A CUSTOMER",
     ),
@@ -71,20 +86,26 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "moreInfo": MessageLookupByLibrary.simpleMessage("More Info"),
+    "next": MessageLookupByLibrary.simpleMessage("Next"),
     "or": MessageLookupByLibrary.simpleMessage("Or"),
     "our": MessageLookupByLibrary.simpleMessage("Our"),
     "outOfStock": MessageLookupByLibrary.simpleMessage("Out Of Stock"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "payment": MessageLookupByLibrary.simpleMessage("PAYMENT"),
+    "paypal": MessageLookupByLibrary.simpleMessage("Paypal"),
     "placeOrder": MessageLookupByLibrary.simpleMessage("Place order"),
     "register": MessageLookupByLibrary.simpleMessage("REGISTER"),
     "registerSuccess": MessageLookupByLibrary.simpleMessage("Register success"),
     "required": MessageLookupByLibrary.simpleMessage("*  Required"),
     "review": MessageLookupByLibrary.simpleMessage("REVIEW"),
+    "reviewOrder": MessageLookupByLibrary.simpleMessage("REVIEW ORDER"),
     "reviewYourItems": MessageLookupByLibrary.simpleMessage(
       "Review Your Items",
     ),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "selectPaymentMethod": MessageLookupByLibrary.simpleMessage(
+      "SELECT PAYMENT METHOD",
+    ),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
     "signUpWithGoogle": MessageLookupByLibrary.simpleMessage(
@@ -94,6 +115,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sofas, loveseats, armchairs, coffee tables, end tables, entertainment centers, bookshelves.",
     ),
     "someOfOUR": MessageLookupByLibrary.simpleMessage("SOME OF OUR"),
+    "streetName": MessageLookupByLibrary.simpleMessage("Street Name"),
+    "thankYouForYourPurchase": MessageLookupByLibrary.simpleMessage(
+      "Thank You For Your Purchase!",
+    ),
     "theProductWasSuccessfullyAdded": MessageLookupByLibrary.simpleMessage(
       "The Product Was Successfully Added",
     ),
@@ -104,6 +129,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "turnYourRoom": MessageLookupByLibrary.simpleMessage(
       "Turn your room with panto into a lot more minimalist and modern with ease and speed",
+    ),
+    "weAreDoingALittleHappyDanceOverHere": MessageLookupByLibrary.simpleMessage(
+      "We\'re doing a little happy dance over here.",
     ),
     "welcomeToOurStore": MessageLookupByLibrary.simpleMessage(
       "Welcome to Our store",
@@ -117,6 +145,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "yourCart": MessageLookupByLibrary.simpleMessage("Your Cart"),
     "yourCustomerDataForTheOrder": MessageLookupByLibrary.simpleMessage(
       "Your Customer Data For The Order",
+    ),
+    "yourShoppingCart": MessageLookupByLibrary.simpleMessage(
+      "Your Shopping Cart",
     ),
   };
 }

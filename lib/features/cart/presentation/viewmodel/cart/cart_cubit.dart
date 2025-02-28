@@ -1,38 +1,44 @@
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
-import 'package:chairy_app/features/cart/domain/usecases/get_items_from_cart.dart';
+import 'package:chairy_app/features/cart/domain/usecases/get_cashed_item_from_cart.dart';
 import 'package:chairy_app/features/cart/domain/usecases/remove_item_from_cart.dart';
 import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartCubit extends Cubit<CartState> {
-  final GetItemsFromCart _getItemsFromCart;
+  final GetCashedItemFromCart _getCashedItemFromCart;
   final RemoveItemFromCart _removeItemFromCart;
   final MySharedPreferences _mySharedPreferences;
 
   CartCubit(
-    this._getItemsFromCart,
+    this._getCashedItemFromCart,
     this._removeItemFromCart,
     this._mySharedPreferences,
   ) : super(CartInitState());
 
-  Future<void> getItemsFromCart(String? token) async {
+  Future<void> getItemFromCart(String? token) async {
     emit(CartLoadingState());
-    final response = await _getItemsFromCart.call(token);
+
+    final response = await _getCashedItemFromCart.call(token);
 
     response.fold(
       (error) => emit(CartFailureState(error)),
-      (cart) => emit(CartGetItemsFromState(cart)),
+      (items) => emit(CartGetItemsFromCartState(items)),
     );
   }
 
-  Future<void> removeItemFromCart(int itemId) async {
+  Future<void> removeItemFromCart(String? token, int itemId) async {
     emit(CartLoadingState());
-    final response = await _removeItemFromCart.call(itemId);
+
+    final response = await _removeItemFromCart.call(token, itemId);
 
     response.fold(
       (error) => emit(CartFailureState(error)),
-      (_) {
-        _mySharedPreferences.removeKey("item$itemId");
+      (_) async {
+        await Future.wait([
+          _mySharedPreferences.removeKeysContaining("countOfItem"),
+          getItemFromCart(token),
+        ]);
+
         emit(CartRemoveItemFromCartState());
       },
     );

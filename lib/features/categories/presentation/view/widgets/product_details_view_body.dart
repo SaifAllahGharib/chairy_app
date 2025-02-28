@@ -1,5 +1,5 @@
 import 'package:chairy_app/core/helper_functions/snack_bar.dart';
-import 'package:chairy_app/core/shared/cubits/product_count/product_count_cubit.dart';
+import 'package:chairy_app/core/shared/cubits/counter/counter_cubit.dart';
 import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
@@ -32,36 +32,43 @@ class ProductDetailsViewBody extends StatefulWidget {
 class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
   bool get _isDark => context.watch<ThemeCubit>().isDark;
 
-  int get _countOfProducts =>
-      BlocProvider.of<ProductCountCubit>(context).getCount(widget.product.id!);
+  int get _countOfItem =>
+      BlocProvider.of<CounterCubit>(context).getCount(widget.product.id!);
 
-  void _addToCart() {
-    if (_countOfProducts > 0) {
+  String? get _token => getIt.get<MySharedPreferences>().getUserToken();
+
+  void _addItemToCart() {
+    if (_countOfItem > 0) {
       context.read<ProductDetailsCubit>().addItemToCart(
             CartEntity(
               id: widget.product.id!,
-              name: widget.product.title,
-              price: widget.product.price,
-              quantity: _countOfProducts,
-              subTotal: widget.product.price! * _countOfProducts,
+              title: widget.product.title!,
+              price: widget.product.price!,
+              quantity: _countOfItem,
+              subTotal: widget.product.price! * _countOfItem,
             ),
-            getIt.get<MySharedPreferences>().getUserToken(),
+            _token,
           );
     } else {
       snackBar(
         context: context,
-        text: S.of(context).youMustProvideTheNumberOfTheProduct,
+        text: "Please increment count of the product",
       );
     }
   }
 
-  void _handleState(state) {
+  void _handleState(state) async {
     if (state is ProductDetailsAddItemToCartState) {
       snackBar(
         context: context,
         text: S.of(context).theProductWasSuccessfullyAdded,
         color: AppColors.primaryColor,
       );
+
+      await getIt.get<MySharedPreferences>().storeInt(
+            "countOfItem${widget.product.id}",
+            _countOfItem,
+          );
     } else if (state is ProductDetailsItemIsExistToCartState) {
       snackBar(
         context: context,
@@ -119,7 +126,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
                     SizedBox(height: Dimensions.height30),
                     CustomButton(
                       text: S.of(context).addToCart,
-                      onclick: () => _addToCart(),
+                      onclick: () => _addItemToCart(),
                     ),
                   ],
                 ),

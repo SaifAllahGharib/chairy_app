@@ -6,3 +6,7 @@ const String register = "${BASEURL}api/register";
 const String login = "${BASEURL}api/login";
 const String addItemToTheCart = "${BASEURL}api/cart/add-item";
 const String getItemsFromCart = "${BASEURL}api/cart/items";
+const String increaseItem = "${BASEURL}api/cart/increase-item";
+const String decreaseItem = "${BASEURL}api/cart/decrease-item";
+const String removeItemFromCartEndPoint = "${BASEURL}api/cart/remove-item";
+const String createOrderEndPoint = "${BASEURL}api/order/create";

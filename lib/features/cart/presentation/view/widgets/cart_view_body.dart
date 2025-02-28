@@ -1,7 +1,6 @@
 import 'package:chairy_app/core/helper_functions/snack_bar.dart';
 import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
-import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/widgets/custom_app_bar.dart';
@@ -24,37 +23,38 @@ class CartViewBody extends StatefulWidget {
 
 class _CartViewBodyState extends State<CartViewBody> {
   bool get _isDark => context.watch<ThemeCubit>().isDark;
-  List<CartEntity> products = [];
+
+  String? get _token => getIt.get<MySharedPreferences>().getUserToken();
+
+  List<CartEntity> items = [];
 
   @override
   void initState() {
-    _getItems();
+    _getItemsFromCart();
 
     super.initState();
   }
 
-  void _getItems() {
-    context
-        .read<CartCubit>()
-        .getItemsFromCart(getIt.get<MySharedPreferences>().getUserToken());
+  void _getItemsFromCart() {
+    context.read<CartCubit>().getItemFromCart(_token);
   }
 
   void _handleState(state) {
-    if (state is CartGetItemsFromState) {
-      products.clear();
-      products = state.cart;
-    } else if (state is CartRemoveItemFromCartState) {
-      snackBar(
-        context: context,
-        text: "Remove item successfully",
-        color: AppColors.primaryColor,
-      );
+    if (state is CartGetItemsFromCartState) {
+      if (state.items.isNotEmpty) {
+        items = state.items;
 
-      _getItems();
+        for (CartEntity item in items) {
+          getIt.get<MySharedPreferences>().storeInt(
+                "countOfItem${item.id}",
+                item.quantity,
+              );
+        }
+      }
     } else if (state is CartFailureState) {
       snackBar(
         context: context,
-        text: state.failure.message,
+        text: "Failed to get cashed items",
       );
     }
   }
@@ -64,20 +64,26 @@ class _CartViewBodyState extends State<CartViewBody> {
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) => _handleState(state),
       builder: (context, state) {
-        if (state is CartLoadingState) return const Loading();
+        if (state is CartLoadingState) {
+          return const Loading();
+        }
 
         return CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(child: CustomAppBar(darkLogo: true)),
             TopSectionCartView(isDark: _isDark),
-            if (products.isNotEmpty)
+            if (items.isNotEmpty)
               CartListView(
                 isDark: _isDark,
-                products: products,
+                items: items,
               )
             else
               const SliverToBoxAdapter(child: EmptyWidget()),
-            if (products.isNotEmpty) BottomSecCartView(isDark: _isDark)
+            if (items.isNotEmpty)
+              BottomSecCartView(
+                isDark: _isDark,
+                cart: items,
+              )
           ],
         );
       },

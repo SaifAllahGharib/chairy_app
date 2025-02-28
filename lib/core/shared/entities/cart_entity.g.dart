@@ -18,10 +18,10 @@ class CartEntityAdapter extends TypeAdapter<CartEntity> {
     };
     return CartEntity(
       id: fields[0] as int,
-      name: fields[1] as String?,
-      quantity: fields[2] as int,
-      price: fields[3] as num?,
-      subTotal: fields[4] as num?,
+      title: fields[1] as String,
+      price: fields[2] as num,
+      quantity: fields[3] as int,
+      subTotal: fields[4] as num,
     );
   }
 
@@ -32,11 +32,11 @@ class CartEntityAdapter extends TypeAdapter<CartEntity> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.quantity)
-      ..writeByte(3)
       ..write(obj.price)
+      ..writeByte(3)
+      ..write(obj.quantity)
       ..writeByte(4)
       ..write(obj.subTotal);
   }

@@ -7,8 +7,15 @@ import 'package:flutter/material.dart';
 
 class CustomerTextSection extends StatelessWidget {
   final bool isDark;
+  final String? text;
+  final String? subText;
 
-  const CustomerTextSection({super.key, required this.isDark});
+  const CustomerTextSection({
+    super.key,
+    required this.isDark,
+    this.text,
+    this.subText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +24,16 @@ class CustomerTextSection extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            S.of(context).yourCustomerDataForTheOrder,
+            text ?? S.of(context).yourCustomerDataForTheOrder,
             textAlign: TextAlign.center,
             style: Styles.textStyle36.copyWith(
               color: isDark ? AppColors.white : AppColors.black,
             ),
           ),
-          BringingText(isDark: isDark),
+          BringingText(
+            isDark: isDark,
+            text: subText,
+          ),
         ],
       ),
     );

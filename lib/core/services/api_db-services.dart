@@ -2,6 +2,7 @@ import 'package:chairy_app/core/services/api_services.dart';
 import 'package:chairy_app/core/services/constants.dart';
 import 'package:chairy_app/core/services/db_services.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
+import 'package:chairy_app/features/auth/data/models/order_model.dart';
 import 'package:chairy_app/features/cart/data/models/cart_model.dart';
 import 'package:chairy_app/features/categories/data/models/category_model.dart';
 import 'package:chairy_app/features/categories/data/models/product_model.dart';
@@ -84,6 +85,85 @@ class ApiDBServices extends DBServices {
     } catch (e) {
       print("ERROR GET ITEM FROM CART: $e");
       throw Exception('Failed to get items from cart: $e');
+    }
+  }
+
+  @override
+  Future<void> increaseItemToCart(String? token, int itemId) async {
+    try {
+      final response = await _apiService.post(
+        endpoint: increaseItem,
+        data: {
+          "item_id": itemId,
+          "qty": 1,
+        },
+        token: token,
+      );
+
+      print("Increase ITEM TO CART SERVER: $response");
+    } catch (e) {
+      throw Exception('Failed to Increase ITEM TO CART SERVER: $e');
+    }
+  }
+
+  @override
+  Future<void> decreaseItemToCart(String? token, int itemId) async {
+    try {
+      final response = await _apiService.post(
+        endpoint: decreaseItem,
+        data: {
+          "item_id": itemId,
+          "qty": 1,
+        },
+        token: token,
+      );
+
+      print("DECREASE ITEM TO CART SERVER: $response");
+    } catch (e) {
+      throw Exception('Failed to DECREASE ITEM TO CART SERVER: $e');
+    }
+  }
+
+  @override
+  Future<void> removeItemFromCart(String? token, int itemId) async {
+    try {
+      final response = await _apiService.post(
+        endpoint: removeItemFromCartEndPoint,
+        data: {"item_id": itemId},
+        token: token,
+      );
+
+      print("REMOVE ITEM TO CART SERVER: $response");
+    } catch (e) {
+      throw Exception('Failed to DECREASE ITEM TO CART SERVER: $e');
+    }
+  }
+
+  @override
+  Future<OrderModel> createOrder(
+    String? token,
+    String shippingStreetAddress,
+    String shippingState,
+    String shippingCountry,
+    String paymentMethod,
+  ) async {
+    try {
+      final response = await _apiService.post(
+        endpoint: removeItemFromCartEndPoint,
+        data: {
+          "shipping_street_address": shippingStreetAddress,
+          "shipping_state": shippingState,
+          "shipping_country": shippingCountry,
+          "payment_method": paymentMethod,
+        },
+        token: token,
+      );
+
+      print("Create Order: $response");
+
+      return OrderModel.fromJson(response.data["data"]);
+    } catch (e) {
+      throw Exception('Failed to Create Order: $e');
     }
   }
 }

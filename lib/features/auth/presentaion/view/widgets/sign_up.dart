@@ -1,7 +1,10 @@
 import 'package:chairy_app/core/helper_functions/snack_bar.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/utils/my_shared_preferences.dart';
+import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/utils/styles.dart';
 import 'package:chairy_app/core/utils/type_field.dart';
 import 'package:chairy_app/core/widgets/custom_button.dart';
@@ -18,11 +21,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SignUp extends StatefulWidget {
   final bool isDark;
   final int index;
+  final List<CartEntity> cart;
 
   const SignUp({
     super.key,
     required this.isDark,
     required this.index,
+    required this.cart,
   });
 
   @override
@@ -80,13 +85,24 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
-  void _handelState(state) {
+  void _handelState(state) async {
     if (state is AuthSuccessState) {
       snackBar(
         context: context,
         text: S.of(context).registerSuccess,
         color: AppColors.primaryColor,
       );
+
+      await Future.wait([
+        getIt.get<MySharedPreferences>().storeString(
+              "token",
+              "${state.user.token}",
+            ),
+        context.read<AuthCubit>().syncCartWithServer(
+              widget.cart,
+              state.user.token,
+            ),
+      ]);
     } else if (state is AuthFailureState) {
       snackBar(
         context: context,
@@ -127,7 +143,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 Text(
-                  "Enjoy exclusive discounts & offers",
+                  S.of(context).enjoyExclusiveDiscountsOffers,
                   style: Styles.textStyle10.copyWith(
                     fontWeight: FontWeight.w400,
                     color: widget.isDark ? AppColors.white : AppColors.black,
@@ -262,7 +278,7 @@ class _SignUpState extends State<SignUp> {
                 const Spacer(),
                 CustomButton(
                   text: S.of(context).signUp,
-                  onclick: () {},
+                  onclick: () => _register(),
                 ),
                 SizedBox(height: Dimensions.height15),
                 OrWidget(isDark: widget.isDark),

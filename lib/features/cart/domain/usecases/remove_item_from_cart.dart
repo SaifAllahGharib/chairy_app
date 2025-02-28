@@ -7,7 +7,7 @@ class RemoveItemFromCart {
 
   RemoveItemFromCart(this._cartRepository);
 
-  Future<Either<Failure, void>> call(int itemId) async {
-    return await _cartRepository.removeItemFromCart(itemId);
+  Future<Either<Failure, void>> call(String? token, int itemId) async {
+    return await _cartRepository.removeItemFromCart(token, itemId);
   }
 }

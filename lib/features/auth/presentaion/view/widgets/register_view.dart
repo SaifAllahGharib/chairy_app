@@ -1,3 +1,4 @@
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/styles.dart';
@@ -8,15 +9,27 @@ import 'package:chairy_app/features/auth/presentaion/view/widgets/sign_up.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
-class RegisterView extends StatelessWidget {
+class RegisterView extends StatefulWidget {
   final bool isDark;
   final int index;
+  final List<CartEntity> cart;
 
   const RegisterView({
     super.key,
     required this.isDark,
     required this.index,
+    required this.cart,
   });
+
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +46,29 @@ class RegisterView extends StatelessWidget {
                     S.of(context).welcomeToOurStore,
                     textAlign: TextAlign.center,
                     style: Styles.textStyle36.copyWith(
-                      color: isDark ? AppColors.white : AppColors.black,
+                      color: widget.isDark ? AppColors.white : AppColors.black,
                     ),
                   ),
-                  BringingText(isDark: isDark),
+                  BringingText(isDark: widget.isDark),
                 ],
               ),
             ),
             SizedBox(height: Dimensions.height20),
-            CustomTabBar(isDark: isDark),
+            CustomTabBar(isDark: widget.isDark),
             SizedBox(
-              height: Dimensions.height500 * 1.4,
+              height: Dimensions.height500 * 1.45,
               child: TabBarView(
                 children: [
-                  SignIn(isDark: isDark, index: index),
-                  SignUp(isDark: isDark, index: index),
+                  SignIn(
+                    isDark: widget.isDark,
+                    index: widget.index,
+                    cart: widget.cart,
+                  ),
+                  SignUp(
+                    isDark: widget.isDark,
+                    index: widget.index,
+                    cart: widget.cart,
+                  ),
                 ],
               ),
             ),

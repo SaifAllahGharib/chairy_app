@@ -1,7 +1,7 @@
 import 'package:chairy_app/core/errors/failure.dart';
 import 'package:dio/dio.dart';
 
-class ErrorHandler {
+abstract class ErrorHandler {
   static Failure handleError(dynamic error) {
     if (error is DioException) {
       return _handleDioError(error);

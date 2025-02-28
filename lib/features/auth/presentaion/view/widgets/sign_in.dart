@@ -1,4 +1,5 @@
 import 'package:chairy_app/core/helper_functions/snack_bar.dart';
+import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
@@ -18,11 +19,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SignIn extends StatefulWidget {
   final bool isDark;
   final int index;
+  final List<CartEntity> cart;
 
   const SignIn({
     super.key,
     required this.isDark,
     required this.index,
+    required this.cart,
   });
 
   @override
@@ -69,21 +72,28 @@ class _SignInState extends State<SignIn> {
     }
   }
 
-  void _handelState(state) {
+  void _handelState(state) async {
     if (state is AuthSuccessState) {
-      print("LOGIN: ${state.user.email}");
-      getIt.get<MySharedPreferences>().storeString(
-            "token",
-            "${state.user.token}",
-          );
       snackBar(
         context: context,
         text: S.of(context).registerSuccess,
         color: AppColors.primaryColor,
       );
 
-      context.read<AuthCubit>().changeStep(widget.index + 1);
-      context.read<AuthCubit>().changeView();
+      await Future.wait([
+        getIt.get<MySharedPreferences>().storeString(
+              "token",
+              "${state.user.token}",
+            ),
+        context.read<AuthCubit>().syncCartWithServer(
+              widget.cart,
+              state.user.token,
+            ),
+      ]);
+
+      // context.read<AuthCubit>().changeStep(widget.index + 1);
+      //
+      // context.read<AuthCubit>().changeView();
     } else if (state is AuthFailureState) {
       snackBar(
         context: context,
@@ -142,7 +152,6 @@ class _SignInState extends State<SignIn> {
                           S.of(context).invalidEmail,
                         ),
                       ),
-                      SizedBox(height: Dimensions.height10),
                       CustomTextFormField(
                         controller: _password,
                         isDark: widget.isDark,
