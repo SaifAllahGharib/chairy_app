@@ -1,4 +1,5 @@
 import 'package:chairy_app/core/helper_functions/snack_bar.dart';
+import 'package:chairy_app/core/shared/cubits/counter/counter_cubit.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/app_colors.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
@@ -61,7 +62,7 @@ class _DetailsOrderViewState extends State<DetailsOrderView> {
       extra: state.order.sessionUrl,
     )
         .then(
-      (value) {
+      (value) async {
         if (value == "success") {
           context.read<AuthCubit>().changeStep(widget.index + 1);
           context.read<AuthCubit>().changeView();
@@ -73,6 +74,10 @@ class _DetailsOrderViewState extends State<DetailsOrderView> {
         }
       },
     );
+
+    for (int i = 0; i < widget.cart.length; i++) {
+      context.read<CounterCubit>().resetCount(widget.cart[i].id);
+    }
   }
 
   void _handleState(BuildContext context, state) {
@@ -141,6 +146,11 @@ class _DetailsOrderViewState extends State<DetailsOrderView> {
                       CustomListViewShoppingCart(
                         isDark: widget.isDark,
                         cart: widget.cart,
+                      ),
+                      SizedBox(height: Dimensions.height10),
+                      Divider(
+                        thickness: Dimensions.height10 * 0.2,
+                        color: AppColors.gray,
                       ),
                       SizedBox(height: Dimensions.height20),
                       Row(

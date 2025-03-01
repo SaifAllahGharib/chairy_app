@@ -38,6 +38,12 @@ class _ProductsItemGridViewState extends State<ProductsItemGridView> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        "COUNT ITEM IN DB: ${getIt.get<MySharedPreferences>().getInt("countOfItem${widget.product.id}")}");
+
+    print(
+        "COUNT ITEM IN WATCH: ${context.watch<CounterCubit>().getCount(widget.product.id!)}");
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -34,7 +34,6 @@ class ProductsDetailsRemoteDataSourceImpl
 
   @override
   Future<bool> isItemExistToCart(String? token, int productId) {
-    // TODO: implement isItemExistToCart
-    throw UnimplementedError();
+    return _dbServices.isItemInCart(token, productId);
   }
 }

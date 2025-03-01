@@ -80,6 +80,7 @@ class ApiDBServices extends DBServices {
       if (cartItems is List) {
         return cartItems.map((json) => CartModel.fromJson(json)).toList();
       } else {
+        print("Invalid response format: Expected a List");
         throw Exception('Invalid response format: Expected a List');
       }
     } catch (e) {
@@ -164,6 +165,18 @@ class ApiDBServices extends DBServices {
       return OrderModel.fromJson(response.data["data"]);
     } catch (e) {
       print("API ERROR Create Order: $e");
+      throw Exception('Failed to Create Order: $e');
+    }
+  }
+
+  @override
+  Future<bool> isItemInCart(String? token, int itemId) async {
+    try {
+      final cartItems = await getCartItems(token);
+      print("API SUCCESS CHECK IS ITEM EXIST");
+      return cartItems.any((item) => item.id == itemId);
+    } catch (e) {
+      print("API ERROR CHECK IS ITEM EXIST: $e");
       throw Exception('Failed to Create Order: $e');
     }
   }

@@ -27,7 +27,7 @@ class _CartViewBodyState extends State<CartViewBody> {
 
   String? get _token => getIt.get<MySharedPreferences>().getUserToken();
 
-  List<CartEntity> items = [];
+  List<CartEntity> get cart => BlocProvider.of<CartCubit>(context).cart;
 
   double totalPrice = 0;
 
@@ -42,20 +42,26 @@ class _CartViewBodyState extends State<CartViewBody> {
     context.read<CartCubit>().getItemFromCart(_token);
   }
 
-  void _handleState(state) {
-    if (state is CartGetItemsFromCartState) {
-      if (state.items.isNotEmpty) {
-        items = state.items;
+  void _getItemsFromCartSuccess(state) {
+    if (cart.isNotEmpty) {
+      totalPrice = 0;
 
-        for (CartEntity item in items) {
-          getIt.get<MySharedPreferences>().storeInt(
-                "countOfItem${item.id}",
-                item.quantity,
-              );
+      for (CartEntity item in cart) {
+        getIt.get<MySharedPreferences>().storeInt(
+              "countOfItem${item.id}",
+              item.quantity,
+            );
 
-          totalPrice += item.subTotal;
-        }
+        totalPrice += item.subTotal;
       }
+    }
+  }
+
+  void _handleState(state) {
+    print("CURRENT STATE: $state");
+
+    if (state is CartGetItemsFromCartState) {
+      _getItemsFromCartSuccess(state);
     } else if (state is CartFailureState) {
       snackBar(
         context: context,
@@ -69,6 +75,10 @@ class _CartViewBodyState extends State<CartViewBody> {
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) => _handleState(state),
       builder: (context, state) {
+        print("================================");
+        print("CART: $cart");
+        print("================================");
+
         if (state is CartLoadingState) {
           return const Loading();
         }
@@ -77,17 +87,17 @@ class _CartViewBodyState extends State<CartViewBody> {
           slivers: [
             const SliverToBoxAdapter(child: CustomAppBar(darkLogo: true)),
             TopSectionCartView(isDark: _isDark),
-            if (items.isNotEmpty)
+            if (cart.isNotEmpty)
               CartListView(
                 isDark: _isDark,
-                items: items,
+                items: cart,
               )
             else
               const SliverToBoxAdapter(child: EmptyWidget()),
-            if (items.isNotEmpty)
+            if (cart.isNotEmpty)
               BottomSecCartView(
                 isDark: _isDark,
-                cart: items,
+                cart: cart,
                 totalPrice: totalPrice,
               )
           ],

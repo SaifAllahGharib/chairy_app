@@ -14,4 +14,6 @@ class CounterThisCountIsOnlyAvailableState extends CounterState {}
 
 class CounterCanNotDecrementState extends CounterState {}
 
+class CounterResetState extends CounterState {}
+
 class CounterFailureState extends CounterState {}

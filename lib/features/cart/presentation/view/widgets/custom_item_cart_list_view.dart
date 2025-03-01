@@ -12,6 +12,7 @@ import 'package:chairy_app/features/cart/presentation/view/widgets/custom_cart_i
 import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/price_widget.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/custom_icon_button.dart';
+import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,6 +55,7 @@ class _CustomItemCartListViewState extends State<CustomItemCartListView> {
 
   void _removeItemFromCart() {
     context.read<CartCubit>().removeItemFromCart(_token, widget.item.id);
+    context.read<CounterCubit>().resetCount(widget.item.id);
   }
 
   @override
@@ -99,7 +101,7 @@ class _CustomItemCartListViewState extends State<CustomItemCartListView> {
                     ],
                   ),
                   Text(
-                    "About the Chair",
+                    S.of(context).aboutTheChair,
                     style: Styles.textStyle10.copyWith(
                       fontWeight: FontWeight.w400,
                       color: widget.isDark

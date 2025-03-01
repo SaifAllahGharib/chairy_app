@@ -27,31 +27,35 @@ class CustomItemListViewShopping extends StatelessWidget {
           height: Dimensions.height132,
         ),
         SizedBox(width: Dimensions.width20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              cart.title,
-              style: Styles.textStyle16.copyWith(
-                fontWeight: FontWeight.w500,
-                color: isDark ? AppColors.white : AppColors.lightBlack,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                cart.title,
+                softWrap: true,
+                overflow: TextOverflow.visible,
+                style: Styles.textStyle16.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: isDark ? AppColors.white : AppColors.lightBlack,
+                ),
               ),
-            ),
-            Text(
-              S.of(context).aboutTheChair,
-              style: Styles.textStyle10.copyWith(
-                fontWeight: FontWeight.w400,
-                color: isDark ? AppColors.white : AppColors.lightBlack,
+              Text(
+                S.of(context).aboutTheChair,
+                style: Styles.textStyle10.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: isDark ? AppColors.white : AppColors.lightBlack,
+                ),
               ),
-            ),
-            SizedBox(height: Dimensions.height36),
-            PriceWidget(
-              isDark: isDark,
-              price: cart.subTotal,
-              fontSizeIcon: Dimensions.fontSize14,
-              fontSizePrice: Dimensions.fontSize20,
-            ),
-          ],
+              SizedBox(height: Dimensions.height36),
+              PriceWidget(
+                isDark: isDark,
+                price: cart.subTotal,
+                fontSizeIcon: Dimensions.fontSize14,
+                fontSizePrice: Dimensions.fontSize20,
+              ),
+            ],
+          ),
         ),
       ],
     );

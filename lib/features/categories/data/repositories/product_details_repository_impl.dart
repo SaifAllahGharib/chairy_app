@@ -1,7 +1,6 @@
 import 'package:chairy_app/core/errors/errore_handler.dart';
 import 'package:chairy_app/core/errors/failure.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
-import 'package:chairy_app/core/utils/internet_connectivity.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/features/categories/data/data_sources/product_details_local_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/products_details_remote_data_source.dart';
@@ -11,13 +10,11 @@ import 'package:dartz/dartz.dart';
 class ProductDetailsRepositoryImpl extends ProductDetailsRepository {
   final ProductDetailsLocalDataSource _productDetailsLocalDataSource;
   final ProductsDetailsRemoteDataSource _productsDetailsRemoteDataSource;
-  final InternetConnectivity _internetConnectivity;
   final MySharedPreferences _mySharedPreferences;
 
   ProductDetailsRepositoryImpl(
     this._productDetailsLocalDataSource,
     this._productsDetailsRemoteDataSource,
-    this._internetConnectivity,
     this._mySharedPreferences,
   );
 
@@ -97,6 +94,14 @@ class ProductDetailsRepositoryImpl extends ProductDetailsRepository {
   Future<Either<Failure, bool>> isItemExistToCart(
       String? token, int productId) async {
     try {
+      if ((_mySharedPreferences.getBool("con") ?? false) &&
+          _mySharedPreferences.userIsLogin()) {
+        return right(
+          await _productsDetailsRemoteDataSource.isItemExistToCart(
+              token, productId),
+        );
+      }
+
       return right(
           await _productDetailsLocalDataSource.isItemExistToCart(productId));
     } catch (e) {

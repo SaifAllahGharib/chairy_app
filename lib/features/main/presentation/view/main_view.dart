@@ -1,5 +1,6 @@
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
+import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
 import 'package:chairy_app/features/main/presentation/view/widgets/custom_bottom_nav_bar.dart';
 import 'package:chairy_app/features/main/presentation/view/widgets/main_view_body.dart';
 import 'package:chairy_app/features/main/presentation/viewmodel/main/main_cubit.dart';
@@ -25,20 +26,24 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MainCubit(),
-      child: BlocBuilder<MainCubit, MainState>(
-        builder: (context, state) {
-          return Scaffold(
-            body: MainViewBody(index: context.read<MainCubit>().selectedIndex),
-            bottomNavigationBar: CustomBottomNavBar(
-              index: context.read<MainCubit>().selectedIndex,
-              onIndexChanged: (index) =>
-                  context.read<MainCubit>().changeTab(index),
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<MainCubit, MainState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: MainViewBody(index: context.read<MainCubit>().selectedIndex),
+          bottomNavigationBar: CustomBottomNavBar(
+            index: context.read<MainCubit>().selectedIndex,
+            onIndexChanged: (index) {
+              context.read<MainCubit>().changeTab(index);
+
+              if (index == 2) {
+                context.read<CartCubit>().getItemFromCart(
+                      getIt.get<MySharedPreferences>().getUserToken(),
+                    );
+              }
+            },
+          ),
+        );
+      },
     );
   }
 }

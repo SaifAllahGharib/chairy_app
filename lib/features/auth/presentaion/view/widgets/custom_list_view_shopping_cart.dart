@@ -35,9 +35,19 @@ class CustomListViewShoppingCart extends StatelessWidget {
             child: ListView.builder(
               itemCount: cart.length,
               itemBuilder: (context, index) {
-                return CustomItemListViewShopping(
-                  isDark: isDark,
-                  cart: cart[index],
+                return Column(
+                  children: [
+                    CustomItemListViewShopping(
+                      isDark: isDark,
+                      cart: cart[index],
+                    ),
+                    SizedBox(height: Dimensions.height10 * 0.4),
+                    if (index != cart.length - 1)
+                      Divider(
+                        thickness: Dimensions.height20 * 0.1,
+                        color: AppColors.gray,
+                      ),
+                  ],
                 );
               },
             ),

@@ -176,12 +176,8 @@ class AuthCubit extends Cubit<AuthState> {
     response.fold(
       (error) => emit(AuthFailureState(error)),
       (_) async {
-        await Future.wait([
-          _hiveService.clearBox<CartEntity>("cartBox"),
-          _mySharedPreferences.removeKeysContaining("countOfItem"),
-        ]);
-
         emit(AuthSyncCartSuccessState());
+        await _clearCartData();
       },
     );
   }
@@ -204,8 +200,18 @@ class AuthCubit extends Cubit<AuthState> {
 
     response.fold(
       (error) => emit(AuthCreateOrderFailureState(error)),
-      (order) => emit(AuthCreateOrderState(order)),
+      (order) async {
+        emit(AuthCreateOrderState(order));
+        await _clearCartData();
+      },
     );
+  }
+
+  Future<void> _clearCartData() async {
+    await Future.wait([
+      _hiveService.clearBox<CartEntity>("cartBox"),
+      _mySharedPreferences.removeKeysContaining("countOfItem"),
+    ]);
   }
 
   bool get showPassword => _showPassword;

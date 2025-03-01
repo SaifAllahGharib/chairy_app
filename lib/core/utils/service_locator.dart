@@ -17,7 +17,7 @@ import 'package:chairy_app/features/auth/domain/usecases/sync_cart_with_server.d
 import 'package:chairy_app/features/cart/data/data_sources/cart_local_data_source.dart';
 import 'package:chairy_app/features/cart/data/data_sources/cart_remote_data_source.dart';
 import 'package:chairy_app/features/cart/data/repositories/cart_repository_impl.dart';
-import 'package:chairy_app/features/cart/domain/usecases/get_cashed_item_from_cart.dart';
+import 'package:chairy_app/features/cart/domain/usecases/get_items_from_cart.dart';
 import 'package:chairy_app/features/cart/domain/usecases/remove_item_from_cart.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_local_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_remote_data_source.dart';
@@ -84,7 +84,6 @@ void setupServiceLocator() {
     ProductDetailsRepositoryImpl(
       getIt.get<ProductDetailsLocalDataSourceImpl>(),
       getIt.get<ProductsDetailsRemoteDataSourceImpl>(),
-      getIt.get<InternetConnectivity>(),
       getIt.get<MySharedPreferences>(),
     ),
   );
@@ -105,13 +104,12 @@ void setupServiceLocator() {
     CartRepositoryImpl(
       getIt.get<CartLocalDataSourceImpl>(),
       getIt.get<CartRemoteDataSourceImpl>(),
-      getIt.get<InternetConnectivity>(),
       getIt.get<MySharedPreferences>(),
     ),
   );
 
-  getIt.registerSingleton<GetCashedItemFromCart>(
-    GetCashedItemFromCart(getIt.get<CartRepositoryImpl>()),
+  getIt.registerSingleton<GetItemsFromCart>(
+    GetItemsFromCart(getIt.get<CartRepositoryImpl>()),
   );
 
   getIt.registerSingleton<RemoveItemFromCart>(

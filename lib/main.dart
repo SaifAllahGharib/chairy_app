@@ -10,11 +10,12 @@ import 'package:chairy_app/core/utils/app_themes.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
-import 'package:chairy_app/features/cart/domain/usecases/get_cashed_item_from_cart.dart';
+import 'package:chairy_app/features/cart/domain/usecases/get_items_from_cart.dart';
 import 'package:chairy_app/features/cart/domain/usecases/remove_item_from_cart.dart';
 import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
 import 'package:chairy_app/features/categories/domain/usecases/get_categories.dart';
 import 'package:chairy_app/features/categories/presentation/viewmodel/categories/categories_cubit.dart';
+import 'package:chairy_app/features/main/presentation/viewmodel/main/main_cubit.dart';
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
           create: (context) => LocalCubit(getIt.get<MySharedPreferences>()),
         ),
         BlocProvider(
+          create: (context) => MainCubit(),
+        ),
+        BlocProvider(
           create: (context) => CategoriesCubit(getIt.get<GetCategories>()),
         ),
         BlocProvider(
@@ -59,7 +63,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CartCubit(
-            getIt.get<GetCashedItemFromCart>(),
+            getIt.get<GetItemsFromCart>(),
             getIt.get<RemoveItemFromCart>(),
             getIt.get<MySharedPreferences>(),
           ),

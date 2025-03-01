@@ -1,7 +1,6 @@
 import 'package:chairy_app/core/errors/errore_handler.dart';
 import 'package:chairy_app/core/errors/failure.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
-import 'package:chairy_app/core/utils/internet_connectivity.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/features/cart/data/data_sources/cart_local_data_source.dart';
 import 'package:chairy_app/features/cart/data/data_sources/cart_remote_data_source.dart';
@@ -11,28 +10,28 @@ import 'package:dartz/dartz.dart';
 class CartRepositoryImpl extends CartRepository {
   final CartLocalDataSource _cartLocalDataSource;
   final CartRemoteDataSource _cartRemoteDataSource;
-  final InternetConnectivity _internetConnectivity;
   final MySharedPreferences _mySharedPreferences;
 
   CartRepositoryImpl(
     this._cartLocalDataSource,
     this._cartRemoteDataSource,
-    this._internetConnectivity,
     this._mySharedPreferences,
   );
 
   @override
-  Future<Either<Failure, List<CartEntity>>> getCashedItemFromCart(
-      String? token) async {
+  Future<Either<Failure, List<CartEntity>>> getItemsFromCart(
+    String? token,
+  ) async {
     try {
       if ((_mySharedPreferences.getBool("con") ?? false) &&
           _mySharedPreferences.userIsLogin()) {
         final response = await _cartRemoteDataSource.getCartItems(token);
 
-        print("RESPONSE TO GET ITEMS FROM CART");
+        print("RESPONSE TO GET ITEMS FROM CART $response");
 
         return right(response);
       }
+
       return right(_cartLocalDataSource.getCashedItemFromCart());
     } catch (e) {
       print("ERROR TO GET ITEMS FROM CART: $e");

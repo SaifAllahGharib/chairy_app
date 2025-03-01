@@ -72,8 +72,11 @@ class MySharedPreferences {
         }
       }
     } catch (e, stacktrace) {
-      _logger.e('Error removing keys containing: $keyword',
-          error: e, stackTrace: stacktrace);
+      _logger.e(
+        'Error removing keys containing: $keyword',
+        error: e,
+        stackTrace: stacktrace,
+      );
     }
   }
 

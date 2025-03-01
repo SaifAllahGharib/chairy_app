@@ -54,6 +54,9 @@ class CounterCubit extends Cubit<CounterState> {
         }
       }
     }
+
+    print(
+        "COUNT IN DB: ${_mySharedPreferences.getInt("countOfItem$productId")}");
   }
 
   void decrement(String? token, int productId) async {
@@ -85,6 +88,15 @@ class CounterCubit extends Cubit<CounterState> {
     } else {
       emit(CounterCanNotDecrementState());
     }
+
+    print(
+        "COUNT IN DB: ${_mySharedPreferences.getInt("countOfItem$productId")}");
+  }
+
+  void resetCount(int productId) {
+    _count[productId] = 0;
+    _mySharedPreferences.removeKey("countOfItem$productId");
+    emit(CounterResetState());
   }
 
   int getCount(int productId) {

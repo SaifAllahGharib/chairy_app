@@ -28,4 +28,6 @@ abstract class DBServices {
     String shippingCountry,
     String paymentMethod,
   );
+
+  Future<bool> isItemInCart(String? token, int itemId);
 }

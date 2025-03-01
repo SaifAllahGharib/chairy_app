@@ -10,7 +10,6 @@ import 'package:chairy_app/core/widgets/custom_app_bar.dart';
 import 'package:chairy_app/core/widgets/custom_button.dart';
 import 'package:chairy_app/core/widgets/custom_cached_network_image.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
-import 'package:chairy_app/features/cart/presentation/viewmodel/cart/cart_cubit.dart';
 import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/counter_and_share_widget.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/dir_widget.dart';
@@ -58,18 +57,12 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
     }
   }
 
-  void _getCart() {
-    context.read<CartCubit>().getItemFromCart(_token);
-  }
-
   void _addItemSucceeded() async {
     snackBar(
       context: context,
       text: S.of(context).theProductWasSuccessfullyAdded,
       color: AppColors.primaryColor,
     );
-
-    _getCart();
 
     await getIt.get<MySharedPreferences>().storeInt(
           "countOfItem${widget.product.id}",
