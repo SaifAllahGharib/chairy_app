@@ -29,6 +29,8 @@ class _CartViewBodyState extends State<CartViewBody> {
 
   List<CartEntity> items = [];
 
+  double totalPrice = 0;
+
   @override
   void initState() {
     _getItemsFromCart();
@@ -50,6 +52,8 @@ class _CartViewBodyState extends State<CartViewBody> {
                 "countOfItem${item.id}",
                 item.quantity,
               );
+
+          totalPrice += item.subTotal;
         }
       }
     } else if (state is CartFailureState) {
@@ -84,6 +88,7 @@ class _CartViewBodyState extends State<CartViewBody> {
               BottomSecCartView(
                 isDark: _isDark,
                 cart: items,
+                totalPrice: totalPrice,
               )
           ],
         );

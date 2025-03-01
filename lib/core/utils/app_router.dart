@@ -1,5 +1,6 @@
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/features/auth/presentaion/view/auth_view.dart';
+import 'package:chairy_app/features/auth/presentaion/view/widgets/payment_url_web_view.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 import 'package:chairy_app/features/categories/domain/entities/product_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/product_details_view.dart';
@@ -43,6 +44,11 @@ abstract class AppRouter {
         path: AuthView.id,
         builder: (context, state) =>
             AuthView(cart: state.extra as List<CartEntity>? ?? []),
+      ),
+      GoRoute(
+        path: PaymentUrlWebView.id,
+        builder: (context, state) =>
+            PaymentUrlWebView(url: state.extra as String),
       ),
     ],
   );

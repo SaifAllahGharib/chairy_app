@@ -25,7 +25,7 @@ class CartRepositoryImpl extends CartRepository {
   Future<Either<Failure, List<CartEntity>>> getCashedItemFromCart(
       String? token) async {
     try {
-      if (await _internetConnectivity.isConnected &&
+      if ((_mySharedPreferences.getBool("con") ?? false) &&
           _mySharedPreferences.userIsLogin()) {
         final response = await _cartRemoteDataSource.getCartItems(token);
 
@@ -46,7 +46,7 @@ class CartRepositoryImpl extends CartRepository {
     int itemId,
   ) async {
     try {
-      if (await _internetConnectivity.isConnected &&
+      if ((_mySharedPreferences.getBool("con") ?? false) &&
           _mySharedPreferences.userIsLogin()) {
         final response =
             await _cartRemoteDataSource.removeItemFromCart(token, itemId);

@@ -50,7 +50,12 @@ class MySharedPreferences {
 
   Future<bool> storeDouble(String key, double value) async {
     return await _safeWrite(
-        () => _prefs.setDouble(key, value), 'Error storing int');
+        () => _prefs.setDouble(key, value), 'Error storing double');
+  }
+
+  Future<bool> storeBool(String key, bool value) async {
+    return await _safeWrite(
+        () => _prefs.setBool(key, value), 'Error storing bool');
   }
 
   Future<bool> removeKey(String key) async {
@@ -77,6 +82,8 @@ class MySharedPreferences {
   int? getInt(String key) => _prefs.getInt(key);
 
   double? getDouble(String key) => _prefs.getDouble(key);
+
+  bool? getBool(String key) => _prefs.getBool(key);
 
   Future<bool> clearAllData() async {
     return await _safeWrite(() => _prefs.clear(), 'Error clearing data');

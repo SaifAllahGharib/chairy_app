@@ -110,6 +110,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseProvideTheNumberOfTheProduct": MessageLookupByLibrary.simpleMessage(
       "Please Provide The Number Of The Product",
     ),
+    "policyCheckBoxText": MessageLookupByLibrary.simpleMessage(
+      "Yes, I would like to receive personalized offers, tips and tricks, and other information from Store.",
+    ),
+    "privacyInformation": MessageLookupByLibrary.simpleMessage(
+      "privacy information.",
+    ),
     "register": MessageLookupByLibrary.simpleMessage("REGISTER"),
     "registerSuccess": MessageLookupByLibrary.simpleMessage("Register success"),
     "required": MessageLookupByLibrary.simpleMessage("*  Required"),
@@ -135,8 +141,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "thankYouForYourPurchase": MessageLookupByLibrary.simpleMessage(
       "Thank You For Your Purchase!",
     ),
+    "thePaymentProcessFailedOrCanceled": MessageLookupByLibrary.simpleMessage(
+      "The Payment Process Failed Or Canceled",
+    ),
     "theProductWasSuccessfullyAdded": MessageLookupByLibrary.simpleMessage(
       "The Product Was Successfully Added",
+    ),
+    "theTermsAndConditionsText": MessageLookupByLibrary.simpleMessage(
+      "The terms and conditions for Dubai Perfumes apply. Here you can find our ",
     ),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "thisQuantityIsOnlyAvailable": MessageLookupByLibrary.simpleMessage(

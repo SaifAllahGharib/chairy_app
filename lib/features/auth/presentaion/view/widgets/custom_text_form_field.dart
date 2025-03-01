@@ -1,5 +1,6 @@
 import 'package:chairy_app/core/utils/app_assets.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
+import 'package:chairy_app/core/utils/type_field.dart';
 import 'package:chairy_app/features/auth/presentaion/viewmodel/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool isDark;
   final bool isPassword;
   final bool showPassword;
-  final String? icon;
+  final TypeField typeField;
   final String hint;
   final bool hasError;
   final bool isCompleted;
@@ -24,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.controller,
     required this.onSaved,
     required this.hint,
-    this.icon,
+    required this.typeField,
     this.isPassword = false,
     this.showPassword = false,
     this.hasError = false,
@@ -84,7 +85,25 @@ class CustomTextFormField extends StatelessWidget {
                       )
                     : null,
         // suffixIcon: ,
-        icon: icon == null ? null : Image.asset(icon!),
+        icon: typeField == TypeField.address
+            ? null
+            : isDark
+                ? (typeField == TypeField.firstName ||
+                        typeField == TypeField.lastName)
+                    ? Image.asset(AppAssets.nameLight)
+                    : typeField == TypeField.email
+                        ? Image.asset(AppAssets.emailLight)
+                        : typeField == TypeField.password
+                            ? Image.asset(AppAssets.lockLight)
+                            : null
+                : (typeField == TypeField.firstName ||
+                        typeField == TypeField.lastName)
+                    ? Image.asset(AppAssets.name)
+                    : typeField == TypeField.email
+                        ? Image.asset(AppAssets.email)
+                        : typeField == TypeField.password
+                            ? Image.asset(AppAssets.lock)
+                            : null,
       ),
     );
   }

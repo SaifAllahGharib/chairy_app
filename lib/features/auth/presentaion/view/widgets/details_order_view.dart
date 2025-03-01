@@ -9,6 +9,7 @@ import 'package:chairy_app/core/widgets/custom_button.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/custom_list_view_shopping_cart.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/customer_text_section.dart';
+import 'package:chairy_app/features/auth/presentaion/view/widgets/payment_url_web_view.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/row_details_payment_and_address.dart';
 import 'package:chairy_app/features/auth/presentaion/viewmodel/auth/auth_cubit.dart';
 import 'package:chairy_app/features/auth/presentaion/viewmodel/auth/auth_state.dart';
@@ -16,8 +17,9 @@ import 'package:chairy_app/features/categories/presentation/view/widgets/price_w
 import 'package:chairy_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-class DetailsOrderView extends StatelessWidget {
+class DetailsOrderView extends StatefulWidget {
   final bool isDark;
   final int index;
   final List<CartEntity> cart;
@@ -29,19 +31,53 @@ class DetailsOrderView extends StatelessWidget {
     required this.index,
   });
 
+  @override
+  State<DetailsOrderView> createState() => _DetailsOrderViewState();
+}
+
+class _DetailsOrderViewState extends State<DetailsOrderView> {
+  String get payment => BlocProvider.of<AuthCubit>(context).selectedValue;
+  double totalPrice = 0;
+
+  @override
+  void initState() {
+    for (int i = 0; i < widget.cart.length; i++) {
+      totalPrice += widget.cart[i].subTotal;
+    }
+
+    super.initState();
+  }
+
+  void _whenCreateOrderSuccess(state) {
+    snackBar(
+      context: context,
+      text: S.of(context).createOrderSuccessfully,
+      color: AppColors.primaryColor,
+    );
+
+    GoRouter.of(context)
+        .push(
+      PaymentUrlWebView.id,
+      extra: state.order.sessionUrl,
+    )
+        .then(
+      (value) {
+        if (value == "success") {
+          context.read<AuthCubit>().changeStep(widget.index + 1);
+          context.read<AuthCubit>().changeView();
+        } else {
+          snackBar(
+            context: context,
+            text: S.of(context).thePaymentProcessFailedOrCanceled,
+          );
+        }
+      },
+    );
+  }
+
   void _handleState(BuildContext context, state) {
     if (state is AuthCreateOrderState) {
-      print("ORDER: ${state.order.sessionUrl}");
-
-      snackBar(
-        context: context,
-        text: S.of(context).createOrderSuccessfully,
-        color: AppColors.primaryColor,
-      );
-
-      context.read<AuthCubit>().changeStep(index + 1);
-
-      context.read<AuthCubit>().changeView();
+      _whenCreateOrderSuccess(state);
     } else if (state is AuthCreateOrderFailureState) {
       snackBar(context: context, text: state.failure.message);
     }
@@ -53,7 +89,7 @@ class DetailsOrderView extends StatelessWidget {
           getIt.get<MySharedPreferences>().getString("street_name") ?? "Cairo",
           getIt.get<MySharedPreferences>().getString("city") ?? "Cairo",
           "Egypt",
-          context.watch<AuthCubit>().selectedValue,
+          payment,
         );
   }
 
@@ -71,7 +107,7 @@ class DetailsOrderView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                CustomerTextSection(isDark: isDark),
+                CustomerTextSection(isDark: widget.isDark),
                 SizedBox(height: Dimensions.height36),
                 Container(
                   padding:
@@ -84,7 +120,8 @@ class DetailsOrderView extends StatelessWidget {
                         S.of(context).reviewOrder,
                         style: Styles.textStyle16.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: isDark ? AppColors.white : AppColors.black,
+                          color:
+                              widget.isDark ? AppColors.white : AppColors.black,
                         ),
                       ),
                       Text(
@@ -93,15 +130,17 @@ class DetailsOrderView extends StatelessWidget {
                             .dearCustomerPleaseCheckYourInformationForAccuracy,
                         style: Styles.textStyle12.copyWith(
                           fontWeight: FontWeight.w400,
-                          color: isDark ? AppColors.white : AppColors.darkGray,
+                          color: widget.isDark
+                              ? AppColors.white
+                              : AppColors.darkGray,
                         ),
                       ),
                       SizedBox(height: Dimensions.height20),
-                      RowDetailsPaymentAndAddress(isDark: isDark),
+                      RowDetailsPaymentAndAddress(isDark: widget.isDark),
                       SizedBox(height: Dimensions.height20),
                       CustomListViewShoppingCart(
-                        isDark: isDark,
-                        cart: cart,
+                        isDark: widget.isDark,
+                        cart: widget.cart,
                       ),
                       SizedBox(height: Dimensions.height20),
                       Row(
@@ -111,15 +150,15 @@ class DetailsOrderView extends StatelessWidget {
                             S.of(context).total,
                             style: Styles.textStyle16.copyWith(
                               fontWeight: FontWeight.w400,
-                              color: isDark
+                              color: widget.isDark
                                   ? AppColors.white
                                   : AppColors.semiDarkBlack,
                             ),
                           ),
                           SizedBox(width: Dimensions.width20),
                           PriceWidget(
-                            price: 5,
-                            isDark: isDark,
+                            price: totalPrice,
+                            isDark: widget.isDark,
                           ),
                         ],
                       ),

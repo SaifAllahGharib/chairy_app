@@ -656,6 +656,46 @@ class S {
       args: [],
     );
   }
+
+  /// `The Payment Process Failed Or Canceled`
+  String get thePaymentProcessFailedOrCanceled {
+    return Intl.message(
+      'The Payment Process Failed Or Canceled',
+      name: 'thePaymentProcessFailedOrCanceled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes, I would like to receive personalized offers, tips and tricks, and other information from Store.`
+  String get policyCheckBoxText {
+    return Intl.message(
+      'Yes, I would like to receive personalized offers, tips and tricks, and other information from Store.',
+      name: 'policyCheckBoxText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The terms and conditions for Dubai Perfumes apply. Here you can find our `
+  String get theTermsAndConditionsText {
+    return Intl.message(
+      'The terms and conditions for Dubai Perfumes apply. Here you can find our ',
+      name: 'theTermsAndConditionsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `privacy information.`
+  String get privacyInformation {
+    return Intl.message(
+      'privacy information.',
+      name: 'privacyInformation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

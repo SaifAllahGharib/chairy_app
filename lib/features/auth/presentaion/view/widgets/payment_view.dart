@@ -12,28 +12,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'customer_text_section.dart';
 
-class PaymentView extends StatelessWidget {
+class PaymentView extends StatefulWidget {
   final bool isDark;
 
   const PaymentView({super.key, required this.isDark});
+
+  @override
+  State<PaymentView> createState() => _PaymentViewState();
+}
+
+class _PaymentViewState extends State<PaymentView> {
+  String? get payment => BlocProvider.of<AuthCubit>(context).selectedValue;
 
   void _selectPayment(BuildContext context, String value) {
     context.read<AuthCubit>().selectPaymentMethod(value);
   }
 
   void _goToDetailsOrder(BuildContext context) {
-    context.read<AuthCubit>().changeView();
     getIt.get<MySharedPreferences>().storeString(
           "payment",
-          context.watch<AuthCubit>().selectedValue,
+          payment!,
         );
+    context.read<AuthCubit>().changeView();
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomerTextSection(isDark: isDark),
+        CustomerTextSection(isDark: widget.isDark),
         SizedBox(height: Dimensions.height36),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Dimensions.height20),
@@ -46,7 +53,7 @@ class PaymentView extends StatelessWidget {
                   S.of(context).selectPaymentMethod,
                   style: Styles.textStyle16.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: isDark ? AppColors.white : AppColors.black,
+                    color: widget.isDark ? AppColors.white : AppColors.black,
                   ),
                 ),
               ),
@@ -54,14 +61,14 @@ class PaymentView extends StatelessWidget {
               CustomRadioTile(
                 onChanged: (value) => _selectPayment(context, value!),
                 selectedValue: context.watch<AuthCubit>().selectedValue,
-                isDark: isDark,
+                isDark: widget.isDark,
                 value: "card",
                 title: S.of(context).cardPayment,
               ),
               CustomRadioTile(
                 onChanged: (value) => _selectPayment(context, value!),
                 selectedValue: context.watch<AuthCubit>().selectedValue,
-                isDark: isDark,
+                isDark: widget.isDark,
                 value: "paypal",
                 title: S.of(context).paypal,
                 paypal: true,

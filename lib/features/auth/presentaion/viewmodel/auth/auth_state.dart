@@ -32,6 +32,8 @@ class AuthSyncCartSuccessState extends AuthState {}
 
 class AuthSelectPaymentMethodState extends AuthState {}
 
+class AuthCheckBoxState extends AuthState {}
+
 class AuthCreateOrderState extends AuthState {
   final OrderEntity order;
 

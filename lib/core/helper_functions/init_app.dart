@@ -21,6 +21,9 @@ Future<void> initApp() async {
   await Future.wait([
     getIt.get<MySharedPreferences>().init(),
     getIt.get<LocalNotificationService>().initNotifications(),
+    // getIt
+    //     .get<MySharedPreferences>()
+    //     .storeBool("con", getIt.get<InternetConnectivity>().isConnected),
     getIt.get<HiveService>().initBox<CategoryEntity>("categories_box"),
     getIt.get<HiveService>().initBox<ProductEntity>("products_box"),
     getIt.get<HiveService>().initBox<CartEntity>("cartBox"),

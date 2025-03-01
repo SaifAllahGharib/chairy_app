@@ -36,6 +36,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   String _selectedValue = "visa";
 
+  bool _checkBoxValue = false;
+
   AuthCubit(
     this._register,
     this._login,
@@ -60,9 +62,19 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthChangeViewState());
   }
 
+  void updateIndexCurrentView([int index = 1]) {
+    _currentView = index;
+    emit(AuthChangeViewState());
+  }
+
   void selectPaymentMethod(String value) {
     _selectedValue = value;
     emit(AuthSelectPaymentMethodState());
+  }
+
+  void setCheckBox() {
+    _checkBoxValue = !_checkBoxValue;
+    emit(AuthCheckBoxState());
   }
 
   String? setError({
@@ -181,6 +193,7 @@ class AuthCubit extends Cubit<AuthState> {
     String shippingCountry,
     String paymentMethod,
   ) async {
+    emit(AuthLoadingState());
     final response = await _createOrder.call(
       token,
       shippingStreetAddress,
@@ -222,4 +235,6 @@ class AuthCubit extends Cubit<AuthState> {
   int get currentView => _currentView;
 
   String get selectedValue => _selectedValue;
+
+  bool get checkBoxValue => _checkBoxValue;
 }

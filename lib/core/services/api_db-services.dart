@@ -149,7 +149,7 @@ class ApiDBServices extends DBServices {
   ) async {
     try {
       final response = await _apiService.post(
-        endpoint: removeItemFromCartEndPoint,
+        endpoint: createOrderEndPoint,
         data: {
           "shipping_street_address": shippingStreetAddress,
           "shipping_state": shippingState,
@@ -163,6 +163,7 @@ class ApiDBServices extends DBServices {
 
       return OrderModel.fromJson(response.data["data"]);
     } catch (e) {
+      print("API ERROR Create Order: $e");
       throw Exception('Failed to Create Order: $e');
     }
   }

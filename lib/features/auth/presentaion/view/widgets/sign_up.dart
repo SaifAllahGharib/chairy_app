@@ -6,11 +6,11 @@ import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/core/utils/service_locator.dart';
 import 'package:chairy_app/core/utils/styles.dart';
-import 'package:chairy_app/core/utils/type_field.dart';
 import 'package:chairy_app/core/widgets/custom_button.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
-import 'package:chairy_app/features/auth/presentaion/view/widgets/custom_text_form_field.dart';
+import 'package:chairy_app/features/auth/presentaion/view/widgets/custom_form_with_text_form.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/or_widget.dart';
+import 'package:chairy_app/features/auth/presentaion/view/widgets/policy_and_check_box_section.dart';
 import 'package:chairy_app/features/auth/presentaion/viewmodel/auth/auth_cubit.dart';
 import 'package:chairy_app/features/auth/presentaion/viewmodel/auth/auth_state.dart';
 import 'package:chairy_app/features/home/presentation/views/widgets/custom_icon_button.dart';
@@ -65,13 +65,6 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-  String? _setError(TypeField type, String errorMsg, String? value,
-      [String? secErrorEmailMsg]) {
-    return context
-        .read<AuthCubit>()
-        .setError(type: type, errorMsg: errorMsg, value: value);
-  }
-
   void _register() {
     if (_formState.currentState!.validate()) {
       _formState.currentState!.save();
@@ -85,24 +78,32 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
+  void _authSuccess(state) async {
+    snackBar(
+      context: context,
+      text: S.of(context).registerSuccess,
+      color: AppColors.primaryColor,
+    );
+
+    context.read<AuthCubit>().changeStep(widget.index + 1);
+
+    context.read<AuthCubit>().changeView();
+
+    await Future.wait([
+      getIt.get<MySharedPreferences>().storeString(
+            "token",
+            "${state.user.token}",
+          ),
+      context.read<AuthCubit>().syncCartWithServer(
+            widget.cart,
+            state.user.token,
+          ),
+    ]);
+  }
+
   void _handelState(state) async {
     if (state is AuthSuccessState) {
-      snackBar(
-        context: context,
-        text: S.of(context).registerSuccess,
-        color: AppColors.primaryColor,
-      );
-
-      await Future.wait([
-        getIt.get<MySharedPreferences>().storeString(
-              "token",
-              "${state.user.token}",
-            ),
-        context.read<AuthCubit>().syncCartWithServer(
-              widget.cart,
-              state.user.token,
-            ),
-      ]);
+      _authSuccess(state);
     } else if (state is AuthFailureState) {
       snackBar(
         context: context,
@@ -150,131 +151,16 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 SizedBox(height: Dimensions.height50),
-                Form(
-                  key: _formState,
-                  child: Column(
-                    children: [
-                      CustomTextFormField(
-                        controller: _firstName,
-                        isDark: widget.isDark,
-                        onSaved: (newValue) {},
-                        hint: S.of(context).firstName,
-                        icon: AppAssets.name,
-                        hasError: context.watch<AuthCubit>().hasEmailError,
-                        validator: (String? newValue) => _setError(
-                          TypeField.firstName,
-                          S.of(context).required,
-                          newValue,
-                        ),
-                      ),
-                      SizedBox(height: Dimensions.height15),
-                      CustomTextFormField(
-                        controller: _lastName,
-                        isDark: widget.isDark,
-                        onSaved: (newValue) {},
-                        hint: S.of(context).lastName,
-                        icon: AppAssets.name,
-                        hasError: context.watch<AuthCubit>().hasEmailError,
-                        validator: (String? newValue) => _setError(
-                          TypeField.lastName,
-                          S.of(context).required,
-                          newValue,
-                        ),
-                      ),
-                      SizedBox(height: Dimensions.height15),
-                      CustomTextFormField(
-                        controller: _email,
-                        isDark: widget.isDark,
-                        onSaved: (newValue) {},
-                        hint: S.of(context).emailAddress,
-                        icon: AppAssets.email,
-                        hasError: context.watch<AuthCubit>().hasEmailError,
-                        validator: (String? newValue) => _setError(
-                          TypeField.email,
-                          S.of(context).required,
-                          newValue,
-                          S.of(context).invalidEmail,
-                        ),
-                      ),
-                      SizedBox(height: Dimensions.height15),
-                      CustomTextFormField(
-                        controller: _password,
-                        isDark: widget.isDark,
-                        isPassword: true,
-                        showPassword: context.watch<AuthCubit>().showPassword,
-                        hasError: context.watch<AuthCubit>().hasPasswordError,
-                        hint: S.of(context).password,
-                        icon: AppAssets.lock,
-                        onSaved: (newValue) {},
-                        validator: (String? newValue) => _setError(
-                          TypeField.password,
-                          S.of(context).required,
-                          newValue,
-                        ),
-                      ),
-                    ],
-                  ),
+                CustomFormWithTextForm(
+                  isDark: widget.isDark,
+                  formState: _formState,
+                  firstName: _firstName,
+                  lastName: _lastName,
+                  email: _email,
+                  password: _password,
                 ),
                 SizedBox(height: Dimensions.height10),
-                Row(
-                  children: [
-                    Container(
-                      width: Dimensions.height20,
-                      height: Dimensions.height20,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius30),
-                        color: AppColors.gray,
-                      ),
-                      child: Checkbox(
-                        value: false,
-                        activeColor: AppColors.primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius30),
-                        ),
-                        side: const BorderSide(
-                          width: 0,
-                          color: Colors.transparent,
-                        ),
-                        onChanged: (value) {},
-                      ),
-                    ),
-                    SizedBox(width: Dimensions.width15),
-                    Expanded(
-                      child: Text(
-                        "Yes, I would like to receive personalized offers, tips and tricks, and other information from Store.",
-                        style: Styles.textStyle10.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color:
-                              widget.isDark ? AppColors.white : AppColors.black,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: Dimensions.height20),
-                RichText(
-                  text: TextSpan(
-                    text:
-                        "The terms and conditions for Dubai Perfumes apply. Here you can find our ",
-                    style: Styles.textStyle10.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: widget.isDark ? AppColors.white : AppColors.black,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: "privacy information.",
-                        style: Styles.textStyle10.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color:
-                              widget.isDark ? AppColors.white : AppColors.black,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                PolicyAndCheckBoxSection(isDark: widget.isDark),
                 const Spacer(),
                 CustomButton(
                   text: S.of(context).signUp,

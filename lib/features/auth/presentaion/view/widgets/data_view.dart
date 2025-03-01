@@ -64,14 +64,14 @@ class _DataViewState extends State<DataView> {
     if (_formState.currentState!.validate()) {
       _formState.currentState!.save();
 
+      context.read<AuthCubit>().changeStep(widget.index + 1);
+      context.read<AuthCubit>().changeView();
+
       await Future.wait([
         prefs.storeString("city", _city.text.trim()),
         prefs.storeString("street_name", _street.text.trim()),
         prefs.storeString("building_number", _buildingNumber.text.trim()),
       ]);
-
-      context.read<AuthCubit>().changeStep(widget.index + 1);
-      context.read<AuthCubit>().changeView();
     }
   }
 
@@ -102,6 +102,7 @@ class _DataViewState extends State<DataView> {
                       CustomTextFormField(
                         controller: _city,
                         isDark: widget.isDark,
+                        typeField: TypeField.address,
                         validator: (newValue) => _setError(TypeField.address,
                             S.of(context).required, newValue),
                         onSaved: (newValue) {},
@@ -111,6 +112,7 @@ class _DataViewState extends State<DataView> {
                       CustomTextFormField(
                         controller: _street,
                         isDark: widget.isDark,
+                        typeField: TypeField.address,
                         validator: (newValue) => _setError(TypeField.address,
                             S.of(context).required, newValue),
                         onSaved: (newValue) {},
@@ -118,8 +120,9 @@ class _DataViewState extends State<DataView> {
                       ),
                       SizedBox(height: Dimensions.height10),
                       CustomTextFormField(
-                        isDark: widget.isDark,
                         controller: _buildingNumber,
+                        isDark: widget.isDark,
+                        typeField: TypeField.address,
                         validator: (newValue) => _setError(TypeField.address,
                             S.of(context).required, newValue),
                         onSaved: (newValue) {},

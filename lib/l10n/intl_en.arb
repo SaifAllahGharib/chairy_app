@@ -77,5 +77,9 @@
   "failedToGetCashedItems": "Failed To Get Cashed Items",
   "pleaseProvideTheNumberOfTheProduct": "Please Provide The Number Of The Product",
   "itemIsAlreadyInTheCart": "Item Is Already In The Cart",
-  "iWantToBuy": "I Want To Buy"
+  "iWantToBuy": "I Want To Buy",
+  "thePaymentProcessFailedOrCanceled": "The Payment Process Failed Or Canceled",
+  "policyCheckBoxText": "Yes, I would like to receive personalized offers, tips and tricks, and other information from Store.",
+  "theTermsAndConditionsText": "The terms and conditions for Dubai Perfumes apply. Here you can find our ",
+  "privacyInformation": "privacy information."
 }

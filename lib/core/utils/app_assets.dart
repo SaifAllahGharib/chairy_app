@@ -40,9 +40,12 @@ abstract class AppAssets {
   static const String connection = "assets/images/connection.png";
   static const String arrowBack = "assets/images/arrow_back.png";
   static const String email = "assets/images/email.png";
+  static const String emailLight = "assets/images/email_light.png";
   static const String eye = "assets/images/eye.png";
   static const String lock = "assets/images/lock.png";
+  static const String lockLight = "assets/images/lock_light.png";
   static const String name = "assets/images/name.png";
+  static const String nameLight = "assets/images/name_light.png";
   static const String wrong = "assets/images/wrong.png";
   static const String google = "assets/images/google.png";
   static const String emptyCart = "assets/images/empty_cart.png";

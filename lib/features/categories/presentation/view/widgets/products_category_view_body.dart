@@ -1,6 +1,7 @@
 import 'package:chairy_app/core/shared/cubits/theme_cubit/theme_cubit.dart';
 import 'package:chairy_app/core/utils/dimensions.dart';
 import 'package:chairy_app/core/widgets/custom_error_widget.dart';
+import 'package:chairy_app/core/widgets/empty_widget.dart';
 import 'package:chairy_app/core/widgets/loading.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/widgets/dir_widget.dart';
@@ -41,6 +42,11 @@ class _ProductsProductsCategoryViewBodyState
     return BlocBuilder<ProductsCategoryCubit, ProductsCategoryState>(
       builder: (context, state) {
         if (state is ProductsCategorySuccessState) {
+          final products = state.products;
+          if (products.isEmpty) {
+            return const EmptyWidget();
+          }
+
           return CustomScrollView(
             slivers: [
               TopSectionProductsCategoryView(
@@ -57,7 +63,7 @@ class _ProductsProductsCategoryViewBodyState
               ),
               SliverToBoxAdapter(child: SizedBox(height: Dimensions.height36)),
               ProductsGridView(
-                products: state.products,
+                products: products,
                 isDark: _isDark,
               ),
             ],

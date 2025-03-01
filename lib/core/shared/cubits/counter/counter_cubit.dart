@@ -82,6 +82,8 @@ class CounterCubit extends Cubit<CounterState> {
         _count[productId] = (_count[productId] ?? 0) - 1;
         emit(CounterDecrementState());
       }
+    } else {
+      emit(CounterCanNotDecrementState());
     }
   }
 

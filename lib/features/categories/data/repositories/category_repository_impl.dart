@@ -1,6 +1,6 @@
 import 'package:chairy_app/core/errors/errore_handler.dart';
 import 'package:chairy_app/core/errors/failure.dart';
-import 'package:chairy_app/core/utils/internet_connectivity.dart';
+import 'package:chairy_app/core/utils/my_shared_preferences.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_local_data_source.dart';
 import 'package:chairy_app/features/categories/data/data_sources/category_remote_data_source.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
@@ -10,15 +10,18 @@ import 'package:dartz/dartz.dart';
 class CategoryRepositoryImpl implements CategoryRepository {
   final CategoryRemoteDataSource _remoteDataSource;
   final CategoryLocalDataSource _localDataSource;
-  final InternetConnectivity _internetConnectivity;
+  final MySharedPreferences _mySharedPreferences;
 
-  CategoryRepositoryImpl(this._remoteDataSource, this._localDataSource,
-      this._internetConnectivity);
+  CategoryRepositoryImpl(
+    this._remoteDataSource,
+    this._localDataSource,
+    this._mySharedPreferences,
+  );
 
   @override
   Future<Either<Failure, List<CategoryEntity>>> getCategories() async {
     try {
-      if (!await _internetConnectivity.isConnected) {
+      if (!(_mySharedPreferences.getBool("con") ?? true)) {
         return right(_localDataSource.getCachedCategories());
       }
 

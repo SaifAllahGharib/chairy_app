@@ -64,7 +64,7 @@ void setupServiceLocator() {
     CategoryRepositoryImpl(
       getIt.get<CategoryRemoteDataSourceImpl>(),
       getIt.get<CategoryLocalDataSourceImpl>(),
-      getIt.get<InternetConnectivity>(),
+      getIt.get<MySharedPreferences>(),
     ),
   );
 
@@ -130,7 +130,7 @@ void setupServiceLocator() {
     ProductsCategoryRepositoryImpl(
       getIt.get<ProductsCategoryRemoteDataSourceImpl>(),
       getIt.get<ProductsCategoryLocalDataSourceImpl>(),
-      getIt.get<InternetConnectivity>(),
+      getIt.get<MySharedPreferences>(),
     ),
   );
 

@@ -25,7 +25,7 @@ class ProductDetailsRepositoryImpl extends ProductDetailsRepository {
   Future<Either<Failure, void>> addItemToCart(
       CartEntity product, String? token) async {
     try {
-      if (await _internetConnectivity.isConnected &&
+      if ((_mySharedPreferences.getBool("con") ?? false) &&
           _mySharedPreferences.userIsLogin()) {
         final response = await _productsDetailsRemoteDataSource.addItemToCart(
           product,
@@ -53,7 +53,7 @@ class ProductDetailsRepositoryImpl extends ProductDetailsRepository {
   Future<Either<Failure, void>> increaseItemToCart(
       String? token, int productId) async {
     try {
-      if (await _internetConnectivity.isConnected &&
+      if ((_mySharedPreferences.getBool("con") ?? false) &&
           _mySharedPreferences.userIsLogin()) {
         return right(
           await _productsDetailsRemoteDataSource.increaseItemToCart(
@@ -75,7 +75,7 @@ class ProductDetailsRepositoryImpl extends ProductDetailsRepository {
   Future<Either<Failure, void>> decreaseItemToCart(
       String? token, int productId) async {
     try {
-      if (await _internetConnectivity.isConnected &&
+      if ((_mySharedPreferences.getBool("con") ?? false) &&
           _mySharedPreferences.userIsLogin()) {
         return right(
           await _productsDetailsRemoteDataSource.decreaseItemToCart(

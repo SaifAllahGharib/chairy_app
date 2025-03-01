@@ -57,7 +57,7 @@ class _ProductsItemGridViewState extends State<ProductsItemGridView> {
             color: widget.isDark ? AppColors.white : AppColors.midnightBlue,
           ),
         ),
-        SizedBox(height: Dimensions.height44),
+        const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

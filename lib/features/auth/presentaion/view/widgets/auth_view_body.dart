@@ -53,11 +53,19 @@ class _AuthViewBodyState extends State<AuthViewBody> {
 
     if (index == 0) {
       if (isUserLoggedIn && hasAddressData) {
-        index = 2;
-        context.read<AuthCubit>().changeStep(index);
+        context.read<AuthCubit>().changeStep(2);
+        context.read<AuthCubit>().updateIndexCurrentView(2);
       } else if (isUserLoggedIn) {
-        index = 1;
-        context.read<AuthCubit>().changeStep(index);
+        context.read<AuthCubit>().changeStep(1);
+        context.read<AuthCubit>().updateIndexCurrentView();
+      }
+    }
+
+    if (index > 0 && index < 2) {
+      if (isUserLoggedIn && hasAddressData) {
+        return PaymentView(isDark: _isDark);
+      } else if (isUserLoggedIn) {
+        return DataView(isDark: _isDark, index: 1);
       }
     }
 
