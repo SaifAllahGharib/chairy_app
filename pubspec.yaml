@@ -45,7 +45,6 @@ dependencies:
   permission_handler: ^11.4.0
   font_awesome_flutter: ^10.8.0
   cached_network_image: ^3.4.1
-  flutter_native_splash: ^2.4.4
   logger: ^2.5.0
   flutter_localization: ^0.3.1
   google_fonts: ^6.2.1
@@ -53,7 +52,6 @@ dependencies:
   loading_animation_widget: ^1.3.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  connectivity_plus: ^6.1.3
   internet_connection_checker: ^3.0.1
   webview_flutter: ^4.10.0
   flutter_local_notifications: ^18.0.1
@@ -110,19 +108,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-
-flutter_native_splash:
-  color: "#FFFFFF"
-  image: assets/images/splash.png
-  fullscreen: true
-
-  android_12:
-    image: assets/images/splash.png
-    color: "#FFFFFF"
-    fullscreen: true
-
-  android: true
-  ios: true
-  web: false
-flutter_intl:
-  enabled: true

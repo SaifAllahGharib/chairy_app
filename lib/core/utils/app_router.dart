@@ -1,4 +1,5 @@
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
+import 'package:chairy_app/core/utils/search_type.dart';
 import 'package:chairy_app/features/auth/presentaion/view/auth_view.dart';
 import 'package:chairy_app/features/auth/presentaion/view/widgets/payment_url_web_view.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
@@ -24,7 +25,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: SearchView.id,
-        builder: (context, state) => const SearchView(),
+        builder: (context, state) => SearchView(
+          searchType: state.extra as SearchType? ?? SearchType.none,
+        ),
       ),
       GoRoute(
         path: MenuView.id,

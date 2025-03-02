@@ -6,6 +6,9 @@ sealed class CategoryLocalDataSource {
   Future<void> cacheCategories(List<CategoryEntity> categories);
 
   List<CategoryEntity> getCachedCategories();
+
+  List<CategoryEntity> searchCategories(
+      String query, List<CategoryEntity> list);
 }
 
 class CategoryLocalDataSourceImpl implements CategoryLocalDataSource {
@@ -24,6 +27,19 @@ class CategoryLocalDataSourceImpl implements CategoryLocalDataSource {
 
   @override
   List<CategoryEntity> getCachedCategories() {
-    return _hiveService.getAllValues<CategoryEntity>(_boxName);
+    final result = _hiveService.getAllValues<CategoryEntity>(_boxName);
+    print("CACHED CATEGORY 1: $result");
+    return result;
+  }
+
+  @override
+  List<CategoryEntity> searchCategories(
+      String query, List<CategoryEntity> list) {
+    return list
+        .where(
+          (category) =>
+              category.title.toLowerCase().contains(query.toLowerCase()),
+        )
+        .toList();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:chairy_app/core/helper_functions/connection_state.dart';
 import 'package:chairy_app/core/shared/entities/cart_entity.dart';
 import 'package:chairy_app/core/utils/hive_service.dart';
 import 'package:chairy_app/core/utils/local_notification_service.dart';
@@ -19,6 +20,7 @@ Future<void> initApp() async {
   Hive.registerAdapter(CartEntityAdapter());
 
   await Future.wait([
+    connectionState(),
     getIt.get<MySharedPreferences>().init(),
     getIt.get<LocalNotificationService>().initNotifications(),
     getIt.get<HiveService>().initBox<CategoryEntity>("categories_box"),

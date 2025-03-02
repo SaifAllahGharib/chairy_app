@@ -29,9 +29,17 @@ class CategoryRepositoryImpl implements CategoryRepository {
 
       await _localDataSource.cacheCategories(categories);
 
-      return Right(categories);
+      return right(categories);
     } catch (e) {
-      return Left(ErrorHandler.handleError(e));
+      return left(ErrorHandler.handleError(e));
     }
+  }
+
+  @override
+  List<CategoryEntity> searchCategories(
+    String query,
+    List<CategoryEntity> list,
+  ) {
+    return _localDataSource.searchCategories(query, list);
   }
 }

@@ -75,10 +75,6 @@ class _CartViewBodyState extends State<CartViewBody> {
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) => _handleState(state),
       builder: (context, state) {
-        print("================================");
-        print("CART: $cart");
-        print("================================");
-
         if (state is CartLoadingState) {
           return const Loading();
         }

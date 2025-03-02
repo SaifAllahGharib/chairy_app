@@ -5,6 +5,11 @@ sealed class ProductsCategoryLocalDataSource {
   Future<void> cacheProducts(List<ProductEntity> products);
 
   List<ProductEntity> getCachedProducts();
+
+  List<ProductEntity> searchProducts(
+    String query,
+    List<ProductEntity> list,
+  );
 }
 
 class ProductsCategoryLocalDataSourceImpl
@@ -25,5 +30,13 @@ class ProductsCategoryLocalDataSourceImpl
   @override
   List<ProductEntity> getCachedProducts() {
     return _hiveService.getAllValues<ProductEntity>(_boxName);
+  }
+
+  @override
+  List<ProductEntity> searchProducts(String query, List<ProductEntity> list) {
+    return list
+        .where((product) =>
+            product.title!.toLowerCase().contains(query.toLowerCase()))
+        .toList();
   }
 }

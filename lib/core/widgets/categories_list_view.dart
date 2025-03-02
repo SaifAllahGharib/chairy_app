@@ -1,6 +1,6 @@
+import 'package:chairy_app/core/widgets/categories_item_list_view.dart';
 import 'package:chairy_app/features/categories/domain/entities/category_entity.dart';
 import 'package:chairy_app/features/categories/presentation/view/products_category_view.dart';
-import 'package:chairy_app/features/categories/presentation/view/widgets/categories_item_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

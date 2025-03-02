@@ -6,4 +6,9 @@ abstract class ProductsCategoryRepository {
   Future<Either<Failure, List<ProductEntity>>> getProductsByCategoryId(
     int categoryId,
   );
+
+  List<ProductEntity> searchCategories(
+    String query,
+    List<ProductEntity> list,
+  );
 }

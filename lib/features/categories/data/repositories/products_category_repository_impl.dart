@@ -34,4 +34,9 @@ class ProductsCategoryRepositoryImpl implements ProductsCategoryRepository {
       return left(ErrorHandler.handleError(e));
     }
   }
+
+  @override
+  List<ProductEntity> searchCategories(String query, List<ProductEntity> list) {
+    return _productLocalDataSource.searchProducts(query, list);
+  }
 }

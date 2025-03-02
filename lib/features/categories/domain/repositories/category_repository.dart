@@ -4,4 +4,9 @@ import 'package:dartz/dartz.dart';
 
 abstract class CategoryRepository {
   Future<Either<Failure, List<CategoryEntity>>> getCategories();
+
+  List<CategoryEntity> searchCategories(
+    String query,
+    List<CategoryEntity> list,
+  );
 }

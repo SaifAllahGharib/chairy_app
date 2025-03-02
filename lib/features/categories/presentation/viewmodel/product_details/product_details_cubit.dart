@@ -5,11 +5,11 @@ import 'package:chairy_app/features/categories/presentation/viewmodel/product_de
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
-  final AddItemToCart _cashedItemToCart;
+  final AddItemToCart _addItemToCart;
   final IsItemExist _isItemExist;
 
   ProductDetailsCubit(
-    this._cashedItemToCart,
+    this._addItemToCart,
     this._isItemExist,
   ) : super(ProductDetailsInitState());
 
@@ -21,7 +21,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
       (error) => emit(ProductDetailsFailureState(error)),
       (exist) async {
         if (!exist) {
-          final response = await _cashedItemToCart.call(item, token);
+          final response = await _addItemToCart.call(item, token);
 
           response.fold(
             (error) => emit(ProductDetailsFailureState(error)),

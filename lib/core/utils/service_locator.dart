@@ -4,6 +4,8 @@ import 'package:chairy_app/core/services/api_services.dart';
 import 'package:chairy_app/core/shared/usecases/decrease_item.dart';
 import 'package:chairy_app/core/shared/usecases/increase_item.dart';
 import 'package:chairy_app/core/shared/usecases/is_item_exist.dart';
+import 'package:chairy_app/core/shared/usecases/search_categories.dart';
+import 'package:chairy_app/core/shared/usecases/search_products.dart';
 import 'package:chairy_app/core/utils/hive_service.dart';
 import 'package:chairy_app/core/utils/internet_connectivity.dart';
 import 'package:chairy_app/core/utils/local_notification_service.dart';
@@ -175,5 +177,13 @@ void setupServiceLocator() {
 
   getIt.registerSingleton<IsItemExist>(
     IsItemExist(getIt.get<ProductDetailsRepositoryImpl>()),
+  );
+
+  getIt.registerSingleton<SearchCategories>(
+    SearchCategories(getIt.get<CategoryRepositoryImpl>()),
+  );
+
+  getIt.registerSingleton<SearchProducts>(
+    SearchProducts(getIt.get<ProductsCategoryRepositoryImpl>()),
   );
 }
