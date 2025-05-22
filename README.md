@@ -1,5 +1,7 @@
 # Chairy App - E-commerce
 
+Chairy is a modern, multilingual e-commerce application built with Flutter that delivers a seamless shopping experience through a clean and scalable architecture. The app supports light/dark modes, real-time data synchronization, secure payments, and offline capabilities – all while prioritizing performance, modularity, and user accessibility.
+
 ### Light Mode
 
 <img src="https://github.com/user-attachments/assets/d23d080f-a451-4ed1-85e6-f3b64483dab3" width="200"/>
